@@ -1,6 +1,5 @@
 import { cn } from '@/lib/utils'
 import { Button } from '@/components/ui/button'
-import VideoPlayer from '@/components/ui/video-player'
 import { ArrowRight, Rocket } from 'lucide-react'
 import { LogoCloud } from '@/components/ui/logo-cloud-3'
 
@@ -132,10 +131,20 @@ export function HeroSection() {
         </div>
 
         <div className="animate-in fade-in slide-in-from-bottom-10 mt-4 w-full max-w-[22rem] fill-mode-backwards delay-[360ms] duration-700 ease-out sm:mt-6 sm:max-w-6xl">
-          <VideoPlayer
-            src="https://videos.pexels.com/video-files/30333849/13003128_2560_1440_25fps.mp4"
-            poster="https://images.pexels.com/photos/30333849/pexels-photo-30333849.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=900&w=1600"
-          />
+          <div className="relative mx-auto w-full overflow-hidden rounded-[1.35rem] border border-white/10 bg-[#0d0d0fb8] shadow-[0_28px_80px_rgba(0,0,0,0.34)] backdrop-blur-md sm:rounded-[1.5rem]">
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-x-6 top-0 z-0 h-24 rounded-full bg-[radial-gradient(circle,rgba(255,255,255,0.08),transparent_72%)] blur-2xl"
+            />
+            <iframe
+              className="relative z-10 aspect-video w-full"
+              src="https://www.youtube.com/embed/DA6vHxSvoQE?rel=0&modestbranding=1&playsinline=1"
+              title="Видео о программе запуска TikTok Shop в США"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerPolicy="strict-origin-when-cross-origin"
+              allowFullScreen
+            />
+          </div>
         </div>
 
         <div className="mt-6 flex w-full max-w-[22rem] flex-col gap-2.5 sm:mt-6 sm:max-w-6xl sm:flex-row sm:items-center sm:justify-center sm:gap-3 lg:mt-8 lg:gap-4">
