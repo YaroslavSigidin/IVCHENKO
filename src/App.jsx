@@ -9,6 +9,13 @@ import aboutWarehouseImage from '../IMAGES/1/2/3/telegram-cloud-document-1-50847
 import aboutSingaporeImage from '../IMAGES/1/2/3/telegram-cloud-document-1-5084712035413920079 4.jpg'
 import aboutChicagoImage from '../IMAGES/1/2/3/telegram-cloud-document-1-5084712035413920079 5.jpg'
 import aboutCourtImage from '../IMAGES/1/2/3/telegram-cloud-document-1-5084712035413920079 6.jpg'
+import breakdownScreen01 from '../IMAGES/Screens/image 106.jpg'
+import breakdownScreen02 from '../IMAGES/Screens/image 107.jpg'
+import breakdownScreen03 from '../IMAGES/Screens/image 108.jpg'
+import breakdownScreen04 from '../IMAGES/Screens/image 109.jpg'
+import breakdownScreen05 from '../IMAGES/Screens/image 110.jpg'
+import breakdownScreen06 from '../IMAGES/Screens/image 111.jpg'
+import breakdownScreen07 from '../IMAGES/Screens/image 112.jpg'
 import reviewAnnaPreview from '../IMAGES/1/2/Anna.jpg'
 import reviewMaksPreview from '../IMAGES/1/2/Maks.jpg'
 import reviewArtemPreview from '../IMAGES/1/2/Artem.jpg'
@@ -376,6 +383,44 @@ const videoReviews = [
     title: 'Oksana',
     videoId: 'ztGS1RAp-vo',
     previewSrc: reviewOksanaPreview,
+  },
+]
+
+const videoBreakdowns = [
+  {
+    index: '01',
+    image: breakdownScreen01,
+    title: 'Разбор стратегии запуска',
+  },
+  {
+    index: '02',
+    image: breakdownScreen02,
+    title: 'Разбор выбора товара',
+  },
+  {
+    index: '03',
+    image: breakdownScreen03,
+    title: 'Разбор юнит-экономики',
+  },
+  {
+    index: '04',
+    image: breakdownScreen04,
+    title: 'Разбор контента и creators',
+  },
+  {
+    index: '05',
+    image: breakdownScreen05,
+    title: 'Разбор первых продаж',
+  },
+  {
+    index: '06',
+    image: breakdownScreen06,
+    title: 'Разбор ошибок на старте',
+  },
+  {
+    index: '07',
+    image: breakdownScreen07,
+    title: 'Разбор масштабирования',
   },
 ]
 
@@ -763,6 +808,97 @@ function VideoStoryRow({ items }) {
   )
 }
 
+function VideoBreakdownsSlider({ items }) {
+  const sliderRef = useRef(null)
+
+  const scrollSlider = (direction) => {
+    if (!sliderRef.current) return
+
+    sliderRef.current.scrollBy({
+      left: direction * Math.min(sliderRef.current.clientWidth * 0.9, 720),
+      behavior: 'smooth',
+    })
+  }
+
+  return (
+    <div className="mx-auto w-[min(1320px,94vw)]">
+      <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
+        <SectionHeader
+          eyebrow="Video Breakdowns"
+          title="Видеоразборы"
+          text="Короткие визуальные разборы показывают, как выглядит системный запуск изнутри: где искать точки роста, как оценивать решения и что исправлять до того, как ошибка станет дорогой."
+          align="left"
+        />
+
+        <div className="flex items-center gap-3">
+          <button
+            type="button"
+            onClick={() => scrollSlider(-1)}
+            className="flex h-13 w-13 items-center justify-center rounded-full border border-white/12 bg-white/[0.04] text-white/78 backdrop-blur-md transition duration-300 hover:border-white/22 hover:bg-white/[0.08] hover:text-white"
+            aria-label="Предыдущий разбор"
+          >
+            <ChevronLeft className="h-5 w-5" />
+          </button>
+          <button
+            type="button"
+            onClick={() => scrollSlider(1)}
+            className="flex h-13 w-13 items-center justify-center rounded-full border border-white/12 bg-white/[0.04] text-white/78 backdrop-blur-md transition duration-300 hover:border-white/22 hover:bg-white/[0.08] hover:text-white"
+            aria-label="Следующий разбор"
+          >
+            <ChevronRight className="h-5 w-5" />
+          </button>
+        </div>
+      </div>
+
+      <div className="relative mt-8 sm:mt-12">
+        <div
+          ref={sliderRef}
+          className="flex snap-x snap-mandatory gap-5 overflow-x-auto scroll-smooth pb-2 [scrollbar-width:none] sm:gap-7 [&::-webkit-scrollbar]:hidden"
+        >
+          {items.map((item, index) => (
+            <MobileReveal
+              key={item.index}
+              delay={0.05 * index}
+              y={24}
+              blur={10}
+              variant={moduleRevealVariants[index % moduleRevealVariants.length]}
+              className="snap-start"
+            >
+              <article className="group relative w-[min(42rem,86vw)] shrink-0 overflow-hidden rounded-[1.55rem] border border-white/10 bg-[#171919] shadow-[0_24px_70px_rgba(0,0,0,0.3)] sm:w-[42rem] lg:w-[46rem]">
+                <div className="relative overflow-hidden bg-black">
+                  <img
+                    src={item.image}
+                    alt={item.title}
+                    loading="lazy"
+                    className="aspect-[2.05/1] w-full object-cover object-center transition-transform duration-700 group-hover:scale-[1.025]"
+                  />
+                  <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.02),transparent_54%,rgba(0,0,0,0.5))]" />
+                  <div className="absolute left-4 top-4 flex h-11 w-11 items-center justify-center rounded-full bg-black/72 text-sm font-medium text-white shadow-[0_14px_28px_rgba(0,0,0,0.25)] backdrop-blur-md sm:left-5 sm:top-5">
+                    {item.index}
+                  </div>
+                  <div className="absolute inset-x-5 bottom-5">
+                    <div className="w-fit rounded-full border border-white/12 bg-black/48 px-4 py-2 text-[0.68rem] uppercase tracking-[0.24em] text-white/70 backdrop-blur-md">
+                      Практический разбор
+                    </div>
+                    <h3 className="mt-3 max-w-xl text-2xl font-medium leading-none tracking-[-0.055em] text-white sm:text-3xl">
+                      {item.title}
+                    </h3>
+                  </div>
+                </div>
+              </article>
+            </MobileReveal>
+          ))}
+        </div>
+
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-y-0 right-0 hidden w-24 bg-[linear-gradient(90deg,transparent,rgba(0,0,0,0.82))] lg:block"
+        />
+      </div>
+    </div>
+  )
+}
+
 function App() {
   return (
     <main className="relative min-h-screen overflow-hidden bg-black text-white">
@@ -933,6 +1069,10 @@ function App() {
           />
           <VideoStoryRow items={videoReviews} />
         </div>
+      </Motion.section>
+
+      <Motion.section {...sectionReveal} className="relative px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
+        <VideoBreakdownsSlider items={videoBreakdowns} />
       </Motion.section>
 
       <Motion.section
