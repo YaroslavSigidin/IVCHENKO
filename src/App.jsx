@@ -689,7 +689,7 @@ function VideoStoryRow({ items }) {
   const [activeVideoId, setActiveVideoId] = useState(null)
 
   return (
-    <div className="mx-auto mt-10 grid max-w-[82rem] grid-cols-1 justify-items-center gap-8 sm:mt-12 sm:grid-cols-2 sm:gap-9 lg:grid-cols-3 lg:gap-x-12 lg:gap-y-14">
+    <div className="mx-auto mt-8 grid max-w-[70rem] grid-cols-1 justify-items-center gap-5 sm:mt-10 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3 lg:gap-x-7 lg:gap-y-8">
       {items.map((item, index) => (
         <MobileReveal
           key={item.id}
@@ -697,11 +697,11 @@ function VideoStoryRow({ items }) {
           y={26}
           blur={10}
           variant={storyRevealVariants[index % storyRevealVariants.length]}
-          className="group flex flex-col items-center gap-4 text-center"
+          className="group flex flex-col items-center gap-3 text-center"
         >
           <div className="relative block rounded-full bg-[linear-gradient(180deg,rgba(255,138,28,0.96),rgba(255,255,255,0.18))] p-[3px] shadow-[0_0_0_1px_rgba(255,138,28,0.22),0_18px_46px_rgba(255,138,28,0.12)] transition-transform duration-300 group-hover:scale-[1.025]">
             {activeVideoId === item.id ? (
-              <div className="relative flex h-[19rem] w-[19rem] items-center justify-center overflow-hidden rounded-full border border-white/10 bg-black sm:h-[21rem] sm:w-[21rem] lg:h-[23rem] lg:w-[23rem]">
+              <div className="relative flex h-[16rem] w-[16rem] items-center justify-center overflow-hidden rounded-full border border-white/10 bg-black sm:h-[18rem] sm:w-[18rem] lg:h-[19.5rem] lg:w-[19.5rem]">
                 <iframe
                   className="absolute left-1/2 top-1/2 h-[178%] w-full -translate-x-1/2 -translate-y-1/2 scale-[1.2]"
                   src={`https://www.youtube.com/embed/${item.videoId}?autoplay=1&controls=0&disablekb=1&fs=0&iv_load_policy=3&modestbranding=1&playsinline=1&rel=0`}
@@ -723,7 +723,7 @@ function VideoStoryRow({ items }) {
               <button
                 type="button"
                 onClick={() => setActiveVideoId(item.id)}
-                className="relative flex h-[19rem] w-[19rem] items-center justify-center overflow-hidden rounded-full border border-white/10 bg-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#ff8a1c] sm:h-[21rem] sm:w-[21rem] lg:h-[23rem] lg:w-[23rem]"
+                className="relative flex h-[16rem] w-[16rem] items-center justify-center overflow-hidden rounded-full border border-white/10 bg-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#ff8a1c] sm:h-[18rem] sm:w-[18rem] lg:h-[19.5rem] lg:w-[19.5rem]"
                 aria-label={`Воспроизвести видео-отзыв: ${item.title}`}
               >
                 <>
@@ -734,8 +734,8 @@ function VideoStoryRow({ items }) {
                     className="absolute inset-0 h-full w-full scale-[1.18] object-cover object-center transition-transform duration-500 group-hover:scale-[1.24]"
                   />
                   <span className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.04),rgba(0,0,0,0.2)_52%,rgba(0,0,0,0.48)_100%)]" />
-                  <span className="absolute flex h-16 w-16 items-center justify-center rounded-full border border-white/18 bg-black/42 text-white shadow-[0_16px_38px_rgba(0,0,0,0.32)] backdrop-blur-md transition-transform duration-300 group-hover:scale-105 sm:h-[4.8rem] sm:w-[4.8rem]">
-                    <span className="ml-1 h-0 w-0 border-y-[0.7rem] border-l-[1.05rem] border-y-transparent border-l-white sm:border-y-[0.85rem] sm:border-l-[1.25rem]" />
+                  <span className="absolute flex h-14 w-14 items-center justify-center rounded-full border border-white/18 bg-black/42 text-white shadow-[0_14px_30px_rgba(0,0,0,0.3)] backdrop-blur-md transition-transform duration-300 group-hover:scale-105 sm:h-[4rem] sm:w-[4rem]">
+                    <span className="ml-1 h-0 w-0 border-y-[0.62rem] border-l-[0.92rem] border-y-transparent border-l-white sm:border-y-[0.72rem] sm:border-l-[1.05rem]" />
                   </span>
                 </>
                 <span
@@ -750,10 +750,10 @@ function VideoStoryRow({ items }) {
             )}
           </div>
           <div>
-            <div className="text-lg font-medium tracking-[-0.03em] text-white sm:text-xl">
+            <div className="text-base font-medium tracking-[-0.03em] text-white sm:text-lg">
               {item.title}
             </div>
-            <div className="mt-1.5 text-[0.68rem] uppercase tracking-[0.2em] text-white/42 sm:mt-2 sm:text-[0.8rem] sm:tracking-[0.26em]">
+            <div className="mt-1 text-[0.62rem] uppercase tracking-[0.2em] text-white/42 sm:mt-1.5 sm:text-[0.72rem] sm:tracking-[0.24em]">
               YouTube Shorts
             </div>
           </div>
