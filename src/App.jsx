@@ -865,15 +865,14 @@ function VideoBreakdownsSlider({ items }) {
 
   return (
     <div className="mx-auto w-[min(1320px,94vw)]">
-      <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
-        <SectionHeader
-          eyebrow="Video Breakdowns"
-          title="Видеоразборы"
-          text="Короткие визуальные разборы показывают, как выглядит системный запуск изнутри: где искать точки роста, как оценивать решения и что исправлять до того, как ошибка станет дорогой."
-          align="left"
-        />
+      <SectionHeader
+        eyebrow="Video Breakdowns"
+        title="Видеоразборы"
+        text="Короткие визуальные разборы показывают, как выглядит системный запуск изнутри: где искать точки роста, как оценивать решения и что исправлять до того, как ошибка станет дорогой."
+      />
 
-        <div className="flex items-center gap-3">
+      <div className="relative mt-8 sm:mt-12">
+        <div className="mb-5 flex items-center justify-center gap-3 sm:justify-end">
           <button
             type="button"
             onClick={() => scrollSlider(-1)}
@@ -891,9 +890,7 @@ function VideoBreakdownsSlider({ items }) {
             <ChevronRight className="h-5 w-5" />
           </button>
         </div>
-      </div>
 
-      <div className="relative mt-8 sm:mt-12">
         <div
           ref={sliderRef}
           className="flex snap-x snap-mandatory gap-5 overflow-x-auto scroll-smooth pb-2 [scrollbar-width:none] sm:gap-7 [&::-webkit-scrollbar]:hidden"
