@@ -1,7 +1,14 @@
+import { useState } from 'react'
 import audience01 from '../01.png'
 import audience02 from '../02.png'
 import audience03 from '../03.png'
 import audience04 from '../04.png'
+import reviewAnnaPreview from '../IMAGES/1/image 105.jpg'
+import reviewMaksPreview from '../IMAGES/1/image 102.jpg'
+import reviewAndreiPreview from '../IMAGES/1/image 103.jpg'
+import reviewDanyaPreview from '../IMAGES/1/image 109.jpg'
+import reviewSofyaPreview from '../IMAGES/1/image 108.jpg'
+import reviewSixPreview from '../IMAGES/1/image 106.jpg'
 
 import { motion as Motion } from 'motion/react'
 import {
@@ -295,33 +302,39 @@ const thirdStudentColumn = studentResults.slice(6, 9)
 const videoReviews = [
   {
     id: 'review-01',
-    title: 'Видео-отзыв 01',
+    title: 'Anna',
     videoId: '4j8U9izNqUA',
+    previewSrc: reviewAnnaPreview,
   },
   {
     id: 'review-02',
-    title: 'Видео-отзыв 02',
+    title: 'Maks',
     videoId: '4pV-1ZXo0Nk',
+    previewSrc: reviewMaksPreview,
   },
   {
     id: 'review-03',
-    title: 'Видео-отзыв 03',
+    title: 'Andrei',
     videoId: 'fSECZ15mq_4',
+    previewSrc: reviewAndreiPreview,
   },
   {
     id: 'review-04',
-    title: 'Видео-отзыв 04',
+    title: 'Danya',
     videoId: 'aM0BStovRuo',
+    previewSrc: reviewDanyaPreview,
   },
   {
     id: 'review-05',
-    title: 'Видео-отзыв 05',
+    title: 'Sofya',
     videoId: 'YfDhRcFdlNg',
+    previewSrc: reviewSofyaPreview,
   },
   {
     id: 'review-06',
-    title: 'Видео-отзыв 06',
+    title: 'Видео-отзыв 2',
     videoId: 'ztGS1RAp-vo',
+    previewSrc: reviewSixPreview,
   },
 ]
 
@@ -514,8 +527,10 @@ function SectionHeader({ eyebrow, title, text, align = 'center' }) {
 }
 
 function VideoStoryRow({ items }) {
+  const [activeVideoId, setActiveVideoId] = useState(null)
+
   return (
-    <div className="mx-auto mt-10 grid max-w-[72rem] grid-cols-1 justify-items-center gap-7 sm:mt-12 sm:grid-cols-2 sm:gap-8 lg:grid-cols-3 lg:gap-x-10 lg:gap-y-12">
+    <div className="mx-auto mt-10 grid max-w-[82rem] grid-cols-1 justify-items-center gap-8 sm:mt-12 sm:grid-cols-2 sm:gap-9 lg:grid-cols-3 lg:gap-x-12 lg:gap-y-14">
       {items.map((item, index) => (
         <MobileReveal
           key={item.id}
@@ -526,24 +541,54 @@ function VideoStoryRow({ items }) {
           className="group flex flex-col items-center gap-4 text-center"
         >
           <div className="relative block rounded-full bg-[linear-gradient(180deg,rgba(255,138,28,0.96),rgba(255,255,255,0.18))] p-[3px] shadow-[0_0_0_1px_rgba(255,138,28,0.22),0_18px_46px_rgba(255,138,28,0.12)] transition-transform duration-300 group-hover:scale-[1.025]">
-            <div className="relative flex h-64 w-64 items-center justify-center overflow-hidden rounded-full border border-white/10 bg-black sm:h-72 sm:w-72 lg:h-80 lg:w-80">
-              <iframe
-                className="absolute left-1/2 top-1/2 h-[118%] w-[210%] -translate-x-1/2 -translate-y-1/2"
-                src={`https://www.youtube.com/embed/${item.videoId}?rel=0&modestbranding=1&playsinline=1`}
-                title={item.title}
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                referrerPolicy="strict-origin-when-cross-origin"
-                allowFullScreen
-              />
-              <span
-                aria-hidden="true"
-                className="pointer-events-none absolute inset-0 rounded-full ring-1 ring-inset ring-white/10"
-              />
-              <span
-                aria-hidden="true"
-                className="pointer-events-none absolute inset-0 rounded-full bg-[radial-gradient(circle_at_50%_8%,rgba(255,255,255,0.14),transparent_36%)]"
-              />
-            </div>
+            {activeVideoId === item.id ? (
+              <div className="relative flex h-[19rem] w-[19rem] items-center justify-center overflow-hidden rounded-full border border-white/10 bg-black sm:h-[21rem] sm:w-[21rem] lg:h-[23rem] lg:w-[23rem]">
+                <iframe
+                  className="absolute left-1/2 top-1/2 h-[178%] w-full -translate-x-1/2 -translate-y-1/2 scale-[1.2]"
+                  src={`https://www.youtube.com/embed/${item.videoId}?autoplay=1&controls=0&disablekb=1&fs=0&iv_load_policy=3&modestbranding=1&playsinline=1&rel=0`}
+                  title={item.title}
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerPolicy="strict-origin-when-cross-origin"
+                  allowFullScreen
+                />
+                <span
+                  aria-hidden="true"
+                  className="pointer-events-none absolute inset-0 rounded-full ring-1 ring-inset ring-white/10"
+                />
+                <span
+                  aria-hidden="true"
+                  className="pointer-events-none absolute inset-0 rounded-full bg-[radial-gradient(circle_at_50%_8%,rgba(255,255,255,0.14),transparent_36%)]"
+                />
+              </div>
+            ) : (
+              <button
+                type="button"
+                onClick={() => setActiveVideoId(item.id)}
+                className="relative flex h-[19rem] w-[19rem] items-center justify-center overflow-hidden rounded-full border border-white/10 bg-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#ff8a1c] sm:h-[21rem] sm:w-[21rem] lg:h-[23rem] lg:w-[23rem]"
+                aria-label={`Воспроизвести видео-отзыв: ${item.title}`}
+              >
+                <>
+                  <img
+                    src={item.previewSrc}
+                    alt={item.title}
+                    loading="lazy"
+                    className="absolute inset-0 h-full w-full scale-[1.18] object-cover object-center transition-transform duration-500 group-hover:scale-[1.24]"
+                  />
+                  <span className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.04),rgba(0,0,0,0.2)_52%,rgba(0,0,0,0.48)_100%)]" />
+                  <span className="absolute flex h-16 w-16 items-center justify-center rounded-full border border-white/18 bg-black/42 text-white shadow-[0_16px_38px_rgba(0,0,0,0.32)] backdrop-blur-md transition-transform duration-300 group-hover:scale-105 sm:h-[4.8rem] sm:w-[4.8rem]">
+                    <span className="ml-1 h-0 w-0 border-y-[0.7rem] border-l-[1.05rem] border-y-transparent border-l-white sm:border-y-[0.85rem] sm:border-l-[1.25rem]" />
+                  </span>
+                </>
+                <span
+                  aria-hidden="true"
+                  className="pointer-events-none absolute inset-0 rounded-full ring-1 ring-inset ring-white/10"
+                />
+                <span
+                  aria-hidden="true"
+                  className="pointer-events-none absolute inset-0 rounded-full bg-[radial-gradient(circle_at_50%_8%,rgba(255,255,255,0.14),transparent_36%)]"
+                />
+              </button>
+            )}
           </div>
           <div>
             <div className="text-lg font-medium tracking-[-0.03em] text-white sm:text-xl">
