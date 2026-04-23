@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import audience01 from '../01.png'
 import audience02 from '../02.png'
 import audience03 from '../03.png'
@@ -15,10 +14,8 @@ import {
   Layers3,
   PackageCheck,
   Pencil,
-  Play,
   Rocket,
   Settings2,
-  Square,
   Sparkles,
   Target,
   Users,
@@ -298,30 +295,33 @@ const thirdStudentColumn = studentResults.slice(6, 9)
 const videoReviews = [
   {
     id: 'review-01',
-    name: 'Алина',
-    role: 'Разбор ученика',
-    title: 'Как перейти от хаоса к понятному плану запуска',
-    previewSrc:
-      'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=800&q=80',
-    videoSrc: 'https://videos.pexels.com/video-files/30333849/13003128_2560_1440_25fps.mp4',
+    title: 'Видео-отзыв 01',
+    videoId: '4j8U9izNqUA',
   },
   {
     id: 'review-02',
-    name: 'Максим',
-    role: 'Кейс-отзыв',
-    title: 'Что меняется после системного входа в TikTok Shop',
-    previewSrc:
-      'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=800&q=80',
-    videoSrc: 'https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4',
+    title: 'Видео-отзыв 02',
+    videoId: '4pV-1ZXo0Nk',
   },
   {
     id: 'review-03',
-    name: 'Виктория',
-    role: 'Путь: запрос → результат',
-    title: 'Как сократить количество ошибок на старте',
-    previewSrc:
-      'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=800&q=80',
-    videoSrc: 'https://www.w3schools.com/html/mov_bbb.mp4',
+    title: 'Видео-отзыв 03',
+    videoId: 'fSECZ15mq_4',
+  },
+  {
+    id: 'review-04',
+    title: 'Видео-отзыв 04',
+    videoId: 'aM0BStovRuo',
+  },
+  {
+    id: 'review-05',
+    title: 'Видео-отзыв 05',
+    videoId: 'YfDhRcFdlNg',
+  },
+  {
+    id: 'review-06',
+    title: 'Видео-отзыв 06',
+    videoId: 'ztGS1RAp-vo',
   },
 ]
 
@@ -513,9 +513,9 @@ function SectionHeader({ eyebrow, title, text, align = 'center' }) {
   )
 }
 
-function VideoStoryRow({ items, activeId, onSelect }) {
+function VideoStoryRow({ items }) {
   return (
-    <div className="mt-10 flex flex-wrap justify-center gap-5 sm:mt-12 sm:gap-10 lg:gap-12">
+    <div className="mx-auto mt-10 grid max-w-[72rem] grid-cols-1 justify-items-center gap-7 sm:mt-12 sm:grid-cols-2 sm:gap-8 lg:grid-cols-3 lg:gap-x-10 lg:gap-y-12">
       {items.map((item, index) => (
         <MobileReveal
           key={item.id}
@@ -523,65 +523,34 @@ function VideoStoryRow({ items, activeId, onSelect }) {
           y={26}
           blur={10}
           variant={storyRevealVariants[index % storyRevealVariants.length]}
-          className="group flex flex-col items-center gap-3 text-center"
+          className="group flex flex-col items-center gap-4 text-center"
         >
-          <button
-            type="button"
-            onClick={() => onSelect(activeId === item.id ? null : item.id)}
-            className="focus-visible:outline-none"
-            aria-label={`Воспроизвести видео-отзыв: ${item.name}`}
-          >
-            <span
-              className={cn(
-                'relative block rounded-full p-[3px] transition-transform duration-300 group-hover:scale-[1.03]',
-                activeId === item.id
-                  ? 'bg-[linear-gradient(180deg,rgba(255,138,28,1),rgba(255,199,150,0.9))] shadow-[0_0_0_1px_rgba(255,138,28,0.35),0_16px_40px_rgba(255,138,28,0.18)]'
-                  : 'bg-[linear-gradient(180deg,rgba(255,138,28,0.92),rgba(255,255,255,0.18))]',
-              )}
-            >
-              <span className="relative flex h-36 w-36 items-center justify-center overflow-hidden rounded-full border border-white/10 bg-black sm:h-56 sm:w-56 lg:h-60 lg:w-60">
-                {activeId === item.id ? (
-                  <video
-                    key={item.videoSrc}
-                    src={item.videoSrc}
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
-                    className="absolute inset-0 h-full w-full object-cover object-center"
-                  />
-                ) : (
-                  <img
-                    src={item.previewSrc}
-                    alt={item.name}
-                    loading="lazy"
-                    className="absolute inset-0 h-full w-full object-cover object-center transition-transform duration-500 group-hover:scale-[1.06]"
-                  />
-                )}
-                <span className="absolute inset-0 bg-[linear-gradient(180deg,rgba(10,10,10,0.06),rgba(10,10,10,0.28)_52%,rgba(10,10,10,0.62)_100%)]" />
-                <span
-                  className={cn(
-                    'absolute bottom-3 left-1/2 flex h-[3.1rem] w-[3.1rem] -translate-x-1/2 items-center justify-center rounded-full border border-white/16 bg-black/52 text-white backdrop-blur-md transition-all duration-300 group-hover:scale-105 sm:bottom-5 sm:h-[3.9rem] sm:w-[3.9rem] lg:bottom-6',
-                    activeId === item.id
-                      ? 'shadow-[0_10px_28px_rgba(0,0,0,0.28)]'
-                      : 'shadow-[0_10px_28px_rgba(0,0,0,0.18)]',
-                  )}
-                >
-                  {activeId === item.id ? (
-                    <Square className="h-4 w-4 fill-current sm:h-5 sm:w-5" />
-                  ) : (
-                    <Play className="ml-0.5 h-5 w-5 fill-current sm:h-6 sm:w-6" />
-                  )}
-                </span>
-              </span>
-            </span>
-          </button>
+          <div className="relative block rounded-full bg-[linear-gradient(180deg,rgba(255,138,28,0.96),rgba(255,255,255,0.18))] p-[3px] shadow-[0_0_0_1px_rgba(255,138,28,0.22),0_18px_46px_rgba(255,138,28,0.12)] transition-transform duration-300 group-hover:scale-[1.025]">
+            <div className="relative flex h-64 w-64 items-center justify-center overflow-hidden rounded-full border border-white/10 bg-black sm:h-72 sm:w-72 lg:h-80 lg:w-80">
+              <iframe
+                className="absolute left-1/2 top-1/2 h-[118%] w-[210%] -translate-x-1/2 -translate-y-1/2"
+                src={`https://www.youtube.com/embed/${item.videoId}?rel=0&modestbranding=1&playsinline=1`}
+                title={item.title}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerPolicy="strict-origin-when-cross-origin"
+                allowFullScreen
+              />
+              <span
+                aria-hidden="true"
+                className="pointer-events-none absolute inset-0 rounded-full ring-1 ring-inset ring-white/10"
+              />
+              <span
+                aria-hidden="true"
+                className="pointer-events-none absolute inset-0 rounded-full bg-[radial-gradient(circle_at_50%_8%,rgba(255,255,255,0.14),transparent_36%)]"
+              />
+            </div>
+          </div>
           <div>
             <div className="text-lg font-medium tracking-[-0.03em] text-white sm:text-xl">
-              {item.name}
+              {item.title}
             </div>
             <div className="mt-1.5 text-[0.68rem] uppercase tracking-[0.2em] text-white/42 sm:mt-2 sm:text-[0.8rem] sm:tracking-[0.26em]">
-              {item.role}
+              YouTube Shorts
             </div>
           </div>
         </MobileReveal>
@@ -591,8 +560,6 @@ function VideoStoryRow({ items, activeId, onSelect }) {
 }
 
 function App() {
-  const [activeVideoReviewId, setActiveVideoReviewId] = useState(null)
-
   return (
     <main className="relative min-h-screen overflow-hidden bg-black text-white">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.16),transparent_22%),radial-gradient(circle_at_50%_18%,rgba(255,255,255,0.05),transparent_30%)]" />
@@ -754,13 +721,9 @@ function App() {
           <SectionHeader
             eyebrow="Testimonials"
             title="Видео-отзывы"
-            text="Нажмите на круг, и отзыв начнет проигрываться прямо внутри него, как в сторис."
+            text="Шесть коротких видео-отзывов в формате Shorts, расположенные в указанной последовательности."
           />
-          <VideoStoryRow
-            items={videoReviews}
-            activeId={activeVideoReviewId}
-            onSelect={setActiveVideoReviewId}
-          />
+          <VideoStoryRow items={videoReviews} />
         </div>
       </Motion.section>
 
