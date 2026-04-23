@@ -138,7 +138,7 @@ export function HeroSection() {
             />
             <iframe
               className="relative z-10 aspect-video w-full"
-              src="https://www.youtube.com/embed/DA6vHxSvoQE?rel=0&modestbranding=1&playsinline=1"
+              src="https://www.youtube.com/embed/DA6vHxSvoQE?autoplay=1&mute=1&rel=0&modestbranding=1&playsinline=1"
               title="Видео о программе запуска TikTok Shop в США"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               referrerPolicy="strict-origin-when-cross-origin"
