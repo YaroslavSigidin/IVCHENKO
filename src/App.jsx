@@ -16,6 +16,11 @@ import breakdownScreen04 from '../IMAGES/Screens/image 109.jpg'
 import breakdownScreen05 from '../IMAGES/Screens/image 110.jpg'
 import breakdownScreen06 from '../IMAGES/Screens/image 111.jpg'
 import breakdownScreen07 from '../IMAGES/Screens/image 112.jpg'
+import resultScreen01 from '../IMAGES/Results/telegram-cloud-photo-size-1-4972364186855869190-y 1.jpg'
+import resultScreen02 from '../IMAGES/Results/telegram-cloud-photo-size-1-4972364186855869191-y 1.jpg'
+import resultScreen03 from '../IMAGES/Results/telegram-cloud-photo-size-1-4972364186855869192-y 1.jpg'
+import resultScreen04 from '../IMAGES/Results/telegram-cloud-photo-size-1-4972364186855869193-y 1.jpg'
+import resultScreen05 from '../IMAGES/Results/telegram-cloud-photo-size-1-4972364186855869194-y 1.jpg'
 import reviewAnnaPreview from '../IMAGES/1/2/Anna.jpg'
 import reviewMaksPreview from '../IMAGES/1/2/Maks.jpg'
 import reviewArtemPreview from '../IMAGES/1/2/Artem.jpg'
@@ -421,6 +426,44 @@ const videoBreakdowns = [
     index: '07',
     image: breakdownScreen07,
     title: 'Разбор масштабирования',
+  },
+]
+
+const resultScreens = [
+  {
+    index: '01',
+    image: resultScreen01,
+    title: 'День с выручкой $1,410',
+    metric: '$1,410 revenue',
+    layout: 'phone',
+  },
+  {
+    index: '02',
+    image: resultScreen02,
+    title: 'Рост за неделю',
+    metric: '$26,563 GMV',
+    layout: 'phone',
+  },
+  {
+    index: '03',
+    image: resultScreen03,
+    title: 'Продажи за день',
+    metric: '$4,495 GMV',
+    layout: 'phone',
+  },
+  {
+    index: '04',
+    image: resultScreen04,
+    title: 'Месячная аналитика',
+    metric: '$100,894 GMV',
+    layout: 'wide',
+  },
+  {
+    index: '05',
+    image: resultScreen05,
+    title: 'Результат за период',
+    metric: '$81,275 GMV',
+    layout: 'phone',
   },
 ]
 
@@ -899,6 +942,112 @@ function VideoBreakdownsSlider({ items }) {
   )
 }
 
+function ResultsSlider({ items }) {
+  const sliderRef = useRef(null)
+
+  const scrollSlider = (direction) => {
+    if (!sliderRef.current) return
+
+    sliderRef.current.scrollBy({
+      left: direction * Math.min(sliderRef.current.clientWidth * 0.84, 620),
+      behavior: 'smooth',
+    })
+  }
+
+  return (
+    <div className="mx-auto w-[min(1320px,94vw)]">
+      <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
+        <SectionHeader
+          eyebrow="Numbers"
+          title="Мои цифры"
+          text="Скрины из аналитики показывают не обещания, а реальную механику результата: GMV, заказы, клиенты и рост, который появляется, когда TikTok Shop собран как система."
+          align="left"
+        />
+
+        <div className="flex items-center gap-3">
+          <button
+            type="button"
+            onClick={() => scrollSlider(-1)}
+            className="flex h-13 w-13 items-center justify-center rounded-full border border-white/12 bg-white/[0.04] text-white/78 backdrop-blur-md transition duration-300 hover:border-white/22 hover:bg-white/[0.08] hover:text-white"
+            aria-label="Предыдущий результат"
+          >
+            <ChevronLeft className="h-5 w-5" />
+          </button>
+          <button
+            type="button"
+            onClick={() => scrollSlider(1)}
+            className="flex h-13 w-13 items-center justify-center rounded-full border border-white/12 bg-white/[0.04] text-white/78 backdrop-blur-md transition duration-300 hover:border-white/22 hover:bg-white/[0.08] hover:text-white"
+            aria-label="Следующий результат"
+          >
+            <ChevronRight className="h-5 w-5" />
+          </button>
+        </div>
+      </div>
+
+      <div className="relative mt-8 sm:mt-12">
+        <div
+          ref={sliderRef}
+          className="flex snap-x snap-mandatory items-stretch gap-5 overflow-x-auto scroll-smooth pb-2 [scrollbar-width:none] sm:gap-7 [&::-webkit-scrollbar]:hidden"
+        >
+          {items.map((item, index) => (
+            <MobileReveal
+              key={item.index}
+              delay={0.05 * index}
+              y={24}
+              blur={10}
+              variant={pricingRevealVariants[index % pricingRevealVariants.length]}
+              className="snap-start"
+            >
+              <article
+                className={cn(
+                  'group relative flex shrink-0 flex-col overflow-hidden rounded-[1.55rem] border border-white/10 bg-[#171919] shadow-[0_24px_70px_rgba(0,0,0,0.3)]',
+                  item.layout === 'wide'
+                    ? 'w-[min(50rem,88vw)]'
+                    : 'w-[min(21rem,82vw)] sm:w-[22rem]',
+                )}
+              >
+                <div
+                  className={cn(
+                    'relative overflow-hidden bg-[#f4f4f4]',
+                    item.layout === 'wide' ? 'h-[25rem] sm:h-[30rem]' : 'h-[39rem] sm:h-[42rem]',
+                  )}
+                >
+                  <img
+                    src={item.image}
+                    alt={item.title}
+                    loading="lazy"
+                    className={cn(
+                      'h-full w-full transition-transform duration-700 group-hover:scale-[1.015]',
+                      item.layout === 'wide' ? 'object-contain' : 'object-cover object-top',
+                    )}
+                  />
+                  <div className="absolute left-4 top-4 flex h-11 w-11 items-center justify-center rounded-full bg-black/72 text-sm font-medium text-white shadow-[0_14px_28px_rgba(0,0,0,0.25)] backdrop-blur-md">
+                    {item.index}
+                  </div>
+                </div>
+
+                <div className="border-t border-white/8 bg-[#1b1d1d] px-5 py-5">
+                  <div className="text-[0.62rem] uppercase tracking-[0.26em] text-[#ff8a1c]">
+                    {item.metric}
+                  </div>
+                  <h3 className="mt-2 text-xl font-medium leading-none tracking-[-0.045em] text-white sm:text-2xl">
+                    {item.title}
+                  </h3>
+                </div>
+              </article>
+            </MobileReveal>
+          ))}
+        </div>
+
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-y-0 right-0 hidden w-24 bg-[linear-gradient(90deg,transparent,rgba(0,0,0,0.82))] lg:block"
+        />
+      </div>
+    </div>
+  )
+}
+
 function App() {
   return (
     <main className="relative min-h-screen overflow-hidden bg-black text-white">
@@ -1073,6 +1222,10 @@ function App() {
 
       <Motion.section {...sectionReveal} className="relative px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
         <VideoBreakdownsSlider items={videoBreakdowns} />
+      </Motion.section>
+
+      <Motion.section {...sectionReveal} className="relative px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
+        <ResultsSlider items={resultScreens} />
       </Motion.section>
 
       <Motion.section
