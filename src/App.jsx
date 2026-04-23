@@ -1,8 +1,14 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import audience01 from '../01.png'
 import audience02 from '../02.png'
 import audience03 from '../03.png'
 import audience04 from '../04.png'
+import aboutCafeImage from '../IMAGES/1/2/3/telegram-cloud-document-1-5084712035413920079 1.jpg'
+import aboutCarImage from '../IMAGES/1/2/3/telegram-cloud-document-1-5084712035413920079 2.jpg'
+import aboutWarehouseImage from '../IMAGES/1/2/3/telegram-cloud-document-1-5084712035413920079 3.jpg'
+import aboutSingaporeImage from '../IMAGES/1/2/3/telegram-cloud-document-1-5084712035413920079 4.jpg'
+import aboutChicagoImage from '../IMAGES/1/2/3/telegram-cloud-document-1-5084712035413920079 5.jpg'
+import aboutCourtImage from '../IMAGES/1/2/3/telegram-cloud-document-1-5084712035413920079 6.jpg'
 import reviewAnnaPreview from '../IMAGES/1/2/Anna.jpg'
 import reviewMaksPreview from '../IMAGES/1/2/Maks.jpg'
 import reviewArtemPreview from '../IMAGES/1/2/Artem.jpg'
@@ -15,6 +21,8 @@ import {
   BadgeDollarSign,
   BadgeCheck,
   BriefcaseBusiness,
+  ChevronLeft,
+  ChevronRight,
   Compass,
   Crown,
   Fingerprint,
@@ -235,6 +243,39 @@ const programFlowChips = [
     title: 'Фокус на реальном запуске',
     description: 'Не теория ради теории, а действия под рынок США.',
     icon: Target,
+  },
+]
+
+const aboutSlides = [
+  {
+    index: '01',
+    image: aboutCarImage,
+    text: 'Я строю e-commerce так, чтобы бизнес не держался на ручном контроле. Система продает, пока я выбираю, где жить и чем наполнять день.',
+  },
+  {
+    index: '02',
+    image: aboutWarehouseImage,
+    text: 'За красивой картинкой стоит операционка: товар, склад, логистика и процессы. Когда база собрана правильно, рост становится управляемым.',
+  },
+  {
+    index: '03',
+    image: aboutSingaporeImage,
+    text: 'Путешествую, изучаю новые рынки и забираю энергию от жизни. Цель бизнеса не занять все время, а дать свободу и масштаб.',
+  },
+  {
+    index: '04',
+    image: aboutChicagoImage,
+    text: 'Мой фокус — рынок США и модели, которые можно системно повторять. Не хаотичные запуски, а понятная структура действий и решений.',
+  },
+  {
+    index: '05',
+    image: aboutCourtImage,
+    text: 'Я прошел путь от идей до реальных процессов и понимаю цену ошибок. Поэтому внутри программы даю не теорию, а практичную карту запуска.',
+  },
+  {
+    index: '06',
+    image: aboutCafeImage,
+    text: 'Свобода появляется не от мотивации, а от системы. Когда бизнес работает сам на себя, у тебя появляется время жить, думать и расти дальше.',
   },
 ]
 
@@ -526,6 +567,95 @@ function SectionHeader({ eyebrow, title, text, align = 'center' }) {
   )
 }
 
+function AboutMeSlider({ slides }) {
+  const sliderRef = useRef(null)
+
+  const scrollSlider = (direction) => {
+    if (!sliderRef.current) return
+
+    sliderRef.current.scrollBy({
+      left: direction * Math.min(sliderRef.current.clientWidth * 0.82, 460),
+      behavior: 'smooth',
+    })
+  }
+
+  return (
+    <div className="mx-auto w-[min(1320px,94vw)]">
+      <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
+        <SectionHeader
+          eyebrow="About"
+          title="Обо мне"
+          text="Я показываю не абстрактный путь, а модель жизни, к которой приводит системный e-commerce: бизнес работает, а у вас появляется свобода выбирать свой ритм."
+          align="left"
+        />
+
+        <div className="flex items-center gap-3">
+          <button
+            type="button"
+            onClick={() => scrollSlider(-1)}
+            className="flex h-14 w-14 items-center justify-center rounded-full border border-white/10 bg-white/[0.04] text-white/78 backdrop-blur-md transition duration-300 hover:border-white/18 hover:bg-white/[0.08] hover:text-white"
+            aria-label="Предыдущий слайд"
+          >
+            <ChevronLeft className="h-5 w-5" />
+          </button>
+          <button
+            type="button"
+            onClick={() => scrollSlider(1)}
+            className="flex h-14 w-14 items-center justify-center rounded-full border border-white/10 bg-white/[0.04] text-white/78 backdrop-blur-md transition duration-300 hover:border-white/18 hover:bg-white/[0.08] hover:text-white"
+            aria-label="Следующий слайд"
+          >
+            <ChevronRight className="h-5 w-5" />
+          </button>
+        </div>
+      </div>
+
+      <div className="relative mt-8 sm:mt-12">
+        <div
+          ref={sliderRef}
+          className="flex snap-x snap-mandatory gap-5 overflow-x-auto scroll-smooth pb-2 [scrollbar-width:none] sm:gap-7 lg:gap-9 [&::-webkit-scrollbar]:hidden"
+        >
+          {slides.map((slide, index) => (
+            <MobileReveal
+              key={slide.index}
+              delay={0.05 * index}
+              y={26}
+              blur={10}
+              variant={storyRevealVariants[index % storyRevealVariants.length]}
+              className="snap-start"
+            >
+              <article className="group relative flex w-[min(25.5rem,82vw)] shrink-0 flex-col overflow-hidden rounded-[1.75rem] border border-white/10 bg-[#1d1f1f] shadow-[0_26px_70px_rgba(0,0,0,0.3)] sm:w-[25.5rem]">
+                <div className="relative h-[30rem] overflow-hidden sm:h-[32.5rem]">
+                  <img
+                    src={slide.image}
+                    alt=""
+                    loading="lazy"
+                    className="h-full w-full object-cover object-center transition-transform duration-700 group-hover:scale-[1.04]"
+                  />
+                  <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.03),transparent_54%,rgba(0,0,0,0.34))]" />
+                  <div className="absolute left-5 top-5 flex h-12 w-12 items-center justify-center rounded-full bg-black/78 text-lg font-medium text-white shadow-[0_14px_30px_rgba(0,0,0,0.25)] backdrop-blur-md">
+                    {slide.index}
+                  </div>
+                </div>
+
+                <div className="min-h-[10.4rem] border-t border-white/8 bg-[#1b1d1d] px-6 py-6 sm:px-7 sm:py-7">
+                  <p className="text-[1.35rem] font-medium leading-[1.12] tracking-[-0.055em] text-white sm:text-[1.55rem]">
+                    {slide.text}
+                  </p>
+                </div>
+              </article>
+            </MobileReveal>
+          ))}
+        </div>
+
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-y-0 right-0 hidden w-24 bg-[linear-gradient(90deg,transparent,rgba(0,0,0,0.82))] lg:block"
+        />
+      </div>
+    </div>
+  )
+}
+
 function VideoStoryRow({ items }) {
   const [activeVideoId, setActiveVideoId] = useState(null)
 
@@ -734,6 +864,10 @@ function App() {
           description="Этот блок показывает сам принцип движения внутри обучения: вы не просто смотрите материалы, а последовательно переходите от понимания к рабочему запуску."
           chips={programFlowChips}
         />
+      </Motion.section>
+
+      <Motion.section {...sectionReveal} className="relative px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
+        <AboutMeSlider slides={aboutSlides} />
       </Motion.section>
 
       <Motion.section {...sectionReveal} className="relative px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
