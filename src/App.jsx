@@ -3,12 +3,12 @@ import audience01 from '../01.png'
 import audience02 from '../02.png'
 import audience03 from '../03.png'
 import audience04 from '../04.png'
-import reviewAnnaPreview from '../IMAGES/1/image 105.jpg'
-import reviewMaksPreview from '../IMAGES/1/image 102.jpg'
-import reviewAndreiPreview from '../IMAGES/1/image 103.jpg'
-import reviewDanyaPreview from '../IMAGES/1/image 109.jpg'
-import reviewSofyaPreview from '../IMAGES/1/image 108.jpg'
-import reviewSixPreview from '../IMAGES/1/image 106.jpg'
+import reviewAnnaPreview from '../IMAGES/1/2/Anna.jpg'
+import reviewMaksPreview from '../IMAGES/1/2/Maks.jpg'
+import reviewArtemPreview from '../IMAGES/1/2/Artem.jpg'
+import reviewDanyaPreview from '../IMAGES/1/2/Danya.jpg'
+import reviewSofyaPreview from '../IMAGES/1/2/Sofya.jpg'
+import reviewOksanaPreview from '../IMAGES/1/2/Oksana.jpg'
 
 import { motion as Motion } from 'motion/react'
 import {
@@ -314,9 +314,9 @@ const videoReviews = [
   },
   {
     id: 'review-03',
-    title: 'Andrei',
+    title: 'Artem',
     videoId: 'fSECZ15mq_4',
-    previewSrc: reviewAndreiPreview,
+    previewSrc: reviewArtemPreview,
   },
   {
     id: 'review-04',
@@ -332,9 +332,9 @@ const videoReviews = [
   },
   {
     id: 'review-06',
-    title: 'Видео-отзыв 2',
+    title: 'Oksana',
     videoId: 'ztGS1RAp-vo',
-    previewSrc: reviewSixPreview,
+    previewSrc: reviewOksanaPreview,
   },
 ]
 
