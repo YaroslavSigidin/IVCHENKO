@@ -567,6 +567,19 @@ function SectionHeader({ eyebrow, title, text, align = 'center' }) {
   )
 }
 
+function SplitCardText({ text }) {
+  const words = text.split(' ')
+  const lead = words.slice(0, 4).join(' ')
+  const rest = words.slice(4).join(' ')
+
+  return (
+    <>
+      {lead}
+      {rest ? <span className="text-white/50"> {rest}</span> : null}
+    </>
+  )
+}
+
 function AboutMeSlider({ slides }) {
   const sliderRef = useRef(null)
 
@@ -581,19 +594,18 @@ function AboutMeSlider({ slides }) {
 
   return (
     <div className="mx-auto w-[min(1320px,94vw)]">
-      <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
-        <SectionHeader
-          eyebrow="About"
-          title="Обо мне"
-          text="Я показываю не абстрактный путь, а модель жизни, к которой приводит системный e-commerce: бизнес работает, а у вас появляется свобода выбирать свой ритм."
-          align="left"
-        />
+      <SectionHeader
+        eyebrow="About"
+        title="Обо мне"
+        text="Я показываю не абстрактный путь, а модель жизни, к которой приводит системный e-commerce: бизнес работает, а у вас появляется свобода выбирать свой ритм."
+      />
 
-        <div className="flex items-center gap-3">
+      <div className="relative mt-8 sm:mt-12">
+        <div className="pointer-events-none absolute inset-y-0 left-0 right-0 z-20 hidden items-center justify-between lg:flex">
           <button
             type="button"
             onClick={() => scrollSlider(-1)}
-            className="flex h-14 w-14 items-center justify-center rounded-full border border-white/10 bg-white/[0.04] text-white/78 backdrop-blur-md transition duration-300 hover:border-white/18 hover:bg-white/[0.08] hover:text-white"
+            className="pointer-events-auto -ml-7 flex h-14 w-14 items-center justify-center rounded-full border border-white/12 bg-black/54 text-white/78 shadow-[0_18px_38px_rgba(0,0,0,0.32)] backdrop-blur-md transition duration-300 hover:border-white/22 hover:bg-black/72 hover:text-white"
             aria-label="Предыдущий слайд"
           >
             <ChevronLeft className="h-5 w-5" />
@@ -601,18 +613,16 @@ function AboutMeSlider({ slides }) {
           <button
             type="button"
             onClick={() => scrollSlider(1)}
-            className="flex h-14 w-14 items-center justify-center rounded-full border border-white/10 bg-white/[0.04] text-white/78 backdrop-blur-md transition duration-300 hover:border-white/18 hover:bg-white/[0.08] hover:text-white"
+            className="pointer-events-auto -mr-7 flex h-14 w-14 items-center justify-center rounded-full border border-white/12 bg-black/54 text-white/78 shadow-[0_18px_38px_rgba(0,0,0,0.32)] backdrop-blur-md transition duration-300 hover:border-white/22 hover:bg-black/72 hover:text-white"
             aria-label="Следующий слайд"
           >
             <ChevronRight className="h-5 w-5" />
           </button>
         </div>
-      </div>
 
-      <div className="relative mt-8 sm:mt-12">
         <div
           ref={sliderRef}
-          className="flex snap-x snap-mandatory gap-5 overflow-x-auto scroll-smooth pb-2 [scrollbar-width:none] sm:gap-7 lg:gap-9 [&::-webkit-scrollbar]:hidden"
+          className="flex snap-x snap-mandatory gap-5 overflow-x-auto scroll-smooth pb-2 [scrollbar-width:none] sm:gap-6 lg:gap-7 [&::-webkit-scrollbar]:hidden"
         >
           {slides.map((slide, index) => (
             <MobileReveal
@@ -623,8 +633,8 @@ function AboutMeSlider({ slides }) {
               variant={storyRevealVariants[index % storyRevealVariants.length]}
               className="snap-start"
             >
-              <article className="group relative flex w-[min(25.5rem,82vw)] shrink-0 flex-col overflow-hidden rounded-[1.75rem] border border-white/10 bg-[#1d1f1f] shadow-[0_26px_70px_rgba(0,0,0,0.3)] sm:w-[25.5rem]">
-                <div className="relative h-[30rem] overflow-hidden sm:h-[32.5rem]">
+              <article className="group relative flex w-[min(22.5rem,80vw)] shrink-0 flex-col overflow-hidden rounded-[1.55rem] border border-white/10 bg-[#1d1f1f] shadow-[0_26px_70px_rgba(0,0,0,0.3)] sm:w-[23rem] lg:w-[23.25rem]">
+                <div className="relative h-[26rem] overflow-hidden sm:h-[28.75rem] lg:h-[29.25rem]">
                   <img
                     src={slide.image}
                     alt=""
@@ -637,9 +647,9 @@ function AboutMeSlider({ slides }) {
                   </div>
                 </div>
 
-                <div className="min-h-[10.4rem] border-t border-white/8 bg-[#1b1d1d] px-6 py-6 sm:px-7 sm:py-7">
-                  <p className="text-[1.35rem] font-medium leading-[1.12] tracking-[-0.055em] text-white sm:text-[1.55rem]">
-                    {slide.text}
+                <div className="min-h-[8.8rem] border-t border-white/8 bg-[#1b1d1d] px-6 py-5 sm:px-6 sm:py-6">
+                  <p className="text-[1.18rem] font-medium leading-[1.13] tracking-[-0.055em] text-white sm:text-[1.32rem]">
+                    <SplitCardText text={slide.text} />
                   </p>
                 </div>
               </article>
@@ -651,6 +661,25 @@ function AboutMeSlider({ slides }) {
           aria-hidden="true"
           className="pointer-events-none absolute inset-y-0 right-0 hidden w-24 bg-[linear-gradient(90deg,transparent,rgba(0,0,0,0.82))] lg:block"
         />
+
+        <div className="mt-6 flex justify-center gap-3 lg:hidden">
+          <button
+            type="button"
+            onClick={() => scrollSlider(-1)}
+            className="flex h-13 w-13 items-center justify-center rounded-full border border-white/12 bg-white/[0.04] text-white/78 backdrop-blur-md transition duration-300 hover:border-white/22 hover:bg-white/[0.08] hover:text-white"
+            aria-label="Предыдущий слайд"
+          >
+            <ChevronLeft className="h-5 w-5" />
+          </button>
+          <button
+            type="button"
+            onClick={() => scrollSlider(1)}
+            className="flex h-13 w-13 items-center justify-center rounded-full border border-white/12 bg-white/[0.04] text-white/78 backdrop-blur-md transition duration-300 hover:border-white/22 hover:bg-white/[0.08] hover:text-white"
+            aria-label="Следующий слайд"
+          >
+            <ChevronRight className="h-5 w-5" />
+          </button>
+        </div>
       </div>
     </div>
   )
