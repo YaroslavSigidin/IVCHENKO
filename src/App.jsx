@@ -656,6 +656,32 @@ function SectionHeader({ eyebrow, title, text, align = 'center' }) {
   )
 }
 
+function SafeImage({
+  src,
+  fallbackSrc,
+  alt,
+  className,
+  loading = 'lazy',
+  ...props
+}) {
+  const [imageSrc, setImageSrc] = useState(src)
+
+  return (
+    <img
+      {...props}
+      src={imageSrc}
+      alt={alt}
+      loading={loading}
+      onError={() => {
+        if (fallbackSrc && imageSrc !== fallbackSrc) {
+          setImageSrc(fallbackSrc)
+        }
+      }}
+      className={className}
+    />
+  )
+}
+
 function SplitCardText({ text }) {
   const words = text.split(' ')
   const lead = words.slice(0, 4).join(' ')
@@ -907,8 +933,9 @@ function VideoBreakdownsSlider({ items }) {
             >
               <article className="group relative w-[min(42rem,86vw)] shrink-0 overflow-hidden rounded-[1.55rem] border border-white/10 bg-[#171919] shadow-[0_24px_70px_rgba(0,0,0,0.3)] sm:w-[42rem] lg:w-[46rem]">
                 <div className="relative overflow-hidden bg-black">
-                  <img
+                  <SafeImage
                     src={item.image}
+                    fallbackSrc={breakdownScreen06}
                     alt={item.title}
                     loading="lazy"
                     className="aspect-[2.05/1] w-full object-cover object-center transition-transform duration-700 group-hover:scale-[1.025]"
@@ -954,15 +981,15 @@ function ResultsSlider({ items }) {
 
   return (
     <div className="mx-auto w-[min(1320px,94vw)]">
-      <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
+      <div className="flex flex-col items-center gap-6">
         <SectionHeader
           eyebrow="Numbers"
           title="Мои цифры"
           text="Скрины из аналитики показывают не обещания, а реальную механику результата: GMV, заказы, клиенты и рост, который появляется, когда TikTok Shop собран как система."
-          align="left"
+          align="center"
         />
 
-        <div className="flex items-center gap-3">
+        <div className="flex items-center justify-center gap-3">
           <button
             type="button"
             onClick={() => scrollSlider(-1)}
