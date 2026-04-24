@@ -434,8 +434,8 @@ const resultScreens = [
   {
     index: '01',
     image: resultScreen01,
-    title: 'День с выручкой $1,410',
-    metric: '$1,410 revenue',
+    title: 'День с выручкой $11,410',
+    metric: '$11,410 revenue',
     layout: 'phone',
   },
   {
