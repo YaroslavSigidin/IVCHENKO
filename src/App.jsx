@@ -453,13 +453,6 @@ const resultScreens = [
     layout: 'phone',
   },
   {
-    index: '04',
-    image: resultScreen04,
-    title: 'Месячная аналитика',
-    metric: '$100,894 GMV',
-    layout: 'wide',
-  },
-  {
     index: '05',
     image: resultScreen05,
     title: 'Результат за период',
