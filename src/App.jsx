@@ -1027,14 +1027,14 @@ function ResultsSlider({ items }) {
                 className={cn(
                   'group relative flex shrink-0 flex-col overflow-hidden rounded-[1.55rem] border border-white/10 bg-[#171919] shadow-[0_24px_70px_rgba(0,0,0,0.3)]',
                   item.layout === 'wide'
-                    ? 'w-[min(50rem,88vw)]'
+                    ? 'w-[min(21rem,82vw)] sm:w-[min(50rem,88vw)]'
                     : 'w-[min(21rem,82vw)] sm:w-[22rem]',
                 )}
               >
                 <div
                   className={cn(
                     'relative overflow-hidden bg-[#f4f4f4]',
-                    item.layout === 'wide' ? 'h-[25rem] sm:h-[30rem]' : 'h-[39rem] sm:h-[42rem]',
+                    item.layout === 'wide' ? 'h-[39rem] sm:h-[30rem]' : 'h-[39rem] sm:h-[42rem]',
                   )}
                 >
                   <img
@@ -1043,7 +1043,9 @@ function ResultsSlider({ items }) {
                     loading="lazy"
                     className={cn(
                       'h-full w-full transition-transform duration-700 group-hover:scale-[1.015]',
-                      item.layout === 'wide' ? 'object-contain' : 'object-cover object-top',
+                      item.layout === 'wide'
+                        ? 'object-cover object-top sm:object-contain sm:object-center'
+                        : 'object-cover object-top',
                     )}
                   />
                   <div className="absolute left-4 top-4 flex h-11 w-11 items-center justify-center rounded-full bg-black/72 text-sm font-medium text-white shadow-[0_14px_28px_rgba(0,0,0,0.25)] backdrop-blur-md">
