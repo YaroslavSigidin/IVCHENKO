@@ -1131,7 +1131,7 @@ function App() {
           <SectionHeader
             eyebrow="Modules"
             title="Что внутри программы"
-            text="Логика старого блока сохранена, но собрана чище: 6 крупных модулей на одном экране без визуального шума."
+            text="6 ключевых модулей, собранных в одной системе: без лишнего шума, с понятной логикой и пошаговым разбором того, что реально работает."
           />
           <div className="mt-8 grid grid-cols-1 gap-4 md:mt-12 md:grid-cols-2 md:gap-6 xl:grid-cols-3">
             {modules.map((module, index) => (
@@ -1187,7 +1187,7 @@ function App() {
           <SectionHeader
             eyebrow="Student Results"
             title="Результаты учеников"
-            text="Сейчас можно оставить как каркас под видео-кейсы, созвоны и реальные результаты участников."
+            text="Реальные кейсы участников: первые запуски, созвоны, понятные результаты и изменения, к которым они пришли после прохождения программы."
           />
           <div className="relative mt-10 overflow-hidden [mask-image:linear-gradient(to_bottom,transparent,black_14%,black_86%,transparent)] sm:mt-12">
             <div className="flex max-h-[620px] justify-center gap-4 overflow-hidden sm:max-h-[760px] sm:gap-5">
