@@ -34,6 +34,7 @@ import {
   BadgeCheck,
   BriefcaseBusiness,
   ChevronLeft,
+  ChevronRight,
   Compass,
   Crown,
   Fingerprint,
