@@ -54,7 +54,7 @@ export function ProgramBenefitsSection({
                 variant={index === 0 ? 'drift-left' : index === 1 ? 'pop' : 'drift-right'}
               >
                 <FeaturePanel>
-                  <CardContent className="flex h-full min-h-[860px] flex-col p-0">
+                  <CardContent className="flex h-full min-h-[760px] flex-col p-0">
                     <ProgramPreview image={data.preview} label={data.previewLabel} />
 
                     <div className="px-5 pb-5 pt-5 sm:px-6 sm:pb-6 sm:pt-6">
@@ -63,7 +63,7 @@ export function ProgramBenefitsSection({
                       {item.label}
                     </div>
 
-                    <h3 className="mt-4 max-w-[13ch] text-[1.24rem] font-medium leading-[1.02] tracking-[-0.035em] text-white sm:text-[1.42rem] lg:text-[1.6rem]">
+                    <h3 className="mt-4 max-w-[18ch] text-[1.2rem] font-medium leading-[1.02] tracking-[-0.02em] text-white sm:max-w-[17ch] sm:text-[1.34rem] lg:max-w-[16ch] lg:text-[1.48rem]">
                       {data.title}
                     </h3>
 
