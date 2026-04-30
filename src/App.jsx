@@ -784,55 +784,23 @@ function RoadmapSection({ image, steps }) {
 
       <div className="mt-8 grid gap-4 lg:mt-12 lg:grid-cols-[0.88fr_1.12fr] lg:gap-6">
         <MobileReveal delay={0.04} y={24} blur={10} variant="drift-left">
-          <div className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.07),rgba(255,255,255,0.025))] p-5 shadow-[0_24px_70px_rgba(0,0,0,0.28)] sm:p-7">
-            <div
-              aria-hidden="true"
-              className="pointer-events-none absolute inset-x-0 top-0 h-40 bg-[radial-gradient(circle_at_top,rgba(255,138,28,0.18),transparent_72%)]"
-            />
-            <div className="relative z-10 flex flex-wrap items-center gap-2 text-[0.62rem] uppercase tracking-[0.28em] text-white/46">
-              <span className="rounded-full border border-white/10 bg-white/[0.045] px-3 py-1.5">
-                9 шагов
-              </span>
-              <span className="rounded-full border border-white/10 bg-white/[0.045] px-3 py-1.5">
-                2 месяца
-              </span>
-              <span className="rounded-full border border-[#ff8a1c]/25 bg-[#ff8a1c]/10 px-3 py-1.5 text-[#ffb15c]">
-                Roadmap
-              </span>
+          <div className="rounded-[2rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.06),rgba(255,255,255,0.02))] p-5 shadow-[0_24px_70px_rgba(0,0,0,0.28)] sm:p-7 lg:sticky lg:top-24">
+            <div className="mx-auto flex max-w-[20rem] justify-center">
+              <img
+                src={image}
+                alt="Владислав"
+                className="h-auto w-full max-w-[18rem] object-contain sm:max-w-[20rem]"
+              />
             </div>
 
-            <div className="relative z-10 mt-6 overflow-hidden rounded-[1.6rem] border border-white/8 bg-[linear-gradient(180deg,rgba(255,255,255,0.035),rgba(255,255,255,0.015))] px-4 pt-6 sm:px-6 sm:pt-8">
-              <div className="relative mx-auto flex max-w-[20rem] justify-center">
-                <div
-                  aria-hidden="true"
-                  className="absolute bottom-6 left-1/2 h-44 w-44 -translate-x-1/2 rounded-full bg-[radial-gradient(circle,rgba(255,138,28,0.22),transparent_68%)] blur-2xl"
-                />
-                <img
-                  src={image}
-                  alt="Владислав"
-                  className="relative z-10 h-auto w-full max-w-[18rem] object-contain sm:max-w-[20rem]"
-                />
-              </div>
-            </div>
-
-            <div className="relative z-10 mt-6 space-y-4">
-              <div>
-                <div className="text-[0.7rem] uppercase tracking-[0.34em] text-white/42">
-                  Что получишь внутри
-                </div>
-                <h3 className="mt-3 max-w-[12ch] text-[1.9rem] font-medium leading-[0.95] tracking-[-0.06em] text-white sm:text-[2.4rem]">
-                  Пошаговый roadmap от старта до системных продаж
-                </h3>
-              </div>
+            <div className="mt-6 space-y-4">
+              <h3 className="max-w-[12ch] text-[1.9rem] font-medium leading-[0.95] tracking-[-0.06em] text-white sm:text-[2.4rem]">
+                Пошаговый roadmap от старта до системных продаж
+              </h3>
               <p className="max-w-[48ch] text-[0.98rem] leading-7 text-white/62">
-                Здесь ты видишь не просто набор уроков, а ясную последовательность действий:
-                что делать, в каком порядке и как выйти от нуля к первым стабильным продажам.
+                Здесь ты видишь ясную последовательность действий: что делать, в каком
+                порядке и как выйти от нуля к первым стабильным продажам.
               </p>
-              <div className="grid gap-3 sm:grid-cols-3">
-                <RoadmapMetric value="Неделя 1" label="Понимание платформы" />
-                <RoadmapMetric value="Неделя 8" label="Первые продажи + масштаб" />
-                <RoadmapMetric value="$5k-$10k" label="Цель на старте" />
-              </div>
             </div>
           </div>
         </MobileReveal>
@@ -846,14 +814,10 @@ function RoadmapSection({ image, steps }) {
               blur={10}
               variant={index % 2 === 0 ? 'drift-right' : 'drift-left'}
             >
-              <div className="relative overflow-hidden rounded-[1.6rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.065),rgba(255,255,255,0.02))] p-4 shadow-[0_20px_50px_rgba(0,0,0,0.22)] sm:p-5">
-                <div
-                  aria-hidden="true"
-                  className="pointer-events-none absolute inset-x-10 bottom-0 h-24 bg-[radial-gradient(circle_at_bottom,rgba(255,138,28,0.1),transparent_72%)]"
-                />
-                <div className="relative z-10 flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+              <div className="rounded-[1.6rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.06),rgba(255,255,255,0.02))] p-4 shadow-[0_20px_50px_rgba(0,0,0,0.22)] sm:p-5">
+                <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
                   <div className="flex gap-3 sm:gap-4">
-                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-[#ff8a1c]/20 bg-[#ff8a1c]/10 text-[#ff9a33]">
+                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.04] text-[#ff9a33]">
                       <step.icon className="h-5 w-5" strokeWidth={1.7} />
                     </div>
                     <div>
@@ -878,7 +842,7 @@ function RoadmapSection({ image, steps }) {
                     Следующий шаг
                   </div>
                 </div>
-                <div className="relative z-10 mt-4 rounded-[1.15rem] border border-white/8 bg-black/20 px-4 py-3 text-sm leading-6 text-white/72 sm:text-[0.95rem]">
+                <div className="mt-4 rounded-[1.15rem] border border-white/8 bg-black/20 px-4 py-3 text-sm leading-6 text-white/72 sm:text-[0.95rem]">
                   {step.milestone}
                 </div>
               </div>
@@ -886,15 +850,6 @@ function RoadmapSection({ image, steps }) {
           ))}
         </div>
       </div>
-    </div>
-  )
-}
-
-function RoadmapMetric({ value, label }) {
-  return (
-    <div className="rounded-[1.2rem] border border-white/8 bg-white/[0.035] px-4 py-4">
-      <div className="text-[1.05rem] font-medium tracking-[-0.04em] text-white">{value}</div>
-      <div className="mt-1 text-[0.75rem] uppercase tracking-[0.18em] text-white/42">{label}</div>
     </div>
   )
 }
