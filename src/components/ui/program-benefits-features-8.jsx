@@ -54,23 +54,25 @@ export function ProgramBenefitsSection({
                 variant={index === 0 ? 'drift-left' : index === 1 ? 'pop' : 'drift-right'}
               >
                 <FeaturePanel>
-                  <CardContent className="flex h-full flex-col p-5 sm:p-6">
+                  <CardContent className="flex h-full min-h-[860px] flex-col p-0">
                     <ProgramPreview image={data.preview} label={data.previewLabel} />
 
-                    <div className="mt-5 inline-flex w-fit items-center gap-2 rounded-full border border-white/10 bg-white/[0.045] px-3 py-1.5 text-[0.58rem] uppercase tracking-[0.24em] text-white/48 sm:text-[0.64rem]">
+                    <div className="px-5 pb-5 pt-5 sm:px-6 sm:pb-6 sm:pt-6">
+                    <div className="inline-flex w-fit items-center gap-2 rounded-full border border-white/10 bg-white/[0.045] px-3 py-1.5 text-[0.58rem] uppercase tracking-[0.24em] text-white/48 sm:text-[0.64rem]">
                       <Icon className="size-4" />
                       {item.label}
                     </div>
 
-                    <h3 className="mt-4 max-w-[12ch] text-[1.42rem] font-medium leading-[0.98] tracking-[-0.065em] text-white sm:text-[1.68rem] lg:text-[1.9rem]">
+                    <h3 className="mt-4 max-w-[13ch] text-[1.24rem] font-medium leading-[1.02] tracking-[-0.035em] text-white sm:text-[1.42rem] lg:text-[1.6rem]">
                       {data.title}
                     </h3>
 
-                    <p className="mt-4 max-w-[30ch] text-[0.92rem] leading-[1.75] text-white/58 sm:text-[0.95rem] sm:leading-[1.8]">
+                    <p className="mt-4 max-w-[31ch] text-[0.9rem] leading-[1.72] text-white/58 sm:text-[0.93rem] sm:leading-[1.76]">
                       {data.supporting}
                     </p>
 
                     <BenefitBulletList items={data.items} className="mt-5" />
+                    </div>
                   </CardContent>
                 </FeaturePanel>
               </MobileReveal>
@@ -141,15 +143,12 @@ function ProgramPreview({ image, label }) {
   if (!image) return null
 
   return (
-    <div className="overflow-hidden rounded-[1.35rem] border border-white/8 bg-black/20">
+    <div className="overflow-hidden rounded-t-[1.75rem] border-b border-white/8 bg-black/20 sm:rounded-t-[2rem]">
       <img
         src={image}
         alt={label}
         className="aspect-[16/10] w-full object-cover object-top"
       />
-      <div className="border-t border-white/8 px-4 py-3 text-[0.66rem] uppercase tracking-[0.22em] text-white/42">
-        {label}
-      </div>
     </div>
   )
 }
