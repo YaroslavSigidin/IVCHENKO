@@ -71,7 +71,9 @@ export function HeroSection() {
           >
             <span className="block">Пошаговая программа запуска</span>
             <span className="block">TikTok Shop бизнеса</span>
-            <span className="block text-[#ffb15c]">в США в 2026</span>
+            <span className="block bg-[linear-gradient(180deg,#ffbc5c_0%,#ff9b2d_44%,#ff7d08_100%)] bg-clip-text text-transparent [text-shadow:0_0_30px_rgba(255,138,28,0.24)]">
+              в США в 2026
+            </span>
           </h1>
 
           <h1
@@ -84,7 +86,9 @@ export function HeroSection() {
             <br />
             TikTok Shop бизнеса в США
             <br />
-            <span className="text-[#ffb15c]">в 2026</span>
+            <span className="bg-[linear-gradient(180deg,#ffbc5c_0%,#ff9b2d_44%,#ff7d08_100%)] bg-clip-text text-transparent [text-shadow:0_0_30px_rgba(255,138,28,0.24)]">
+              в 2026
+            </span>
           </h1>
         </div>
 
