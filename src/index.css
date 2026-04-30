@@ -61,9 +61,8 @@ a {
 .noise-mask {
   background-image:
     linear-gradient(rgba(255, 255, 255, 0.028) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.028) 1px, transparent 1px),
     radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.045), transparent 28%);
-  background-size: 96px 96px, 96px 96px, 100% 100%;
+  background-size: 96px 96px, 100% 100%;
   mix-blend-mode: screen;
 }
 
