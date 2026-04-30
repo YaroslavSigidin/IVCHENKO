@@ -62,11 +62,11 @@ export function ProgramBenefitsSection({
                       {item.label}
                     </div>
 
-                    <h3 className="mt-4 text-[1.5rem] font-medium leading-[1.06] tracking-[-0.055em] text-white sm:text-[1.8rem]">
+                    <h3 className="mt-4 max-w-[12ch] text-[1.42rem] font-medium leading-[0.98] tracking-[-0.065em] text-white sm:text-[1.68rem] lg:text-[1.9rem]">
                       {data.title}
                     </h3>
 
-                    <p className="mt-4 text-[0.95rem] leading-7 text-white/60">
+                    <p className="mt-4 max-w-[30ch] text-[0.92rem] leading-[1.75] text-white/58 sm:text-[0.95rem] sm:leading-[1.8]">
                       {data.supporting}
                     </p>
 
@@ -86,12 +86,12 @@ export function ProgramBenefitsSection({
                   <CheckCircle2 className="size-4" />
                   Toolkit
                 </div>
-                <h3 className="text-[1.7rem] font-medium leading-[1.02] tracking-[-0.055em] text-white sm:text-[2.1rem]">
+                <h3 className="max-w-[16ch] text-[1.56rem] font-medium leading-[0.98] tracking-[-0.06em] text-white sm:text-[1.9rem] lg:text-[2.15rem]">
                   Готовую структуру действий,
                   <br />
                   контакты и рабочие материалы
                 </h3>
-                <p className="max-w-[40ch] text-[0.96rem] leading-7 text-white/60">
+                <p className="max-w-[39ch] text-[0.92rem] leading-[1.8] text-white/58 sm:text-[0.95rem]">
                   Не просто теория, а база, к которой вы возвращаетесь в работе:
                   контакты, сервисы, шаблоны, логистика, AI-инструменты и ориентиры
                   для запуска без хаоса.
@@ -102,7 +102,7 @@ export function ProgramBenefitsSection({
                 {benefits.structure.items.map((item) => (
                   <div
                     key={item}
-                    className="rounded-[1.15rem] border border-white/8 bg-white/[0.035] px-4 py-4 text-left text-[0.9rem] leading-6 text-white/74 shadow-[inset_0_1px_0_rgba(255,255,255,0.03)]"
+                    className="rounded-[1.15rem] border border-white/8 bg-white/[0.035] px-4 py-4 text-left text-[0.86rem] leading-[1.65] text-white/74 shadow-[inset_0_1px_0_rgba(255,255,255,0.03)] sm:text-[0.9rem]"
                   >
                     <div className="flex items-start gap-2.5">
                       <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#ff8a1c]" />
@@ -127,7 +127,7 @@ function BenefitBulletList({ items = [], className = '' }) {
       {items.map((item) => (
         <div
           key={item}
-          className="flex items-start gap-2.5 text-left text-[0.86rem] leading-6 text-white/66 sm:text-[0.92rem]"
+          className="flex items-start gap-2.5 text-left text-[0.84rem] leading-[1.7] text-white/66 sm:text-[0.9rem]"
         >
           <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#ff8a1c]" />
           <span>{item}</span>
