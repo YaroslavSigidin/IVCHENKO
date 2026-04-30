@@ -3,7 +3,6 @@ import audience01 from '../01.png'
 import audience02 from '../02.png'
 import audience03 from '../03.png'
 import audience04 from '../04.png'
-import vladPortrait from '../VLAD.png'
 import aboutCafeImage from '../IMAGES/1/2/3/telegram-cloud-document-1-5084712035413920079 1.jpg'
 import aboutCarImage from '../IMAGES/1/2/3/telegram-cloud-document-1-5084712035413920079 2.jpg'
 import aboutWarehouseImage from '../IMAGES/1/2/3/telegram-cloud-document-1-5084712035413920079 3.jpg'
@@ -35,7 +34,6 @@ import {
   BadgeCheck,
   BriefcaseBusiness,
   ChevronLeft,
-  ChevronRight,
   Compass,
   Crown,
   Fingerprint,
@@ -773,7 +771,7 @@ function SplitCardText({ text }) {
   )
 }
 
-function RoadmapSection({ image, steps }) {
+function RoadmapSection({ steps }) {
   return (
     <div className="mx-auto w-[min(1320px,94vw)]">
       <SectionHeader
@@ -782,29 +780,7 @@ function RoadmapSection({ image, steps }) {
         text="Ниже понятный маршрут запуска на первые 2 месяца: от регистрации TikTok Shop и выбора товара до первых продаж, рекламы и системного масштабирования."
       />
 
-      <div className="mt-8 grid gap-4 lg:mt-12 lg:grid-cols-[0.88fr_1.12fr] lg:gap-6">
-        <MobileReveal delay={0.04} y={24} blur={10} variant="drift-left">
-          <div className="rounded-[2rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.06),rgba(255,255,255,0.02))] p-5 shadow-[0_24px_70px_rgba(0,0,0,0.28)] sm:p-7 lg:sticky lg:top-24">
-            <div className="mx-auto flex max-w-[20rem] justify-center">
-              <img
-                src={image}
-                alt="Владислав"
-                className="h-auto w-full max-w-[18rem] object-contain sm:max-w-[20rem]"
-              />
-            </div>
-
-            <div className="mt-6 space-y-4">
-              <h3 className="max-w-[12ch] text-[1.9rem] font-medium leading-[0.95] tracking-[-0.06em] text-white sm:text-[2.4rem]">
-                Пошаговый roadmap от старта до системных продаж
-              </h3>
-              <p className="max-w-[48ch] text-[0.98rem] leading-7 text-white/62">
-                Здесь ты видишь ясную последовательность действий: что делать, в каком
-                порядке и как выйти от нуля к первым стабильным продажам.
-              </p>
-            </div>
-          </div>
-        </MobileReveal>
-
+      <div className="mx-auto mt-8 max-w-[920px] sm:mt-12">
         <div className="grid gap-3 sm:gap-4">
           {steps.map((step, index) => (
             <MobileReveal
@@ -815,20 +791,16 @@ function RoadmapSection({ image, steps }) {
               variant={index % 2 === 0 ? 'drift-right' : 'drift-left'}
             >
               <div className="rounded-[1.6rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.06),rgba(255,255,255,0.02))] p-4 shadow-[0_20px_50px_rgba(0,0,0,0.22)] sm:p-5">
-                <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
-                  <div className="flex gap-3 sm:gap-4">
+                <div className="flex gap-3 sm:gap-4">
                     <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.04] text-[#ff9a33]">
                       <step.icon className="h-5 w-5" strokeWidth={1.7} />
                     </div>
-                    <div>
+                  <div className="min-w-0 flex-1 text-left">
                       <div className="flex flex-wrap items-center gap-2">
-                        <span className="text-[0.64rem] uppercase tracking-[0.32em] text-white/38">
-                          {step.index}
-                        </span>
-                        <span className="rounded-full border border-white/10 bg-white/[0.045] px-2.5 py-1 text-[0.62rem] uppercase tracking-[0.22em] text-white/54">
-                          {step.phase}
-                        </span>
-                      </div>
+                      <span className="rounded-full border border-white/10 bg-white/[0.045] px-2.5 py-1 text-[0.62rem] uppercase tracking-[0.22em] text-white/54">
+                        {step.phase}
+                      </span>
+                    </div>
                       <h3 className="mt-3 max-w-[28ch] text-[1.18rem] font-medium leading-[1.04] tracking-[-0.045em] text-white sm:text-[1.36rem]">
                         {step.title}
                       </h3>
@@ -836,14 +808,10 @@ function RoadmapSection({ image, steps }) {
                         {step.description}
                       </p>
                     </div>
-                  </div>
-                  <div className="flex items-center gap-2 self-start rounded-full border border-white/10 bg-white/[0.04] px-3 py-2 text-[0.68rem] uppercase tracking-[0.2em] text-[#ffb15c] sm:ml-4 sm:mt-1">
-                    <ChevronRight className="h-4 w-4" />
-                    Следующий шаг
-                  </div>
                 </div>
-                <div className="mt-4 rounded-[1.15rem] border border-white/8 bg-black/20 px-4 py-3 text-sm leading-6 text-white/72 sm:text-[0.95rem]">
-                  {step.milestone}
+                <div className="mt-4 flex items-start gap-3 text-left text-sm leading-6 text-white/72 sm:text-[0.95rem]">
+                  <BadgeCheck className="mt-0.5 h-4 w-4 shrink-0 text-[#ff9a33]" />
+                  <span>{step.milestone}</span>
                 </div>
               </div>
             </MobileReveal>
@@ -1311,7 +1279,7 @@ function App() {
       </Motion.section>
 
       <Motion.section {...sectionReveal} className="relative px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
-        <RoadmapSection image={vladPortrait} steps={roadmapSteps} />
+        <RoadmapSection steps={roadmapSteps} />
       </Motion.section>
 
       <Motion.section
