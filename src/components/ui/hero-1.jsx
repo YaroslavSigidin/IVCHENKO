@@ -69,13 +69,9 @@ export function HeroSection() {
               'max-w-none text-[2.18rem] font-medium leading-[0.98] tracking-[-0.075em] text-shadow-[0_0px_50px_rgba(255,255,255,0.15)]',
             )}
           >
-            <span className="block">Запусти товар, найди</span>
-            <span className="block">поставщика, подключи</span>
-            <span className="block">рекламу и инфлюенсеров</span>
-            <span className="block text-[0.9em] text-white/94">
-              и выйди на первые продажи
-            </span>
-            <span className="block text-[0.82em] text-[#ffb15c]">в 2026!</span>
+            <span className="block">Пошаговая программа запуска</span>
+            <span className="block">TikTok Shop бизнеса</span>
+            <span className="block text-[#ffb15c]">в США в 2026</span>
           </h1>
 
           <h1
@@ -84,19 +80,18 @@ export function HeroSection() {
               'max-w-5xl font-medium leading-[0.88] text-shadow-[0_0px_50px_rgba(255,255,255,0.15)]',
             )}
           >
-            Запусти товар, найди поставщика,
+            Пошаговая программа запуска
             <br />
-            подключи рекламу и инфлюенсеров
+            TikTok Shop бизнеса в США
             <br />
-            <span className="text-white/94">и выйди на первые продажи</span>
-            <span className="text-[#ffb15c]"> в 2026!</span>
+            <span className="text-[#ffb15c]">в 2026</span>
           </h1>
         </div>
 
         <p className="animate-in fade-in slide-in-from-bottom-10 mx-auto max-w-[17.5rem] fill-mode-backwards text-balance text-center text-[1rem] leading-[1.65] tracking-[0.01em] text-white/68 delay-200 duration-500 ease-out sm:max-w-3xl sm:text-lg sm:leading-8 md:text-xl">
           <span className="sm:hidden">
-            Запусти товар, найди поставщика, подключи рекламу и инфлюенсеров и
-            выйди на первые продажи за 6-8 недель.
+            Запусти товар, найди поставщика, подключи рекламу и инфлюенсеров -
+            выйди на первые продажи за 6-8 недель!
           </span>
           <span className="hidden sm:inline">
             Запусти товар, найди поставщика, подключи рекламу и инфлюенсеров -
