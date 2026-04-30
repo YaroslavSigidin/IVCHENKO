@@ -3,6 +3,7 @@ import audience01 from '../01.png'
 import audience02 from '../02.png'
 import audience03 from '../03.png'
 import audience04 from '../04.png'
+import vladPortrait from '../VLAD.png'
 import aboutCafeImage from '../IMAGES/1/2/3/telegram-cloud-document-1-5084712035413920079 1.jpg'
 import aboutCarImage from '../IMAGES/1/2/3/telegram-cloud-document-1-5084712035413920079 2.jpg'
 import aboutWarehouseImage from '../IMAGES/1/2/3/telegram-cloud-document-1-5084712035413920079 3.jpg'
@@ -256,6 +257,90 @@ const programFlowChips = [
     title: 'Фокус на реальном запуске',
     description: 'Не теория ради теории, а действия под рынок США.',
     icon: Target,
+  },
+]
+
+const roadmapSteps = [
+  {
+    index: '01',
+    phase: 'Неделя 1',
+    title: 'Разбираем TikTok Shop и модель продаж',
+    description:
+      'Понимаете, как устроена платформа, какие товары заходят, где деньги и какие ошибки чаще всего тормозят новичков.',
+    milestone: 'Зарегистрировали TikTok Shop аккаунт',
+    icon: Compass,
+  },
+  {
+    index: '02',
+    phase: 'Неделя 2',
+    title: 'Выбор ниши и товара',
+    description:
+      'Ищем товар под запуск, анализируем спрос, конкурентов, маржу и потенциал продаж до первых закупок.',
+    milestone: 'Выбрали правильный товар для запуска',
+    icon: Target,
+  },
+  {
+    index: '03',
+    phase: 'Неделя 3',
+    title: 'Поиск поставщика и первая партия',
+    description:
+      'Разбираем США, Китай, Alibaba, 1688, агентов и локальных поставщиков, чтобы закупка не была хаотичной.',
+    milestone: 'Закупили партию у поставщика, и она уже едет к нам',
+    icon: PackageCheck,
+  },
+  {
+    index: '04',
+    phase: 'Неделя 4',
+    title: 'Подготовка магазина и листинга',
+    description:
+      'Собираем продающую карточку товара: оффер, визуал, описание, цену, структуру листинга и подачу.',
+    milestone: 'Собрали продающую карточку товара',
+    icon: Fingerprint,
+  },
+  {
+    index: '05',
+    phase: 'Неделя 5',
+    title: 'Инфлюенсеры и первые договоренности',
+    description:
+      'Учимся находить блогеров, писать им, договариваться за комиссию или flat fee и готовить отправку семплов.',
+    milestone: 'Нашли инфлюенсеров для рекламы товара',
+    icon: Users,
+  },
+  {
+    index: '06',
+    phase: 'Неделя 6',
+    title: 'AI-контент для публикаций',
+    description:
+      'Собираем контент-связки и учимся быстро генерировать AI-видео, чтобы не зависеть только от внешних creators.',
+    milestone: 'Нагенерировали AI видео-контент для публикаций',
+    icon: Pencil,
+  },
+  {
+    index: '07',
+    phase: 'Неделя 7',
+    title: 'Первые продажи и отправка семплов',
+    description:
+      'Запускаем тесты, отслеживаем метрики, отправляем образцы блогерам и выходим на первые деньги.',
+    milestone: 'Запустили продажи и начали получать первые $',
+    icon: BadgeDollarSign,
+  },
+  {
+    index: '08',
+    phase: 'Неделя 8',
+    title: 'Масштабирование и реклама',
+    description:
+      'Подключаем рекламу, усиливаем рабочие связки, добавляем новых creators и выстраиваем рост на системной основе.',
+    milestone: 'Выходим на первые $5,000-$10,000 продаж',
+    icon: Rocket,
+  },
+  {
+    index: '09',
+    phase: '2 месяц+',
+    title: 'Eat. Sleep. Sale. Repeat.',
+    description:
+      'Повторяете цикл, усиливаете лучшие офферы, работаете с топ-инфлюенсерами и превращаете запуск в рабочую систему.',
+    milestone: 'Система повторяется и масштабируется дальше',
+    icon: Crown,
   },
 ]
 
@@ -685,6 +770,132 @@ function SplitCardText({ text }) {
       {lead}
       {rest ? <span className="text-white/50"> {rest}</span> : null}
     </>
+  )
+}
+
+function RoadmapSection({ image, steps }) {
+  return (
+    <div className="mx-auto w-[min(1320px,94vw)]">
+      <SectionHeader
+        eyebrow="Roadmap"
+        title="От нуля до первых $5,000-$10,000 продаж"
+        text="Ниже понятный маршрут запуска на первые 2 месяца: от регистрации TikTok Shop и выбора товара до первых продаж, рекламы и системного масштабирования."
+      />
+
+      <div className="mt-8 grid gap-4 lg:mt-12 lg:grid-cols-[0.88fr_1.12fr] lg:gap-6">
+        <MobileReveal delay={0.04} y={24} blur={10} variant="drift-left">
+          <div className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.07),rgba(255,255,255,0.025))] p-5 shadow-[0_24px_70px_rgba(0,0,0,0.28)] sm:p-7">
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-x-0 top-0 h-40 bg-[radial-gradient(circle_at_top,rgba(255,138,28,0.18),transparent_72%)]"
+            />
+            <div className="relative z-10 flex flex-wrap items-center gap-2 text-[0.62rem] uppercase tracking-[0.28em] text-white/46">
+              <span className="rounded-full border border-white/10 bg-white/[0.045] px-3 py-1.5">
+                9 шагов
+              </span>
+              <span className="rounded-full border border-white/10 bg-white/[0.045] px-3 py-1.5">
+                2 месяца
+              </span>
+              <span className="rounded-full border border-[#ff8a1c]/25 bg-[#ff8a1c]/10 px-3 py-1.5 text-[#ffb15c]">
+                Roadmap
+              </span>
+            </div>
+
+            <div className="relative z-10 mt-6 overflow-hidden rounded-[1.6rem] border border-white/8 bg-[linear-gradient(180deg,rgba(255,255,255,0.035),rgba(255,255,255,0.015))] px-4 pt-6 sm:px-6 sm:pt-8">
+              <div className="relative mx-auto flex max-w-[20rem] justify-center">
+                <div
+                  aria-hidden="true"
+                  className="absolute bottom-6 left-1/2 h-44 w-44 -translate-x-1/2 rounded-full bg-[radial-gradient(circle,rgba(255,138,28,0.22),transparent_68%)] blur-2xl"
+                />
+                <img
+                  src={image}
+                  alt="Владислав"
+                  className="relative z-10 h-auto w-full max-w-[18rem] object-contain sm:max-w-[20rem]"
+                />
+              </div>
+            </div>
+
+            <div className="relative z-10 mt-6 space-y-4">
+              <div>
+                <div className="text-[0.7rem] uppercase tracking-[0.34em] text-white/42">
+                  Что получишь внутри
+                </div>
+                <h3 className="mt-3 max-w-[12ch] text-[1.9rem] font-medium leading-[0.95] tracking-[-0.06em] text-white sm:text-[2.4rem]">
+                  Пошаговый roadmap от старта до системных продаж
+                </h3>
+              </div>
+              <p className="max-w-[48ch] text-[0.98rem] leading-7 text-white/62">
+                Здесь ты видишь не просто набор уроков, а ясную последовательность действий:
+                что делать, в каком порядке и как выйти от нуля к первым стабильным продажам.
+              </p>
+              <div className="grid gap-3 sm:grid-cols-3">
+                <RoadmapMetric value="Неделя 1" label="Понимание платформы" />
+                <RoadmapMetric value="Неделя 8" label="Первые продажи + масштаб" />
+                <RoadmapMetric value="$5k-$10k" label="Цель на старте" />
+              </div>
+            </div>
+          </div>
+        </MobileReveal>
+
+        <div className="grid gap-3 sm:gap-4">
+          {steps.map((step, index) => (
+            <MobileReveal
+              key={step.index}
+              delay={0.04 * index}
+              y={20}
+              blur={10}
+              variant={index % 2 === 0 ? 'drift-right' : 'drift-left'}
+            >
+              <div className="relative overflow-hidden rounded-[1.6rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.065),rgba(255,255,255,0.02))] p-4 shadow-[0_20px_50px_rgba(0,0,0,0.22)] sm:p-5">
+                <div
+                  aria-hidden="true"
+                  className="pointer-events-none absolute inset-x-10 bottom-0 h-24 bg-[radial-gradient(circle_at_bottom,rgba(255,138,28,0.1),transparent_72%)]"
+                />
+                <div className="relative z-10 flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+                  <div className="flex gap-3 sm:gap-4">
+                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-[#ff8a1c]/20 bg-[#ff8a1c]/10 text-[#ff9a33]">
+                      <step.icon className="h-5 w-5" strokeWidth={1.7} />
+                    </div>
+                    <div>
+                      <div className="flex flex-wrap items-center gap-2">
+                        <span className="text-[0.64rem] uppercase tracking-[0.32em] text-white/38">
+                          {step.index}
+                        </span>
+                        <span className="rounded-full border border-white/10 bg-white/[0.045] px-2.5 py-1 text-[0.62rem] uppercase tracking-[0.22em] text-white/54">
+                          {step.phase}
+                        </span>
+                      </div>
+                      <h3 className="mt-3 max-w-[28ch] text-[1.18rem] font-medium leading-[1.04] tracking-[-0.045em] text-white sm:text-[1.36rem]">
+                        {step.title}
+                      </h3>
+                      <p className="mt-2 max-w-[58ch] text-[0.94rem] leading-6 text-white/60 sm:text-[0.98rem] sm:leading-7">
+                        {step.description}
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-2 self-start rounded-full border border-white/10 bg-white/[0.04] px-3 py-2 text-[0.68rem] uppercase tracking-[0.2em] text-[#ffb15c] sm:ml-4 sm:mt-1">
+                    <ChevronRight className="h-4 w-4" />
+                    Следующий шаг
+                  </div>
+                </div>
+                <div className="relative z-10 mt-4 rounded-[1.15rem] border border-white/8 bg-black/20 px-4 py-3 text-sm leading-6 text-white/72 sm:text-[0.95rem]">
+                  {step.milestone}
+                </div>
+              </div>
+            </MobileReveal>
+          ))}
+        </div>
+      </div>
+    </div>
+  )
+}
+
+function RoadmapMetric({ value, label }) {
+  return (
+    <div className="rounded-[1.2rem] border border-white/8 bg-white/[0.035] px-4 py-4">
+      <div className="text-[1.05rem] font-medium tracking-[-0.04em] text-white">{value}</div>
+      <div className="mt-1 text-[0.75rem] uppercase tracking-[0.18em] text-white/42">{label}</div>
+    </div>
   )
 }
 
@@ -1142,6 +1353,10 @@ function App() {
           description="Здесь упакована ценность программы без перегруза: логика, инструменты, опора и практический маршрут."
           benefits={outcomes}
         />
+      </Motion.section>
+
+      <Motion.section {...sectionReveal} className="relative px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
+        <RoadmapSection image={vladPortrait} steps={roadmapSteps} />
       </Motion.section>
 
       <Motion.section
