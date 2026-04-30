@@ -6,6 +6,7 @@ import audience04 from '../04.png'
 import programInfluencersImage from './assets/program-influencers.jpg'
 import programLogisticsImage from './assets/program-logistics.jpg'
 import programAiImage from './assets/program-ai.jpg'
+import vladAboutVideo from './assets/vlad-about.mp4'
 import aboutCafeImage from '../IMAGES/1/2/3/telegram-cloud-document-1-5084712035413920079 1.jpg'
 import aboutCarImage from '../IMAGES/1/2/3/telegram-cloud-document-1-5084712035413920079 2.jpg'
 import aboutWarehouseImage from '../IMAGES/1/2/3/telegram-cloud-document-1-5084712035413920079 3.jpg'
@@ -392,16 +393,21 @@ const aboutSlides = [
   },
   {
     index: '04',
+    video: vladAboutVideo,
+    text: 'Показываю не только результат, но и живой ритм: как выглядит путь, когда бизнес уже встроен в жизнь и масштабируется без хаоса.',
+  },
+  {
+    index: '05',
     image: aboutChicagoImage,
     text: 'Мой фокус — рынок США и модели, которые можно системно повторять. Не хаотичные запуски, а понятная структура действий и решений.',
   },
   {
-    index: '05',
+    index: '06',
     image: aboutCourtImage,
     text: 'Я прошел путь от идей до реальных процессов и понимаю цену ошибок. Поэтому внутри программы даю не теорию, а практичную карту запуска.',
   },
   {
-    index: '06',
+    index: '07',
     image: aboutCafeImage,
     text: 'Свобода появляется не от мотивации, а от системы. Когда бизнес работает сам на себя, у тебя появляется время жить, думать и расти дальше.',
   },
@@ -894,12 +900,24 @@ function AboutMeSlider({ slides }) {
             >
               <article className="group relative flex w-[min(22.5rem,80vw)] shrink-0 flex-col overflow-hidden rounded-[1.55rem] border border-white/10 bg-[#1d1f1f] shadow-[0_26px_70px_rgba(0,0,0,0.3)] sm:w-[23rem] lg:w-[23.25rem]">
                 <div className="relative h-[26rem] overflow-hidden sm:h-[28.75rem] lg:h-[29.25rem]">
-                  <img
-                    src={slide.image}
-                    alt=""
-                    loading="lazy"
-                    className="h-full w-full object-cover object-center transition-transform duration-700 group-hover:scale-[1.04]"
-                  />
+                  {slide.video ? (
+                    <video
+                      src={slide.video}
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                      preload="metadata"
+                      className="h-full w-full object-cover object-center"
+                    />
+                  ) : (
+                    <img
+                      src={slide.image}
+                      alt=""
+                      loading="lazy"
+                      className="h-full w-full object-cover object-center transition-transform duration-700 group-hover:scale-[1.04]"
+                    />
+                  )}
                   <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.03),transparent_54%,rgba(0,0,0,0.34))]" />
                   <div className="absolute left-5 top-5 flex h-12 w-12 items-center justify-center rounded-full bg-black/78 text-lg font-medium text-white shadow-[0_14px_30px_rgba(0,0,0,0.25)] backdrop-blur-md">
                     {slide.index}
