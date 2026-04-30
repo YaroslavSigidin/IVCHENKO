@@ -7,7 +7,7 @@ const bentoRevealVariants = ['reveal', 'tilt-left', 'pop', 'tilt-right', 'drift-
 
 export function BentoGrid({ items = [] }) {
   return (
-    <div className="mx-auto grid max-w-7xl grid-cols-1 gap-3 md:grid-cols-3">
+    <div className="mx-auto grid max-w-7xl grid-cols-1 gap-3 md:grid-cols-3 md:auto-rows-fr">
       {items.map((item, index) => (
         <MobileReveal
           key={item.title ?? index}
@@ -19,7 +19,7 @@ export function BentoGrid({ items = [] }) {
         >
           <article
             className={cn(
-              'group relative min-h-[228px] overflow-hidden rounded-[1.75rem] border border-white/8 bg-white/[0.03] p-5 shadow-[0_10px_30px_rgba(0,0,0,0.24)] backdrop-blur-sm transition-all duration-300 ease-out hover:-translate-y-0.5 hover:border-white/14 hover:bg-white/[0.045] hover:shadow-[0_18px_50px_rgba(0,0,0,0.34)] sm:p-6',
+              'group relative min-h-[228px] overflow-hidden rounded-[1.75rem] border border-white/8 bg-white/[0.03] p-5 shadow-[0_10px_30px_rgba(0,0,0,0.24)] backdrop-blur-sm transition-all duration-300 ease-out hover:-translate-y-0.5 hover:border-white/14 hover:bg-white/[0.045] hover:shadow-[0_18px_50px_rgba(0,0,0,0.34)] sm:p-6 md:h-full md:min-h-[26rem]',
               item.hasPersistentHover &&
                 'border-white/12 bg-white/[0.045] shadow-[0_18px_50px_rgba(0,0,0,0.3)]',
             )}
