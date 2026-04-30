@@ -692,21 +692,6 @@ const moduleRevealVariants = ['tilt-left', 'pop', 'tilt-right', 'drift-left', 'd
 const storyRevealVariants = ['drift-left', 'pop', 'drift-right', 'tilt-right']
 const pricingRevealVariants = ['drift-left', 'reveal', 'drift-right']
 
-function GridLines() {
-  return (
-    <div aria-hidden="true" className="pointer-events-none absolute inset-0">
-      <div className="mx-auto grid h-full w-[min(1320px,94vw)] grid-cols-12 gap-4 px-4 sm:px-6 lg:px-8">
-        {Array.from({ length: 12 }).map((_, index) => (
-          <div
-            key={index}
-            className="border-l border-white/[0.055] last:border-r"
-          />
-        ))}
-      </div>
-    </div>
-  )
-}
-
 function SectionHeader({ eyebrow, title, text, align = 'center' }) {
   return (
     <div className={align === 'center' ? 'mx-auto max-w-3xl text-center' : 'max-w-3xl'}>
@@ -798,7 +783,7 @@ function RoadmapSection({ steps }) {
                     </div>
                   <div className="min-w-0 flex-1 text-left">
                       <div className="flex flex-wrap items-center gap-2">
-                      <span className="rounded-full border border-white/10 bg-white/[0.045] px-2.5 py-1 text-[0.62rem] uppercase tracking-[0.22em] text-white/54">
+                      <span className="rounded-full border border-white/10 bg-white/[0.045] px-2.5 py-1 text-[0.62rem] tracking-[0.22em] text-white/54">
                         {step.phase}
                       </span>
                     </div>
@@ -1208,7 +1193,6 @@ function App() {
     <main className="relative min-h-screen overflow-hidden bg-black text-white">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.16),transparent_22%),radial-gradient(circle_at_50%_18%,rgba(255,255,255,0.05),transparent_30%)]" />
       <div className="noise-mask absolute inset-0 opacity-35" />
-      <GridLines />
       <Header />
       <HeroSection />
       <LogosSection />

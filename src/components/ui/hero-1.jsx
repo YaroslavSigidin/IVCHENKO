@@ -37,20 +37,8 @@ export function HeroSection() {
         <div className="absolute inset-0 -top-14 -z-10 bg-[radial-gradient(35%_80%_at_49%_0%,rgba(255,255,255,0.08),transparent)]" />
       </div>
 
-      <div
-        aria-hidden="true"
-        className="absolute inset-0 mx-auto hidden min-h-screen w-full max-w-[1320px] lg:block"
-      >
-        <div className="absolute inset-y-0 left-0 h-full w-px bg-[linear-gradient(to_bottom,transparent,rgba(255,255,255,0.15),transparent)]" />
-        <div className="absolute inset-y-0 right-0 h-full w-px bg-[linear-gradient(to_bottom,transparent,rgba(255,255,255,0.15),transparent)]" />
-      </div>
-
       <div className="relative flex flex-col items-center justify-center gap-5 px-0 pb-14 pt-24 sm:gap-5 sm:pb-24 sm:pt-28 lg:pb-28">
         <div aria-hidden="true" className="absolute inset-0 -z-10 size-full overflow-hidden">
-          <div className="absolute inset-y-0 left-4 hidden w-px bg-linear-to-b from-transparent via-white/8 to-white/8 sm:block md:left-8" />
-          <div className="absolute inset-y-0 right-4 hidden w-px bg-linear-to-b from-transparent via-white/8 to-white/8 sm:block md:right-8" />
-          <div className="absolute inset-y-0 left-8 hidden w-px bg-linear-to-b from-transparent via-white/4 to-white/4 md:block md:left-12" />
-          <div className="absolute inset-y-0 right-8 hidden w-px bg-linear-to-b from-transparent via-white/4 to-white/4 md:block md:right-12" />
           <div className="absolute left-1/2 top-28 h-56 w-[20rem] -translate-x-1/2 rounded-full bg-[radial-gradient(circle,rgba(255,255,255,0.085),transparent_70%)] blur-3xl sm:top-28 sm:h-64 sm:w-[34rem]" />
           <div className="absolute left-1/2 top-[24rem] h-28 w-[15rem] -translate-x-1/2 rounded-full bg-[radial-gradient(circle,rgba(255,138,28,0.12),transparent_72%)] blur-3xl sm:hidden" />
         </div>
