@@ -1,8 +1,8 @@
 import { useRef, useState } from 'react'
 import audience01 from '../01.png'
 import audience02 from '../02.png'
-import audience03 from '../03.png'
-import audience04 from '../04.png'
+import audienceManImage from './assets/audience-man.png'
+import audienceWomanImage from './assets/audience-woman.png'
 import programInfluencersImage from './assets/program-influencers.jpg'
 import programLogisticsImage from './assets/program-logistics.jpg'
 import programAiImage from './assets/program-ai.jpg'
@@ -100,18 +100,18 @@ const audienceCards = [
     icon: Target,
     title: 'Для тех, кто хочет\nнайти продающий товар\nи запуститься без потерь',
     text: 'Если вы боитесь ошибиться с товаром, закупкой и маржой, программа помогает пройти путь через аналитику, тест и расчёты, а не вслепую.',
-    image: audience03,
+    image: audienceManImage,
     imageClassName:
-      'right-[1%] bottom-0 w-[33%] sm:right-[3%] sm:w-[35%] md:w-[36%] lg:w-[33%]',
+      'right-[2%] bottom-0 w-[28%] sm:right-[3%] sm:w-[30%] md:w-[31%] lg:w-[29%]',
   },
   {
     index: '04',
     icon: Layers3,
     title: 'Для тех, кто уже продавал\nна Amazon, Shopify,\nWildberries или eBay',
     text: 'Если у вас уже был опыт на других площадках и нужен новый канал продаж, здесь вы увидите, как адаптировать мышление и запуск под TikTok Shop.',
-    image: audience04,
+    image: audienceWomanImage,
     imageClassName:
-      'right-[1%] bottom-0 w-[31%] sm:right-[2%] sm:w-[34%] md:w-[35%] lg:w-[32%]',
+      'right-[2%] bottom-0 w-[27%] sm:right-[2%] sm:w-[30%] md:w-[31%] lg:w-[28%]',
   },
   {
     index: '05',
