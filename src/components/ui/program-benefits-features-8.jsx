@@ -63,7 +63,7 @@ export function ProgramBenefitsSection({
                       {item.label}
                     </div>
 
-                    <h3 className="mt-4 max-w-[18ch] text-[1.2rem] font-medium leading-[1.02] tracking-[-0.02em] text-white sm:max-w-[17ch] sm:text-[1.34rem] lg:max-w-[16ch] lg:text-[1.48rem]">
+                    <h3 className="mt-4 max-w-[18ch] whitespace-pre-line text-[1.2rem] font-medium leading-[1.02] tracking-[-0.02em] text-white sm:max-w-[17ch] sm:text-[1.34rem] lg:max-w-none lg:text-[1.48rem]">
                       {data.title}
                     </h3>
 
@@ -88,10 +88,8 @@ export function ProgramBenefitsSection({
                   <CheckCircle2 className="size-4" />
                   Toolkit
                 </div>
-                <h3 className="max-w-[16ch] text-[1.56rem] font-medium leading-[0.98] tracking-[-0.06em] text-white sm:text-[1.9rem] lg:text-[2.15rem]">
-                  Готовую структуру действий,
-                  <br />
-                  контакты и рабочие материалы
+                <h3 className="max-w-[16ch] whitespace-pre-line text-[1.56rem] font-medium leading-[0.98] tracking-[-0.06em] text-white sm:text-[1.9rem] lg:max-w-[15ch] lg:text-[2.15rem]">
+                  {'Готовую структуру действий,\nконтакты и рабочие\nматериалы'}
                 </h3>
                 <p className="max-w-[39ch] text-[0.92rem] leading-[1.8] text-white/58 sm:text-[0.95rem]">
                   Не просто теория, а база, к которой вы возвращаетесь в работе:
