@@ -7,6 +7,8 @@ import programInfluencersImage from './assets/program-influencers.jpg'
 import programLogisticsImage from './assets/program-logistics.jpg'
 import programAiImage from './assets/program-ai.jpg'
 import vladAboutVideo from './assets/vlad-about.mp4'
+import resultsSalesUpdateVideo from './assets/results-sales-update.mp4'
+import resultsCaseVideo from './assets/results-case.mov'
 import aboutCafeImage from '../IMAGES/1/2/3/telegram-cloud-document-1-5084712035413920079 1.jpg'
 import aboutCarImage from '../IMAGES/1/2/3/telegram-cloud-document-1-5084712035413920079 2.jpg'
 import aboutWarehouseImage from '../IMAGES/1/2/3/telegram-cloud-document-1-5084712035413920079 3.jpg'
@@ -582,6 +584,25 @@ const resultScreens = [
   },
 ]
 
+const resultsInsights = [
+  {
+    label: '$5k-$10k+ / month',
+    title: 'Показываем, как находить товары с потенциалом продаж $5,000–$10,000+ в месяц',
+  },
+  {
+    label: '$50k-$200k+ / month',
+    title: 'Разбираем товары, которые уже продаются на TikTok Shop на $50,000–$200,000+ в месяц',
+  },
+  {
+    label: 'Unit economics',
+    title: 'Показываем, как считать маржу до закупки товара, чтобы не зайти в минус',
+  },
+  {
+    label: 'Small batch testing',
+    title: 'Учим тестировать продукт небольшими партиями, а не закупать вслепую',
+  },
+]
+
 const pricing = [
   {
     name: 'START',
@@ -1130,96 +1151,130 @@ function VideoBreakdownsSlider({ items }) {
 }
 
 function ResultsSlider({ items }) {
-  const sliderRef = useRef(null)
-
-  const scrollSlider = (direction) => {
-    if (!sliderRef.current) return
-
-    sliderRef.current.scrollBy({
-      left: direction * Math.min(sliderRef.current.clientWidth * 0.84, 620),
-      behavior: 'smooth',
-    })
-  }
-
   return (
     <div className="mx-auto w-[min(1320px,94vw)]">
-      <div className="flex flex-col items-center gap-6">
-        <SectionHeader
-          eyebrow="Numbers"
-          title="Мои цифры"
-          text="Скрины из аналитики показывают не обещания, а реальную механику результата: GMV, заказы, клиенты и рост, который появляется, когда TikTok Shop собран как система."
-          align="center"
-        />
+      <SectionHeader
+        eyebrow="Numbers"
+        title="Мои цифры"
+        text="Не просто ‘можно заработать’, а конкретная логика: какие товары искать, как смотреть на оборот и как считать деньги до закупки, чтобы TikTok Shop не превращался в дорогую импровизацию."
+        align="center"
+      />
 
-        <div className="flex items-center justify-center gap-3">
-          <button
-            type="button"
-            onClick={() => scrollSlider(-1)}
-            className="flex h-13 w-13 items-center justify-center rounded-full border border-white/12 bg-white/[0.04] text-white/78 backdrop-blur-md transition duration-300 hover:border-white/22 hover:bg-white/[0.08] hover:text-white"
-            aria-label="Предыдущий результат"
-          >
-            <ChevronLeft className="h-5 w-5" />
-          </button>
-          <button
-            type="button"
-            onClick={() => scrollSlider(1)}
-            className="flex h-13 w-13 items-center justify-center rounded-full border border-white/12 bg-white/[0.04] text-white/78 backdrop-blur-md transition duration-300 hover:border-white/22 hover:bg-white/[0.08] hover:text-white"
-            aria-label="Следующий результат"
-          >
-            <ChevronRight className="h-5 w-5" />
-          </button>
+      <div className="mt-8 grid gap-4 sm:mt-12 xl:grid-cols-[1.08fr_0.92fr] xl:gap-6">
+        <MobileReveal delay={0.04} y={24} blur={10} variant="drift-left">
+          <article className="overflow-hidden rounded-[1.7rem] border border-white/10 bg-[#171919] shadow-[0_24px_70px_rgba(0,0,0,0.3)]">
+            <div className="relative aspect-[16/10] overflow-hidden bg-black">
+              <video
+                src={resultsSalesUpdateVideo}
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="metadata"
+                className="h-full w-full object-cover object-center"
+              />
+              <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.03),transparent_54%,rgba(0,0,0,0.48))]" />
+              <div className="absolute left-5 top-5 rounded-full border border-white/12 bg-black/42 px-4 py-2 text-[0.66rem] uppercase tracking-[0.24em] text-white/72 backdrop-blur-md">
+                Live sales update
+              </div>
+            </div>
+            <div className="px-5 py-5 sm:px-6 sm:py-6">
+              <div className="text-[0.62rem] uppercase tracking-[0.26em] text-[#ff8a1c]">
+                Обновление продаж вживую
+              </div>
+              <h3 className="mt-2 max-w-[21ch] text-[1.45rem] font-medium leading-[1.02] tracking-[-0.045em] text-white sm:text-[1.76rem]">
+                Показываю, как выглядит рост, когда товар, контент и фулфилмент собраны в одну систему
+              </h3>
+              <p className="mt-4 max-w-[58ch] text-[0.94rem] leading-7 text-white/60">
+                Это не ‘мотивационный’ ролик, а живая механика продаж: движение заказов,
+                обновление показателей и результат, который появляется из правильной связки решений.
+              </p>
+            </div>
+          </article>
+        </MobileReveal>
+
+        <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-1">
+          {resultsInsights.map((item, index) => (
+            <MobileReveal
+              key={item.title}
+              delay={0.05 * index}
+              y={22}
+              blur={10}
+              variant={index % 2 === 0 ? 'pop' : 'drift-right'}
+            >
+              <article className="h-full rounded-[1.45rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.06),rgba(255,255,255,0.02))] px-5 py-5 shadow-[0_20px_50px_rgba(0,0,0,0.22)] sm:px-6">
+                <div className="text-[0.62rem] uppercase tracking-[0.24em] text-[#ff8a1c]">
+                  {item.label}
+                </div>
+                <h3 className="mt-3 max-w-[28ch] text-[1.12rem] font-medium leading-[1.08] tracking-[-0.035em] text-white sm:text-[1.22rem]">
+                  {item.title}
+                </h3>
+              </article>
+            </MobileReveal>
+          ))}
         </div>
       </div>
 
-      <div className="relative mt-8 sm:mt-12">
-        <div
-          ref={sliderRef}
-          className="flex snap-x snap-mandatory items-stretch gap-5 overflow-x-auto scroll-smooth pb-2 [scrollbar-width:none] sm:gap-7 [&::-webkit-scrollbar]:hidden"
-        >
+      <div className="mt-4 grid gap-4 xl:grid-cols-[0.95fr_1.05fr] xl:gap-6">
+        <MobileReveal delay={0.18} y={24} blur={10} variant="reveal">
+          <article className="overflow-hidden rounded-[1.7rem] border border-white/10 bg-[#171919] shadow-[0_24px_70px_rgba(0,0,0,0.3)]">
+            <div className="relative aspect-[16/10] overflow-hidden bg-black">
+              <video
+                src={resultsCaseVideo}
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="metadata"
+                className="h-full w-full object-cover object-center"
+              />
+              <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.03),transparent_56%,rgba(0,0,0,0.5))]" />
+              <div className="absolute left-5 top-5 rounded-full border border-white/12 bg-black/42 px-4 py-2 text-[0.66rem] uppercase tracking-[0.24em] text-white/72 backdrop-blur-md">
+                Product test case
+              </div>
+            </div>
+            <div className="px-5 py-5 sm:px-6 sm:py-6">
+              <div className="text-[0.62rem] uppercase tracking-[0.26em] text-[#ff8a1c]">
+                Практический кейс
+              </div>
+              <h3 className="mt-2 max-w-[22ch] text-[1.34rem] font-medium leading-[1.04] tracking-[-0.04em] text-white sm:text-[1.58rem]">
+                Учим тестировать продукт небольшими партиями и смотреть на цифры до масштабирования
+              </h3>
+              <p className="mt-4 max-w-[56ch] text-[0.94rem] leading-7 text-white/60">
+                На одном из продуктов мы вышли на первые продажи через связку:
+                правильный товар, инфлюенсеры, контент и быстрый фулфилмент. Логику такого запуска показываю внутри по шагам.
+              </p>
+            </div>
+          </article>
+        </MobileReveal>
+
+        <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
           {items.map((item, index) => (
             <MobileReveal
               key={item.index}
-              delay={0.05 * index}
-              y={24}
+              delay={0.04 * index}
+              y={22}
               blur={10}
               variant={pricingRevealVariants[index % pricingRevealVariants.length]}
-              className="snap-start"
             >
-              <article
-                className={cn(
-                  'group relative flex shrink-0 flex-col overflow-hidden rounded-[1.55rem] border border-white/10 bg-[#171919] shadow-[0_24px_70px_rgba(0,0,0,0.3)]',
-                  item.layout === 'wide'
-                    ? 'w-[min(21rem,82vw)] sm:w-[min(50rem,88vw)]'
-                    : 'w-[min(21rem,82vw)] sm:w-[22rem]',
-                )}
-              >
-                <div
-                  className={cn(
-                    'relative overflow-hidden bg-[#f4f4f4]',
-                    item.layout === 'wide' ? 'h-[39rem] sm:h-[30rem]' : 'h-[39rem] sm:h-[42rem]',
-                  )}
-                >
+              <article className="overflow-hidden rounded-[1.45rem] border border-white/10 bg-[#171919] shadow-[0_20px_50px_rgba(0,0,0,0.22)]">
+                <div className="relative overflow-hidden bg-[#f4f4f4]">
                   <img
                     src={item.image}
                     alt={item.title}
                     loading="lazy"
-                    className={cn(
-                      'h-full w-full transition-transform duration-700 group-hover:scale-[1.015]',
-                      item.layout === 'wide'
-                        ? 'object-cover object-top sm:object-contain sm:object-center'
-                        : 'object-cover object-top',
-                    )}
+                    className="aspect-[0.64] w-full object-cover object-top"
                   />
-                  <div className="absolute left-4 top-4 flex h-11 w-11 items-center justify-center rounded-full bg-black/72 text-sm font-medium text-white shadow-[0_14px_28px_rgba(0,0,0,0.25)] backdrop-blur-md">
+                  <div className="absolute left-3 top-3 flex h-9 w-9 items-center justify-center rounded-full bg-black/72 text-xs font-medium text-white shadow-[0_14px_28px_rgba(0,0,0,0.25)] backdrop-blur-md">
                     {item.index}
                   </div>
                 </div>
 
-                <div className="border-t border-white/8 bg-[#1b1d1d] px-5 py-5">
-                  <div className="text-[0.62rem] uppercase tracking-[0.26em] text-[#ff8a1c]">
+                <div className="border-t border-white/8 bg-[#1b1d1d] px-4 py-4">
+                  <div className="text-[0.58rem] uppercase tracking-[0.24em] text-[#ff8a1c]">
                     {item.metric}
                   </div>
-                  <h3 className="mt-2 text-xl font-medium leading-none tracking-[-0.045em] text-white sm:text-2xl">
+                  <h3 className="mt-2 text-[0.98rem] font-medium leading-[1.08] tracking-[-0.03em] text-white sm:text-[1.06rem]">
                     {item.title}
                   </h3>
                 </div>
@@ -1227,11 +1282,6 @@ function ResultsSlider({ items }) {
             </MobileReveal>
           ))}
         </div>
-
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-y-0 right-0 hidden w-24 bg-[linear-gradient(90deg,transparent,rgba(0,0,0,0.82))] lg:block"
-        />
       </div>
     </div>
   )
