@@ -3,6 +3,9 @@ import audience01 from '../01.png'
 import audience02 from '../02.png'
 import audience03 from '../03.png'
 import audience04 from '../04.png'
+import programInfluencersImage from './assets/program-influencers.jpg'
+import programLogisticsImage from './assets/program-logistics.jpg'
+import programAiImage from './assets/program-ai.jpg'
 import aboutCafeImage from '../IMAGES/1/2/3/telegram-cloud-document-1-5084712035413920079 1.jpg'
 import aboutCarImage from '../IMAGES/1/2/3/telegram-cloud-document-1-5084712035413920079 2.jpg'
 import aboutWarehouseImage from '../IMAGES/1/2/3/telegram-cloud-document-1-5084712035413920079 3.jpg'
@@ -114,21 +117,49 @@ const outcomes = {
     title: 'Понимание всей модели TikTok Shop от начала до запуска',
     supporting:
       'Система выбора товара, оценки ниши и перехода от идеи к запуску без хаотичных решений.',
+    items: [
+      'Пошаговая логика запуска от регистрации до первых продаж',
+      'AI-инструменты для анализа товара, конкурентов, листинга и контента',
+      'Примеры реальных запусков и ошибок, которые нельзя повторять',
+    ],
+    preview: programAiImage,
+    previewLabel: 'AI сервисы и разборы',
   },
   logistics: {
     title: 'Понимание поставщиков, логистики и работы со складами',
     supporting:
       'Все, что нужно, чтобы выстроить базовую операционную систему без хаоса и лишних потерь времени.',
+    items: [
+      'Контакты поставщиков, своих агентов в Китае и prep center',
+      'Логистика из Китая в США, доставка, хранение и FBT-процессы',
+      'Контакты бухгалтеров в США и операционная база под запуск',
+    ],
+    preview: programLogisticsImage,
+    previewLabel: 'Логистика и склады',
   },
   marketing: {
     title: 'Подход к creators,\nконтенту\nи продвижению',
     supporting:
       'Понимание того, как соединяются контент, creators и продвижение в одной рабочей логике запуска.',
+    items: [
+      'Скрипты для общения с инфлюенсерами и шаблоны писем',
+      'Поиск creators, sample request и сценарии переговоров',
+      'AI-сервисы для упрощения контента и ускорения запусков',
+    ],
+    preview: programInfluencersImage,
+    previewLabel: 'Модуль Influencers',
   },
   structure: {
     title: 'Готовую структуру действий вместо хаоса',
-    supporting: 'Материалы, чеклисты и ориентиры по запуску',
-    items: ['Чек-листы', 'Шаблоны', 'Ориентиры'],
+    supporting: 'Материалы, контакты, сервисы и ориентиры, которые можно сразу применять в работе',
+    items: [
+      'Контакты поставщиков',
+      'Бухгалтеры в США',
+      'Свои агенты в Китае',
+      'Скрипты для инфлюенсеров',
+      'Prep center и хранение',
+      'AI сервисы и шаблоны',
+    ],
   },
 }
 

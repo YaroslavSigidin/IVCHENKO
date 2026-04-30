@@ -70,7 +70,9 @@ export function ProgramBenefitsSection({
                   <p className="text-[0.95rem] leading-7 text-white/60">
                     {benefits.primary.supporting}
                   </p>
+                  <BenefitBulletList items={benefits.primary.items} />
                 </div>
+                <ProgramPreview image={benefits.primary.preview} label={benefits.primary.previewLabel} />
               </CardContent>
             </FeaturePanel>
             </MobileReveal>
@@ -100,7 +102,9 @@ export function ProgramBenefitsSection({
                   <p className="text-[0.95rem] leading-7 text-white/60">
                     {benefits.logistics.supporting}
                   </p>
+                  <BenefitBulletList items={benefits.logistics.items} />
                 </div>
+                <ProgramPreview image={benefits.logistics.preview} label={benefits.logistics.previewLabel} />
               </CardContent>
             </FeaturePanel>
             </MobileReveal>
@@ -121,7 +125,9 @@ export function ProgramBenefitsSection({
                   <p className="text-[0.95rem] leading-7 text-white/60">
                     {benefits.marketing.supporting}
                   </p>
+                  <BenefitBulletList items={benefits.marketing.items} />
                 </div>
+                <ProgramPreview image={benefits.marketing.preview} label={benefits.marketing.previewLabel} />
               </CardContent>
             </FeaturePanel>
             </MobileReveal>
@@ -151,7 +157,7 @@ export function ProgramBenefitsSection({
                 </div>
 
                 <div className="relative mt-4 overflow-hidden rounded-[1.55rem] border border-white/8 bg-[linear-gradient(180deg,rgba(255,255,255,0.04),rgba(255,255,255,0.018))] p-4 pb-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] sm:mt-6 sm:p-5">
-                  <div className="relative grid gap-4 sm:grid-cols-3">
+                  <div className="relative grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
                     {benefits.structure.items.map((item, index) => (
                       <div
                         key={item}
@@ -182,6 +188,38 @@ export function ProgramBenefitsSection({
         </div>
       </div>
     </section>
+  )
+}
+
+function BenefitBulletList({ items = [] }) {
+  if (!items.length) return null
+
+  return (
+    <div className="space-y-2.5 pt-1">
+      {items.map((item) => (
+        <div key={item} className="flex items-start gap-2.5 text-left text-[0.84rem] leading-6 text-white/62 sm:text-[0.9rem]">
+          <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#ff8a1c]" />
+          <span>{item}</span>
+        </div>
+      ))}
+    </div>
+  )
+}
+
+function ProgramPreview({ image, label }) {
+  if (!image) return null
+
+  return (
+    <div className="mt-5 overflow-hidden rounded-[1.25rem] border border-white/8 bg-black/20">
+      <img
+        src={image}
+        alt={label}
+        className="aspect-[16/10] w-full object-cover object-top"
+      />
+      <div className="border-t border-white/8 px-4 py-3 text-[0.68rem] uppercase tracking-[0.22em] text-white/46">
+        {label}
+      </div>
+    </div>
   )
 }
 
