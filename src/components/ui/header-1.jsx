@@ -53,7 +53,7 @@ export function Header() {
           href="/"
           className="rounded-md py-2 text-[1.05rem] font-medium tracking-[-0.05em] text-white sm:p-2 sm:text-lg"
         >
-          Vladislav
+          IVCHENKO
         </a>
         <div className="hidden items-center gap-2 md:flex">
           {links.map((link) => (
