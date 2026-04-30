@@ -1199,6 +1199,17 @@ function VideoBreakdownsSlider({ items }) {
 }
 
 function ResultsSlider({ items }) {
+  const sliderRef = useRef(null)
+
+  const scrollSlider = (direction) => {
+    if (!sliderRef.current) return
+
+    sliderRef.current.scrollBy({
+      left: direction * Math.min(sliderRef.current.clientWidth * 0.82, 520),
+      behavior: 'smooth',
+    })
+  }
+
   return (
     <div className="mx-auto w-[min(1320px,94vw)]">
       <SectionHeader
@@ -1296,39 +1307,79 @@ function ResultsSlider({ items }) {
           </article>
         </MobileReveal>
 
-        <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
-          {items.map((item, index) => (
-            <MobileReveal
-              key={item.index}
-              delay={0.04 * index}
-              y={22}
-              blur={10}
-              variant={pricingRevealVariants[index % pricingRevealVariants.length]}
-            >
-              <article className="overflow-hidden rounded-[1.45rem] border border-white/10 bg-[#171919] shadow-[0_20px_50px_rgba(0,0,0,0.22)]">
-                <div className="relative overflow-hidden bg-[#f4f4f4]">
-                  <img
-                    src={item.image}
-                    alt={item.title}
-                    loading="lazy"
-                    className="aspect-[0.64] w-full object-cover object-top"
-                  />
-                  <div className="absolute left-3 top-3 flex h-9 w-9 items-center justify-center rounded-full bg-black/72 text-xs font-medium text-white shadow-[0_14px_28px_rgba(0,0,0,0.25)] backdrop-blur-md">
-                    {item.index}
-                  </div>
-                </div>
+        <div className="relative overflow-hidden rounded-[1.7rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.04),rgba(255,255,255,0.015))] p-4 shadow-[0_24px_70px_rgba(0,0,0,0.26)] sm:p-5">
+          <div className="mb-4 flex items-center justify-between gap-3">
+            <div>
+              <div className="text-[0.62rem] uppercase tracking-[0.24em] text-[#ff8a1c]">
+                Скрины аналитики
+              </div>
+              <div className="mt-2 max-w-[28ch] text-[1.02rem] font-medium leading-[1.08] tracking-[-0.03em] text-white sm:text-[1.14rem]">
+                Реальные метрики и динамика продаж в формате карточек
+              </div>
+            </div>
+            <div className="flex items-center gap-3">
+              <button
+                type="button"
+                onClick={() => scrollSlider(-1)}
+                className="flex h-11 w-11 items-center justify-center rounded-full border border-white/12 bg-white/[0.04] text-white/78 backdrop-blur-md transition duration-300 hover:border-white/22 hover:bg-white/[0.08] hover:text-white"
+                aria-label="Предыдущая карточка результата"
+              >
+                <ChevronLeft className="h-5 w-5" />
+              </button>
+              <button
+                type="button"
+                onClick={() => scrollSlider(1)}
+                className="flex h-11 w-11 items-center justify-center rounded-full border border-white/12 bg-white/[0.04] text-white/78 backdrop-blur-md transition duration-300 hover:border-white/22 hover:bg-white/[0.08] hover:text-white"
+                aria-label="Следующая карточка результата"
+              >
+                <ChevronRight className="h-5 w-5" />
+              </button>
+            </div>
+          </div>
 
-                <div className="border-t border-white/8 bg-[#1b1d1d] px-4 py-4">
-                  <div className="text-[0.58rem] uppercase tracking-[0.24em] text-[#ff8a1c]">
-                    {item.metric}
+          <div
+            ref={sliderRef}
+            className="flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+          >
+            {items.map((item, index) => (
+              <MobileReveal
+                key={item.index}
+                delay={0.04 * index}
+                y={22}
+                blur={10}
+                variant={pricingRevealVariants[index % pricingRevealVariants.length]}
+                className="snap-start"
+              >
+                <article className="w-[13rem] shrink-0 overflow-hidden rounded-[1.45rem] border border-white/10 bg-[#171919] shadow-[0_20px_50px_rgba(0,0,0,0.22)] sm:w-[14rem]">
+                  <div className="relative overflow-hidden bg-[#f4f4f4]">
+                    <img
+                      src={item.image}
+                      alt={item.title}
+                      loading="lazy"
+                      className="aspect-[0.64] w-full object-cover object-top"
+                    />
+                    <div className="absolute left-3 top-3 flex h-9 w-9 items-center justify-center rounded-full bg-black/72 text-xs font-medium text-white shadow-[0_14px_28px_rgba(0,0,0,0.25)] backdrop-blur-md">
+                      {item.index}
+                    </div>
                   </div>
-                  <h3 className="mt-2 text-[0.98rem] font-medium leading-[1.08] tracking-[-0.03em] text-white sm:text-[1.06rem]">
-                    {item.title}
-                  </h3>
-                </div>
-              </article>
-            </MobileReveal>
-          ))}
+
+                  <div className="border-t border-white/8 bg-[#1b1d1d] px-4 py-4">
+                    <div className="text-[0.58rem] uppercase tracking-[0.24em] text-[#ff8a1c]">
+                      {item.metric}
+                    </div>
+                    <h3 className="mt-2 text-[0.98rem] font-medium leading-[1.08] tracking-[-0.03em] text-white sm:text-[1.06rem]">
+                      {item.title}
+                    </h3>
+                  </div>
+                </article>
+              </MobileReveal>
+            ))}
+          </div>
+
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-y-0 right-0 hidden w-20 bg-[linear-gradient(90deg,transparent,rgba(0,0,0,0.8))] lg:block"
+          />
         </div>
       </div>
     </div>
