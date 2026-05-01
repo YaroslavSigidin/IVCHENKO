@@ -1,6 +1,8 @@
 import { useRef, useState } from 'react'
 import audience01 from '../01.png'
 import audience02 from '../02.png'
+import audience03 from '../03.png'
+import audience04 from '../04.png'
 import audienceManImage from './assets/audience-man.png'
 import audienceWomanImage from './assets/audience-woman.png'
 import programInfluencersImage from './assets/program-influencers.jpg'
@@ -102,7 +104,7 @@ const audienceCards = [
     text: 'Если вы боитесь ошибиться с товаром, закупкой и маржой, программа помогает пройти путь через аналитику, тест и расчёты, а не вслепую.',
     image: audienceManImage,
     imageClassName:
-      'right-[2%] bottom-0 w-[28%] sm:right-[3%] sm:w-[30%] md:w-[31%] lg:w-[29%]',
+      'right-[1%] bottom-0 w-[34%] sm:right-[2%] sm:w-[36%] md:w-[37%] lg:w-[35%]',
   },
   {
     index: '04',
@@ -111,25 +113,25 @@ const audienceCards = [
     text: 'Если у вас уже был опыт на других площадках и нужен новый канал продаж, здесь вы увидите, как адаптировать мышление и запуск под TikTok Shop.',
     image: audienceWomanImage,
     imageClassName:
-      'right-[2%] bottom-0 w-[27%] sm:right-[2%] sm:w-[30%] md:w-[31%] lg:w-[28%]',
+      'right-[1%] bottom-0 w-[33%] sm:right-[2%] sm:w-[35%] md:w-[36%] lg:w-[34%]',
   },
   {
     index: '05',
     icon: BadgeDollarSign,
     title: 'Для тех, кто хочет\nвыйти на первые продажи\nза 6–8 недель',
     text: 'Подходит тем, кому нужен не растянутый “когда-нибудь запуск”, а понятная структура действий с коротким горизонтом до первых реальных тестов и продаж.',
-    image: audience01,
+    image: audience03,
     imageClassName:
-      'right-[1%] bottom-0 w-[35%] sm:right-[2%] sm:w-[38%] md:w-[39%] lg:w-[37%]',
+      'right-[1%] bottom-0 w-[33%] sm:right-[3%] sm:w-[35%] md:w-[36%] lg:w-[33%]',
   },
   {
     index: '06',
     icon: BriefcaseBusiness,
     title: 'Для тех, кто хочет\nзапускаться системно,\nа не на интуиции',
     text: 'Если вам нужен не просто контент про TikTok Shop, а логика по товару, поставщику, рекламе, инфлюенсерам и деньгам в одном маршруте, этот формат про вас.',
-    image: audience02,
+    image: audience04,
     imageClassName:
-      'right-[0%] bottom-0 w-[36%] sm:right-[-1%] sm:w-[39%] md:w-[40%] lg:w-[37%]',
+      'right-[1%] bottom-0 w-[31%] sm:right-[2%] sm:w-[34%] md:w-[35%] lg:w-[32%]',
   },
 ]
 
