@@ -1356,26 +1356,26 @@ function AnalyticsScreensSlider({ items }) {
               y={22}
               blur={10}
               variant={pricingRevealVariants[index % pricingRevealVariants.length]}
-              className="snap-start"
+              className="w-full shrink-0 snap-start"
             >
-              <article className="w-[13rem] shrink-0 overflow-hidden rounded-[1.45rem] border border-white/10 bg-[#171919] shadow-[0_20px_50px_rgba(0,0,0,0.22)] sm:w-[14rem]">
+              <article className="w-full overflow-hidden rounded-[1.45rem] border border-white/10 bg-[#171919] shadow-[0_20px_50px_rgba(0,0,0,0.22)]">
                 <div className="relative overflow-hidden bg-[#f4f4f4]">
                   <img
                     src={item.image}
                     alt={item.title}
                     loading="lazy"
-                    className="aspect-[0.64] w-full object-cover object-top"
+                    className="aspect-[4/3] w-full object-cover object-top"
                   />
                   <div className="absolute left-3 top-3 flex h-9 w-9 items-center justify-center rounded-full bg-black/72 text-xs font-medium text-white shadow-[0_14px_28px_rgba(0,0,0,0.25)] backdrop-blur-md">
                     {item.index}
                   </div>
                 </div>
 
-                <div className="border-t border-white/8 bg-[#1b1d1d] px-4 py-4">
+                <div className="border-t border-white/8 bg-[#1b1d1d] px-4 py-4 sm:px-5 sm:py-5">
                   <div className="text-[0.58rem] uppercase tracking-[0.24em] text-[#ff8a1c]">
                     {item.metric}
                   </div>
-                  <h3 className="mt-2 text-[0.98rem] font-medium leading-[1.08] tracking-[-0.03em] text-white sm:text-[1.06rem]">
+                  <h3 className="mt-2 max-w-[22ch] text-[1.08rem] font-medium leading-[1.06] tracking-[-0.03em] text-white sm:text-[1.18rem]">
                     {item.title}
                   </h3>
                 </div>
