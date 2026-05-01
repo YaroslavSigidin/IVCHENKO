@@ -3,6 +3,7 @@
 import React from 'react'
 import { createPortal } from 'react-dom'
 import { AnimatePresence, motion as Motion, useReducedMotion } from 'motion/react'
+import { Package } from 'lucide-react'
 
 import { Button } from '@/components/ui/button'
 import { buttonVariants } from '@/components/ui/button-variants'
@@ -51,9 +52,12 @@ export function Header() {
       <nav className="mx-auto flex h-[4.75rem] w-full max-w-[1320px] items-center justify-between px-5 sm:h-16 sm:px-6 lg:px-8">
         <a
           href="/"
-          className="rounded-md py-2 text-[1.05rem] font-medium tracking-[-0.05em] text-white sm:p-2 sm:text-lg"
+          className="flex items-center gap-2 rounded-md py-2 text-[1.05rem] font-medium tracking-[-0.05em] text-white sm:p-2 sm:text-lg"
         >
-          IVCHENKO
+          <span className="flex h-8 w-8 items-center justify-center rounded-xl border border-[#ff8a1c]/18 bg-[#ff8a1c]/[0.08] text-[#ff9a33] shadow-[0_0_20px_rgba(255,138,28,0.12)]">
+            <Package className="h-4.5 w-4.5" strokeWidth={1.9} />
+          </span>
+          <span>TikTok Shop</span>
         </a>
         <div className="hidden items-center gap-2 md:flex">
           {links.map((link) => (

@@ -1,6 +1,6 @@
 import React from 'react'
 import { motion as Motion, useReducedMotion } from 'motion/react'
-import { Globe, MessageCircleMore, Play, Send } from 'lucide-react'
+import { Globe, MessageCircleMore, Package, Play, Send } from 'lucide-react'
 
 import { cn } from '@/lib/utils'
 
@@ -53,12 +53,12 @@ export function Footer() {
 
           <div className="relative z-10 grid w-full gap-10 xl:grid-cols-[0.9fr_2.1fr] xl:gap-8">
             <AnimatedContainer className="space-y-4">
-              <div className="inline-flex h-12 w-12 items-center justify-center rounded-2xl border border-white/12 bg-white/[0.05] text-lg font-medium tracking-[-0.05em] text-white">
-                V
+              <div className="inline-flex h-12 w-12 items-center justify-center rounded-2xl border border-[#ff8a1c]/18 bg-[#ff8a1c]/[0.08] text-[#ff9a33] shadow-[0_0_22px_rgba(255,138,28,0.12)]">
+                <Package className="h-5 w-5" strokeWidth={1.9} />
               </div>
               <div>
                 <div className="text-lg font-medium tracking-[-0.04em] text-white">
-                  Vladislav
+                  TikTok Shop
                 </div>
                 <p className="mt-3 max-w-sm text-sm leading-7 text-white/58">
                   Пошаговая программа запуска TikTok Shop бизнеса в США для тех,
@@ -66,7 +66,7 @@ export function Footer() {
                 </p>
               </div>
               <p className="pt-6 text-sm text-white/42">
-                © {new Date().getFullYear()} Vladislav. All rights reserved.
+                © {new Date().getFullYear()} TikTok Shop. All rights reserved.
               </p>
             </AnimatedContainer>
 
