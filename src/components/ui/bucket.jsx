@@ -70,7 +70,7 @@ export function Bucket({ eyebrow, title, description, chips }) {
           transition={{ duration: 1.15, ease: [0.16, 1, 0.3, 1] }}
           onHoverStart={() => setIsHovered(true)}
           onHoverEnd={() => setIsHovered(false)}
-          className="relative isolate h-[460px] w-full sm:h-[720px]"
+          className="relative isolate h-[460px] w-full sm:h-[560px]"
           style={{ transformPerspective: 1800 }}
         >
           <Motion.div
@@ -98,7 +98,7 @@ export function Bucket({ eyebrow, title, description, chips }) {
                   }
             }
             transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-            className="absolute left-1/2 top-[47%] flex h-[88%] w-[min(360px,82vw)] min-w-0 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-[3rem] border border-white/12 bg-[linear-gradient(180deg,rgba(255,255,255,0.09),rgba(255,255,255,0.018))] p-[9px] shadow-[0_40px_90px_rgba(0,0,0,0.42)] backdrop-blur-xl [mask-image:linear-gradient(to_bottom,black_0%,black_78%,rgba(0,0,0,0.82)_90%,transparent_100%)] sm:h-[90%] sm:w-[min(430px,54vw)] sm:rounded-[4rem] sm:p-[11px] sm:shadow-[0_60px_140px_rgba(0,0,0,0.5)]"
+            className="absolute left-1/2 top-[47%] flex h-[88%] w-[min(360px,82vw)] min-w-0 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-[3rem] border border-white/12 bg-[linear-gradient(180deg,rgba(255,255,255,0.09),rgba(255,255,255,0.018))] p-[9px] shadow-[0_40px_90px_rgba(0,0,0,0.42)] backdrop-blur-xl [mask-image:linear-gradient(to_bottom,black_0%,black_78%,rgba(0,0,0,0.82)_90%,transparent_100%)] sm:h-[78%] sm:w-[min(430px,54vw)] sm:rounded-[4rem] sm:p-[11px] sm:shadow-[0_60px_140px_rgba(0,0,0,0.5)]"
           >
             <div className="relative h-full w-full overflow-hidden rounded-[2.5rem] border border-white/8 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.08),transparent_28%),linear-gradient(180deg,#121316_0%,#0a0a0b_56%,#040404_100%)] sm:rounded-[3.45rem]">
               <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0.04),transparent_22%,transparent_72%,rgba(0,0,0,0.42))]" />
@@ -177,7 +177,7 @@ export function Bucket({ eyebrow, title, description, chips }) {
           <div className="pointer-events-none absolute inset-x-[26%] bottom-[2%] h-[24%] bg-[linear-gradient(180deg,rgba(0,0,0,0),rgba(0,0,0,0.36)_28%,rgba(0,0,0,0.88)_76%,#000_100%)] blur-[18px]" />
         </Motion.div>
 
-        <div className="relative z-20 mt-6 grid w-full max-w-[920px] gap-3 sm:-mt-[150px] sm:grid-cols-2">
+        <div className="relative z-20 mt-6 grid w-full max-w-[920px] gap-3 sm:-mt-[110px] sm:grid-cols-2">
           {chips.map((chip, index) => {
             const isActive = activeChip?.id === chip.id
             return (
