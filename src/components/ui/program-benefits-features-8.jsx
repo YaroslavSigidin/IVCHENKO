@@ -55,7 +55,11 @@ export function ProgramBenefitsSection({
               >
                 <FeaturePanel>
                   <CardContent className="flex h-full min-h-[760px] flex-col p-0">
-                    <ProgramPreview image={data.preview} label={data.previewLabel} />
+                    <ProgramPreview
+                      label={data.previewLabel}
+                      icon={Icon}
+                      previewKey={item.key}
+                    />
 
                     <div className="px-5 pb-5 pt-5 sm:px-6 sm:pb-6 sm:pt-6">
                     <div className="inline-flex w-fit items-center gap-2 rounded-full border border-white/10 bg-white/[0.045] px-3 py-1.5 text-[0.58rem] uppercase tracking-[0.24em] text-white/48 sm:text-[0.64rem]">
@@ -137,16 +141,56 @@ function BenefitBulletList({ items = [], className = '' }) {
   )
 }
 
-function ProgramPreview({ image, label }) {
-  if (!image) return null
-
+function ProgramPreview({ label, icon: Icon, previewKey }) {
   return (
-    <div className="overflow-hidden rounded-t-[1.75rem] border-b border-white/8 bg-black/20 sm:rounded-t-[2rem]">
-      <img
-        src={image}
-        alt={label}
-        className="aspect-[16/10] w-full object-cover object-top"
-      />
+    <div className="relative overflow-hidden rounded-t-[1.75rem] border-b border-white/8 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.08),transparent_30%),linear-gradient(180deg,#171819_0%,#101113_54%,#0b0b0c_100%)] sm:rounded-t-[2rem]">
+      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0.03),transparent_26%,transparent_72%,rgba(0,0,0,0.32))]" />
+      <div className="absolute inset-0 opacity-60 [background-image:linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] [background-size:32px_32px]" />
+      <div className="relative aspect-[16/10] w-full overflow-hidden">
+        <div className="absolute left-5 top-5 rounded-full border border-white/10 bg-white/[0.045] px-3 py-1.5 text-[0.58rem] uppercase tracking-[0.24em] text-white/44 sm:left-6 sm:top-6 sm:text-[0.62rem]">
+          {label}
+        </div>
+
+        {previewKey === 'primary' ? (
+          <>
+            <div className="absolute left-1/2 top-1/2 h-48 w-48 -translate-x-1/2 -translate-y-1/2 rounded-full border border-[#ff8a1c]/16" />
+            <div className="absolute left-1/2 top-1/2 h-36 w-36 -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/10" />
+            <div className="absolute left-1/2 top-1/2 h-24 w-24 -translate-x-1/2 -translate-y-1/2 rounded-full border border-[#ff8a1c]/24 bg-[#ff8a1c]/[0.04]" />
+            <div className="absolute left-1/2 top-1/2 h-40 w-40 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(255,138,28,0.18),rgba(255,138,28,0.04)_42%,transparent_68%)] blur-2xl" />
+            <div className="absolute left-[21%] top-[60%] h-3 w-3 rounded-full bg-white/68 shadow-[0_0_18px_rgba(255,255,255,0.28)]" />
+            <div className="absolute right-[23%] top-[63%] h-2.5 w-2.5 rounded-full bg-white/40" />
+            <div className="absolute left-[50%] top-[29%] h-3.5 w-3.5 -translate-x-1/2 rounded-full bg-[#ff8a1c] shadow-[0_0_24px_rgba(255,138,28,0.5)]" />
+          </>
+        ) : null}
+
+        {previewKey === 'logistics' ? (
+          <>
+            <div className="absolute inset-x-[14%] top-[28%] h-20 rounded-[1.6rem] border border-white/10 bg-white/[0.03]" />
+            <div className="absolute inset-x-[8%] top-[46%] h-24 rounded-[1.8rem] border border-[#ff8a1c]/18 bg-[#ff8a1c]/[0.035]" />
+            <div className="absolute left-[15%] top-[53%] h-2.5 w-20 rounded-full bg-white/10" />
+            <div className="absolute left-[15%] top-[60%] h-2.5 w-28 rounded-full bg-white/10" />
+            <div className="absolute right-[14%] top-[52%] h-12 w-12 rounded-2xl border border-white/10 bg-white/[0.045]" />
+            <div className="absolute right-[11%] top-[30%] h-14 w-14 rounded-full bg-[radial-gradient(circle,rgba(255,138,28,0.24),rgba(255,138,28,0.06)_45%,transparent_72%)] blur-xl" />
+            <div className="absolute left-[11%] top-[32%] h-10 w-10 rounded-xl border border-white/8 bg-white/[0.03]" />
+          </>
+        ) : null}
+
+        {previewKey === 'marketing' ? (
+          <>
+            <div className="absolute left-[16%] top-[35%] h-28 w-28 rounded-[2rem] border border-white/10 bg-white/[0.035]" />
+            <div className="absolute left-[32%] top-[26%] h-36 w-36 rounded-[2.4rem] border border-[#ff8a1c]/18 bg-[#ff8a1c]/[0.04]" />
+            <div className="absolute right-[16%] top-[37%] h-24 w-24 rounded-[1.9rem] border border-white/10 bg-white/[0.03]" />
+            <div className="absolute left-[27%] top-[58%] h-px w-[46%] bg-[linear-gradient(90deg,transparent,rgba(255,138,28,0.78),transparent)]" />
+            <div className="absolute left-[49%] top-[56%] h-3 w-3 -translate-x-1/2 rounded-full bg-[#ff8a1c] shadow-[0_0_20px_rgba(255,138,28,0.5)]" />
+            <div className="absolute left-[23%] top-[46%] h-2.5 w-2.5 rounded-full bg-white/70" />
+            <div className="absolute right-[22%] top-[47%] h-2.5 w-2.5 rounded-full bg-white/38" />
+          </>
+        ) : null}
+
+        <div className="absolute left-1/2 top-1/2 flex h-18 w-18 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-[2rem] border border-[#ff8a1c]/22 bg-[linear-gradient(180deg,rgba(255,138,28,0.16),rgba(255,138,28,0.05))] text-[#ff9a33] shadow-[0_0_0_1px_rgba(255,138,28,0.08),0_0_32px_rgba(255,138,28,0.14)] backdrop-blur-md sm:h-20 sm:w-20">
+          <Icon className="h-7 w-7 sm:h-8 sm:w-8" />
+        </div>
+      </div>
     </div>
   )
 }
