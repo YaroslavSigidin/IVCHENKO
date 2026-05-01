@@ -35,6 +35,9 @@ import reviewArtemPreview from '../IMAGES/1/2/Artem.jpg'
 import reviewDanyaPreview from '../IMAGES/1/2/Danya.jpg'
 import reviewSofyaPreview from '../IMAGES/1/2/Sofya.jpg'
 import reviewOksanaPreview from '../IMAGES/1/2/Oksana.jpg'
+import studentCaseOrders from './assets/student-case-orders.jpg'
+import studentCaseSupplement from './assets/student-case-supplement.jpg'
+import studentCaseSports from './assets/student-case-sports.jpg'
 
 import { motion as Motion } from 'motion/react'
 import {
@@ -521,11 +524,29 @@ const studentResults = [
     name: 'Виктория',
     role: 'Product-led entrepreneur',
   },
+  {
+    text: 'Сейчас с одним из учеников сделали 65 продаж за первый месяц. Профит держится около $6 за юнит, и это уже примерно $700 чистыми на самом старте. Без сказок про “вложил $3-4k и сразу сделал $10k чистыми”.',
+    preview: studentCaseOrders,
+    name: 'Кейс ученика',
+    role: '65 sales in month one · ~$700 net',
+  },
+  {
+    text: '30 марта запускали ещё один supplement-продукт с другим учеником. Реакция от аудитории очень живая: инфлюенсеры сами просят продукт на тест, и уже видно хороший отклик по отправкам.',
+    preview: studentCaseSupplement,
+    name: 'Кейс по supplement',
+    role: 'March 30 · strong creator demand',
+  },
+  {
+    text: 'Ещё один запуск в спортивных товарах: около $10 профита за юнит. Сейчас продукт разгоняется через рекламу уже после того, как получили первые видео от инфлюенсеров и пошли нормальные сигналы.',
+    preview: studentCaseSports,
+    name: 'Кейс в sports',
+    role: '~$10 profit per unit',
+  },
 ]
 
-const firstStudentColumn = studentResults.slice(0, 3)
-const secondStudentColumn = studentResults.slice(3, 6)
-const thirdStudentColumn = studentResults.slice(6, 9)
+const firstStudentColumn = studentResults.slice(0, 4)
+const secondStudentColumn = studentResults.slice(4, 8)
+const thirdStudentColumn = studentResults.slice(8, 12)
 
 const videoReviews = [
   {
