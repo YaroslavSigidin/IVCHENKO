@@ -1356,7 +1356,7 @@ function AnalyticsScreensSlider({ items }) {
               y={22}
               blur={10}
               variant={pricingRevealVariants[index % pricingRevealVariants.length]}
-              className="w-full shrink-0 snap-start"
+              className="w-full shrink-0 snap-start lg:w-[350px]"
             >
               <article className="w-full overflow-hidden rounded-[1.45rem] border border-white/10 bg-[#171919] shadow-[0_20px_50px_rgba(0,0,0,0.22)]">
                 <div className="relative overflow-hidden bg-[#f4f4f4]">
@@ -1364,7 +1364,7 @@ function AnalyticsScreensSlider({ items }) {
                     src={item.image}
                     alt={item.title}
                     loading="lazy"
-                    className="aspect-[4/3] w-full object-cover object-top"
+                    className="aspect-[4/3] w-full object-cover object-top lg:aspect-[0.64]"
                   />
                   <div className="absolute left-3 top-3 flex h-9 w-9 items-center justify-center rounded-full bg-black/72 text-xs font-medium text-white shadow-[0_14px_28px_rgba(0,0,0,0.25)] backdrop-blur-md">
                     {item.index}
