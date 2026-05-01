@@ -1376,9 +1376,6 @@ function AnalyticsScreensSlider({ items }) {
             <div className="text-[0.62rem] uppercase tracking-[0.24em] text-[#ff8a1c]">
               Скрины аналитики
             </div>
-            <div className="mt-2 max-w-[28ch] text-[1.02rem] font-medium leading-[1.08] tracking-[-0.03em] text-white sm:text-[1.14rem]">
-              Реальные метрики и динамика продаж в формате карточек
-            </div>
           </div>
           <div className="flex items-center gap-3">
             <button
