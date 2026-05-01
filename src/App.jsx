@@ -545,9 +545,26 @@ const studentResults = [
   },
 ]
 
-const firstStudentColumn = studentResults.slice(0, 4)
-const secondStudentColumn = studentResults.slice(4, 8)
-const thirdStudentColumn = studentResults.slice(8, 12)
+const firstStudentColumn = [
+  studentResults[0],
+  studentResults[3],
+  studentResults[6],
+  studentResults[9],
+]
+
+const secondStudentColumn = [
+  studentResults[1],
+  studentResults[4],
+  studentResults[7],
+  studentResults[10],
+]
+
+const thirdStudentColumn = [
+  studentResults[2],
+  studentResults[5],
+  studentResults[8],
+  studentResults[11],
+]
 
 const videoReviews = [
   {
@@ -1827,7 +1844,7 @@ function App() {
               <TestimonialsColumn
                 testimonials={thirdStudentColumn}
                 className="hidden xl:block"
-                duration={16}
+                duration={22}
               />
             </div>
           </div>
