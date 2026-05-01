@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import audience01 from '../01.png'
 import audience02 from '../02.png'
 import audience03 from '../03.png'
@@ -54,6 +54,7 @@ import {
   Sparkles,
   Target,
   Users,
+  X,
   XCircle,
 } from 'lucide-react'
 import {
@@ -1392,7 +1393,232 @@ function AnalyticsScreensSlider({ items }) {
   )
 }
 
+function ModalInputShell({ children }) {
+  return (
+    <div className="rounded-[1.1rem] border border-white/10 bg-white/[0.04] transition-colors focus-within:border-[#ff8a1c]/60 focus-within:bg-[#ff8a1c]/[0.06]">
+      {children}
+    </div>
+  )
+}
+
+function PricingLeadModal({
+  open,
+  selectedPlan,
+  plans,
+  formData,
+  submitted,
+  onClose,
+  onChange,
+  onSubmit,
+}) {
+  useEffect(() => {
+    if (!open) return undefined
+
+    const previousOverflow = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+
+    const handleEscape = (event) => {
+      if (event.key === 'Escape') onClose()
+    }
+
+    window.addEventListener('keydown', handleEscape)
+
+    return () => {
+      document.body.style.overflow = previousOverflow
+      window.removeEventListener('keydown', handleEscape)
+    }
+  }, [open, onClose])
+
+  if (!open) return null
+
+  const activePlan = plans.find((plan) => plan.name === selectedPlan) ?? plans[0]
+
+  return (
+    <div className="fixed inset-0 z-[120] flex items-center justify-center p-4 sm:p-6">
+      <button
+        type="button"
+        aria-label="Закрыть окно"
+        className="absolute inset-0 bg-black/72 backdrop-blur-md"
+        onClick={onClose}
+      />
+
+      <div className="relative z-10 w-full max-w-[34rem] overflow-hidden rounded-[1.8rem] border border-white/10 bg-[#111214] shadow-[0_30px_90px_rgba(0,0,0,0.46)]">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.08),transparent_34%)]" />
+
+        <div className="relative z-10 p-5 sm:p-7">
+          <div className="flex items-start justify-between gap-4">
+            <div>
+              <div className="text-[0.66rem] uppercase tracking-[0.28em] text-[#ff8a1c]">
+                Тариф участия
+              </div>
+              <h3 className="mt-3 text-[1.55rem] font-medium leading-[1] tracking-[-0.05em] text-white sm:text-[2rem]">
+                Оставьте заявку на {activePlan.name}
+              </h3>
+              <p className="mt-3 max-w-[42ch] text-sm leading-7 text-white/58 sm:text-[0.98rem]">
+                Введите данные, и выбранный формат уже будет привязан к заявке.
+              </p>
+            </div>
+            <button
+              type="button"
+              onClick={onClose}
+              className="flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/[0.04] text-white/72 transition hover:border-white/18 hover:bg-white/[0.08] hover:text-white"
+              aria-label="Закрыть"
+            >
+              <X className="h-5 w-5" />
+            </button>
+          </div>
+
+          <div className="mt-5 rounded-[1.2rem] border border-white/8 bg-white/[0.03] px-4 py-4">
+            <div className="flex items-center justify-between gap-4">
+              <div>
+                <div className="text-[0.62rem] uppercase tracking-[0.24em] text-white/42">
+                  Выбранный формат
+                </div>
+                <div className="mt-2 text-lg font-medium tracking-[-0.03em] text-white">
+                  {activePlan.name}
+                </div>
+              </div>
+              <div className="text-right">
+                <div className="text-[0.62rem] uppercase tracking-[0.24em] text-white/42">
+                  Стоимость
+                </div>
+                <div className="mt-2 text-lg font-medium tracking-[-0.03em] text-[#ffcfaa]">
+                  {activePlan.price}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {submitted ? (
+            <div className="mt-6 rounded-[1.2rem] border border-emerald-400/18 bg-emerald-400/[0.06] px-4 py-4 text-sm leading-7 text-white/74">
+              Заявка сохранена. Тариф <span className="text-white">{activePlan.name}</span> уже привязан.
+              При подключении CRM или внешнего обработчика эти данные можно будет сразу отправлять дальше.
+            </div>
+          ) : (
+            <form className="mt-6 space-y-4" onSubmit={onSubmit}>
+              <div>
+                <label className="mb-2 block text-sm font-medium text-white/58">
+                  Имя
+                </label>
+                <ModalInputShell>
+                  <input
+                    name="name"
+                    type="text"
+                    value={formData.name}
+                    onChange={onChange}
+                    placeholder="Как к вам обращаться"
+                    required
+                    className="w-full bg-transparent px-4 py-3.5 text-sm text-white placeholder:text-white/30 focus:outline-none"
+                  />
+                </ModalInputShell>
+              </div>
+
+              <div className="grid gap-4 sm:grid-cols-2">
+                <div>
+                  <label className="mb-2 block text-sm font-medium text-white/58">
+                    Email
+                  </label>
+                  <ModalInputShell>
+                    <input
+                      name="email"
+                      type="email"
+                      value={formData.email}
+                      onChange={onChange}
+                      placeholder="name@email.com"
+                      required
+                      className="w-full bg-transparent px-4 py-3.5 text-sm text-white placeholder:text-white/30 focus:outline-none"
+                    />
+                  </ModalInputShell>
+                </div>
+                <div>
+                  <label className="mb-2 block text-sm font-medium text-white/58">
+                    Telegram / WhatsApp
+                  </label>
+                  <ModalInputShell>
+                    <input
+                      name="messenger"
+                      type="text"
+                      value={formData.messenger}
+                      onChange={onChange}
+                      placeholder="@username или номер"
+                      required
+                      className="w-full bg-transparent px-4 py-3.5 text-sm text-white placeholder:text-white/30 focus:outline-none"
+                    />
+                  </ModalInputShell>
+                </div>
+              </div>
+
+              <div>
+                <label className="mb-2 block text-sm font-medium text-white/58">
+                  Комментарий
+                </label>
+                <ModalInputShell>
+                  <textarea
+                    name="comment"
+                    value={formData.comment}
+                    onChange={onChange}
+                    placeholder="Кратко опишите вашу ситуацию или вопрос"
+                    rows={4}
+                    className="w-full resize-none bg-transparent px-4 py-3.5 text-sm text-white placeholder:text-white/30 focus:outline-none"
+                  />
+                </ModalInputShell>
+              </div>
+
+              <button
+                type="submit"
+                className="relative inline-flex h-12 w-full items-center justify-center overflow-hidden rounded-full border border-[#ffb15c]/55 bg-[linear-gradient(180deg,#ffb24d_0%,#ff951f_44%,#ff7800_100%)] px-6 text-sm font-semibold text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.32),inset_0_-1px_0_rgba(110,39,0,0.24),0_16px_36px_rgba(255,122,11,0.26),0_0_24px_rgba(255,140,32,0.12)] transition hover:border-[#ffc278] hover:bg-[linear-gradient(180deg,#ffbc5c_0%,#ff9b2d_44%,#ff7d08_100%)]"
+              >
+                Отправить заявку
+              </button>
+            </form>
+          )}
+        </div>
+      </div>
+    </div>
+  )
+}
+
 function App() {
+  const [pricingModalPlan, setPricingModalPlan] = useState(null)
+  const [pricingLeadSubmitted, setPricingLeadSubmitted] = useState(false)
+  const [pricingLeadForm, setPricingLeadForm] = useState({
+    name: '',
+    email: '',
+    messenger: '',
+    comment: '',
+  })
+
+  const openPricingModal = (planName) => {
+    setPricingModalPlan(planName)
+    setPricingLeadSubmitted(false)
+  }
+
+  const closePricingModal = () => {
+    setPricingModalPlan(null)
+  }
+
+  const handlePricingLeadChange = (event) => {
+    const { name, value } = event.target
+    setPricingLeadForm((current) => ({
+      ...current,
+      [name]: value,
+    }))
+  }
+
+  const handlePricingLeadSubmit = (event) => {
+    event.preventDefault()
+
+    const payload = {
+      ...pricingLeadForm,
+      plan: pricingModalPlan,
+      submittedAt: new Date().toISOString(),
+    }
+
+    const existing = JSON.parse(localStorage.getItem('ivchenko_pricing_leads') ?? '[]')
+    localStorage.setItem('ivchenko_pricing_leads', JSON.stringify([...existing, payload]))
+    setPricingLeadSubmitted(true)
+  }
+
   return (
     <main className="relative min-h-screen overflow-hidden bg-black text-white">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.16),transparent_22%),radial-gradient(circle_at_50%_18%,rgba(255,255,255,0.05),transparent_30%)]" />
@@ -1654,7 +1880,8 @@ function App() {
                     </div>
 
                     <Button
-                      asChild
+                      type="button"
+                      onClick={() => openPricingModal(plan.name)}
                       className={[
                         'mt-6 h-11 w-full rounded-xl font-semibold shadow-none backdrop-blur-sm',
                         plan.name === 'PRIVATE 1:1'
@@ -1662,7 +1889,7 @@ function App() {
                           : 'border border-white/12 !bg-transparent !text-white hover:!border-white/22 hover:!bg-white/[0.05] hover:!text-white',
                       ].join(' ')}
                     >
-                      <a href={plan.href}>{plan.cta}</a>
+                      {plan.cta}
                     </Button>
                   </PricingCard.Header>
 
@@ -1747,6 +1974,17 @@ function App() {
       </Motion.div>
 
       <Footer />
+
+      <PricingLeadModal
+        open={Boolean(pricingModalPlan)}
+        selectedPlan={pricingModalPlan}
+        plans={pricing}
+        formData={pricingLeadForm}
+        submitted={pricingLeadSubmitted}
+        onClose={closePricingModal}
+        onChange={handlePricingLeadChange}
+        onSubmit={handlePricingLeadSubmit}
+      />
     </main>
   )
 }
