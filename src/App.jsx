@@ -127,7 +127,7 @@ const audienceCards = [
     text: 'Подходит тем, кому нужен не растянутый “когда-нибудь запуск”, а понятная структура действий с коротким горизонтом до первых реальных тестов и продаж.',
     image: audience03,
     imageClassName:
-      'right-[1%] bottom-0 w-[33%] sm:right-[3%] sm:w-[35%] md:w-[36%] lg:w-[33%]',
+      'right-0 bottom-0 w-[31%] sm:right-0 sm:w-[33%] md:right-0 md:w-[34%] lg:right-0 lg:w-[31%]',
   },
   {
     index: '06',
