@@ -1208,9 +1208,9 @@ function ResultsSlider({ items }) {
         align="center"
       />
 
-      <div className="mt-8 grid gap-4 sm:mt-12 xl:grid-cols-[1.08fr_0.92fr] xl:gap-6">
+      <div className="mt-8 grid gap-4 sm:mt-12 xl:grid-cols-2 xl:gap-6">
         <MobileReveal delay={0.04} y={24} blur={10} variant="drift-left">
-          <article className="overflow-hidden rounded-[1.7rem] border border-white/10 bg-[#171919] shadow-[0_24px_70px_rgba(0,0,0,0.3)]">
+          <article className="h-full overflow-hidden rounded-[1.7rem] border border-white/10 bg-[#171919] shadow-[0_24px_70px_rgba(0,0,0,0.3)]">
             <div className="relative aspect-[16/10] overflow-hidden bg-black">
               <video
                 src={resultsSalesUpdateVideo}
@@ -1241,31 +1241,8 @@ function ResultsSlider({ items }) {
           </article>
         </MobileReveal>
 
-        <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-1">
-          {resultsInsights.map((item, index) => (
-            <MobileReveal
-              key={item.title}
-              delay={0.05 * index}
-              y={22}
-              blur={10}
-              variant={index % 2 === 0 ? 'pop' : 'drift-right'}
-            >
-              <article className="h-full rounded-[1.45rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.06),rgba(255,255,255,0.02))] px-5 py-5 shadow-[0_20px_50px_rgba(0,0,0,0.22)] sm:px-6">
-                <div className="text-[0.62rem] uppercase tracking-[0.24em] text-[#ff8a1c]">
-                  {item.label}
-                </div>
-                <h3 className="mt-3 max-w-[28ch] text-[1.12rem] font-medium leading-[1.08] tracking-[-0.035em] text-white sm:text-[1.22rem]">
-                  {item.title}
-                </h3>
-              </article>
-            </MobileReveal>
-          ))}
-        </div>
-      </div>
-
-      <div className="mt-4">
-        <MobileReveal delay={0.18} y={24} blur={10} variant="reveal">
-          <article className="overflow-hidden rounded-[1.7rem] border border-white/10 bg-[#171919] shadow-[0_24px_70px_rgba(0,0,0,0.3)]">
+        <MobileReveal delay={0.08} y={24} blur={10} variant="reveal">
+          <article className="h-full overflow-hidden rounded-[1.7rem] border border-white/10 bg-[#171919] shadow-[0_24px_70px_rgba(0,0,0,0.3)]">
             <div className="relative aspect-[16/10] overflow-hidden bg-black">
               <video
                 src={resultsCaseVideo}
@@ -1295,6 +1272,27 @@ function ResultsSlider({ items }) {
             </div>
           </article>
         </MobileReveal>
+      </div>
+
+      <div className="mt-4 grid gap-4 sm:grid-cols-2 xl:grid-cols-4 xl:gap-6">
+        {resultsInsights.map((item, index) => (
+          <MobileReveal
+            key={item.title}
+            delay={0.05 * index}
+            y={22}
+            blur={10}
+            variant={index % 2 === 0 ? 'pop' : 'drift-right'}
+          >
+            <article className="h-full rounded-[1.45rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.06),rgba(255,255,255,0.02))] px-5 py-5 shadow-[0_20px_50px_rgba(0,0,0,0.22)] sm:px-6">
+              <div className="text-[0.62rem] uppercase tracking-[0.24em] text-[#ff8a1c]">
+                {item.label}
+              </div>
+              <h3 className="mt-3 max-w-[24ch] text-[1.12rem] font-medium leading-[1.08] tracking-[-0.035em] text-white sm:text-[1.22rem]">
+                {item.title}
+              </h3>
+            </article>
+          </MobileReveal>
+        ))}
       </div>
     </div>
   )
