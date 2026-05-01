@@ -11,6 +11,7 @@ import programAiImage from './assets/program-ai.jpg'
 import vladAboutVideo from './assets/vlad-about.mp4'
 import resultsSalesUpdateVideo from './assets/results-sales-update.mp4'
 import resultsCaseVideo from './assets/results-case.mov'
+import resultsRealNumbersVideo from './assets/results-real-numbers.mov'
 import aboutCafeImage from '../IMAGES/1/2/3/telegram-cloud-document-1-5084712035413920079 1.jpg'
 import aboutCarImage from '../IMAGES/1/2/3/telegram-cloud-document-1-5084712035413920079 2.jpg'
 import aboutWarehouseImage from '../IMAGES/1/2/3/telegram-cloud-document-1-5084712035413920079 3.jpg'
@@ -1232,7 +1233,7 @@ function ResultsSlider({ items }) {
         align="center"
       />
 
-      <div className="mt-8 grid gap-4 sm:mt-12 xl:grid-cols-2 xl:gap-6">
+      <div className="mt-8 grid gap-4 sm:mt-12 xl:grid-cols-3 xl:gap-6">
         <MobileReveal delay={0.04} y={24} blur={10} variant="drift-left">
           <article className="h-full overflow-hidden rounded-[1.7rem] border border-white/10 bg-[#171919] shadow-[0_24px_70px_rgba(0,0,0,0.3)]">
             <div className="relative aspect-[16/10] overflow-hidden bg-black">
@@ -1292,6 +1293,39 @@ function ResultsSlider({ items }) {
               <p className="mt-4 max-w-[56ch] text-[0.94rem] leading-7 text-white/60">
                 На одном из продуктов мы вышли на первые продажи через связку:
                 правильный товар, инфлюенсеры, контент и быстрый фулфилмент. Логику такого запуска показываю внутри по шагам.
+              </p>
+            </div>
+          </article>
+        </MobileReveal>
+
+        <MobileReveal delay={0.12} y={24} blur={10} variant="drift-right">
+          <article className="h-full overflow-hidden rounded-[1.7rem] border border-white/10 bg-[#171919] shadow-[0_24px_70px_rgba(0,0,0,0.3)]">
+            <div className="relative aspect-[16/10] overflow-hidden bg-black">
+              <video
+                src={resultsRealNumbersVideo}
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="metadata"
+                className="h-full w-full object-cover object-center"
+              />
+              <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.03),transparent_56%,rgba(0,0,0,0.5))]" />
+              <div className="absolute left-5 top-5 rounded-full border border-white/12 bg-black/42 px-4 py-2 text-[0.66rem] uppercase tracking-[0.24em] text-white/72 backdrop-blur-md">
+                Real numbers
+              </div>
+            </div>
+            <div className="px-5 py-5 sm:px-6 sm:py-6">
+              <div className="text-[0.62rem] uppercase tracking-[0.26em] text-[#ff8a1c]">
+                Реальные показатели
+              </div>
+              <h3 className="mt-2 max-w-[18ch] text-[1.34rem] font-medium leading-[1.04] tracking-[-0.04em] text-white sm:text-[1.58rem]">
+                Показываю реальные цифры по продажам и динамике продукта
+              </h3>
+              <p className="mt-4 max-w-[56ch] text-[0.94rem] leading-7 text-white/60">
+                Здесь видно не общие слова, а сами показатели: как двигаются продажи,
+                что происходит по заказам и как выглядит результат, когда продукт начинает
+                набирать оборот.
               </p>
             </div>
           </article>
