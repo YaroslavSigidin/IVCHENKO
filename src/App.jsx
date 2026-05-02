@@ -1261,7 +1261,7 @@ function ResultsSlider({ items }) {
                 loop
                 playsInline
                 preload="metadata"
-                className="h-full w-full object-cover object-center"
+                className="h-full w-full object-cover object-[center_18%]"
               />
               <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.03),transparent_54%,rgba(0,0,0,0.48))]" />
               <div className="absolute left-5 top-5 rounded-full border border-white/12 bg-black/42 px-4 py-2 text-[0.66rem] uppercase tracking-[0.24em] text-white/72 backdrop-blur-md">
@@ -1293,7 +1293,7 @@ function ResultsSlider({ items }) {
                 loop
                 playsInline
                 preload="metadata"
-                className="h-full w-full object-cover object-center"
+                className="h-full w-full object-cover object-[center_18%]"
               />
               <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.03),transparent_56%,rgba(0,0,0,0.5))]" />
               <div className="absolute left-5 top-5 rounded-full border border-white/12 bg-black/42 px-4 py-2 text-[0.66rem] uppercase tracking-[0.24em] text-white/72 backdrop-blur-md">
@@ -1325,7 +1325,7 @@ function ResultsSlider({ items }) {
                 loop
                 playsInline
                 preload="metadata"
-                className="h-full w-full object-cover object-center"
+                className="h-full w-full object-cover object-[center_18%]"
               />
               <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.03),transparent_56%,rgba(0,0,0,0.5))]" />
               <div className="absolute left-5 top-5 rounded-full border border-white/12 bg-black/42 px-4 py-2 text-[0.66rem] uppercase tracking-[0.24em] text-white/72 backdrop-blur-md">
