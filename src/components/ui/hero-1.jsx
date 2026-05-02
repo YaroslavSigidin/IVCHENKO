@@ -65,29 +65,19 @@ export function HeroSection() {
 
           <h1
             className={cn(
-              'animate-in fade-in slide-in-from-bottom-10 fill-mode-backwards text-center tracking-tight delay-100 duration-500 ease-out sm:hidden',
-              'max-w-none text-[2.18rem] font-medium leading-[0.98] tracking-[-0.075em] text-shadow-[0_0px_50px_rgba(255,255,255,0.15)]',
+              'animate-in fade-in slide-in-from-bottom-10 fill-mode-backwards text-center tracking-tight delay-100 duration-500 ease-out',
+              'max-w-none text-[2.18rem] font-medium leading-[0.98] tracking-[-0.075em] text-shadow-[0_0px_50px_rgba(255,255,255,0.15)] sm:max-w-5xl sm:text-5xl sm:leading-[0.88] sm:tracking-tight lg:text-7xl',
             )}
           >
             <span className="block">Пошаговая программа запуска</span>
-            <span className="block">TikTok Shop бизнеса</span>
-            <span className="block bg-[linear-gradient(180deg,#ffbc5c_0%,#ff9b2d_44%,#ff7d08_100%)] bg-clip-text text-transparent [text-shadow:0_0_30px_rgba(255,138,28,0.24)]">
-              в США в 2026
+            <span className="block sm:inline">TikTok Shop бизнеса</span>
+            <span className="hidden sm:inline">
+              {' '}
+              в США
             </span>
-          </h1>
-
-          <h1
-            className={cn(
-              'hidden animate-in fade-in slide-in-from-bottom-10 fill-mode-backwards text-center tracking-tight delay-100 duration-500 ease-out sm:block sm:text-5xl lg:text-7xl',
-              'max-w-5xl font-medium leading-[0.88] text-shadow-[0_0px_50px_rgba(255,255,255,0.15)]',
-            )}
-          >
-            Пошаговая программа запуска
-            <br />
-            TikTok Shop бизнеса в США
-            <br />
-            <span className="bg-[linear-gradient(180deg,#ffbc5c_0%,#ff9b2d_44%,#ff7d08_100%)] bg-clip-text text-transparent [text-shadow:0_0_30px_rgba(255,138,28,0.24)]">
-              в 2026
+            <span className="block bg-[linear-gradient(180deg,#ffbc5c_0%,#ff9b2d_44%,#ff7d08_100%)] bg-clip-text text-transparent [text-shadow:0_0_30px_rgba(255,138,28,0.24)] sm:inline">
+              <span className="sm:hidden">в США в 2026</span>
+              <span className="hidden sm:inline">в 2026</span>
             </span>
           </h1>
         </div>
