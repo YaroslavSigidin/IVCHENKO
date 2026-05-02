@@ -1388,12 +1388,7 @@ function AnalyticsScreensSlider({ items }) {
   return (
     <div className="mx-auto w-[min(1320px,94vw)]">
       <div className="relative overflow-hidden rounded-[1.7rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.04),rgba(255,255,255,0.015))] p-4 shadow-[0_24px_70px_rgba(0,0,0,0.26)] sm:p-5">
-        <div className="mb-4 flex items-center justify-between gap-3">
-          <div>
-            <div className="text-[0.62rem] uppercase tracking-[0.24em] text-[#ff8a1c]">
-              Скрины аналитики
-            </div>
-          </div>
+        <div className="mb-4 flex items-center justify-end gap-3">
           <div className="flex items-center gap-3">
             <button
               type="button"
