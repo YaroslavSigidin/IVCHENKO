@@ -1204,14 +1204,14 @@ function VideoBreakdownsSlider({ items }) {
               variant={moduleRevealVariants[index % moduleRevealVariants.length]}
               className="snap-start"
             >
-              <article className="group relative w-[min(42rem,86vw)] shrink-0 overflow-hidden rounded-[1.55rem] border border-white/10 bg-[#171919] shadow-[0_24px_70px_rgba(0,0,0,0.3)] sm:w-[42rem] lg:w-[46rem]">
+              <article className="relative w-[min(42rem,86vw)] shrink-0 overflow-hidden rounded-[1.55rem] border border-white/10 bg-[#171919] shadow-[0_24px_70px_rgba(0,0,0,0.3)] sm:w-[42rem] lg:w-[46rem]">
                 <div className="relative overflow-hidden bg-black">
                   <SafeImage
                     src={item.image}
                     fallbackSrc={breakdownScreen06}
                     alt={item.title}
                     loading="lazy"
-                    className="aspect-[2.05/1] w-full object-cover object-center transition-transform duration-700 group-hover:scale-[1.025]"
+                    className="aspect-[2.05/1] w-full object-cover object-center"
                   />
                   <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.02),transparent_54%,rgba(0,0,0,0.5))]" />
                   <div className="absolute left-4 top-4 flex h-11 w-11 items-center justify-center rounded-full bg-black/72 text-sm font-medium text-white shadow-[0_14px_28px_rgba(0,0,0,0.25)] backdrop-blur-md sm:left-5 sm:top-5">
