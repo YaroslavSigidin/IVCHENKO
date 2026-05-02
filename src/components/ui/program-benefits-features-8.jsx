@@ -56,9 +56,9 @@ export function ProgramBenefitsSection({
                 <FeaturePanel>
                   <CardContent className="flex h-full min-h-[760px] flex-col p-0">
                     <ProgramPreview
-                      label={data.previewLabel}
-                      icon={Icon}
-                      previewKey={item.key}
+                      image={data.preview}
+                      imageClassName={data.previewClassName}
+                      alt={data.title}
                     />
 
                     <div className="px-5 pb-5 pt-5 sm:px-6 sm:pb-6 sm:pt-6">
@@ -141,19 +141,17 @@ function BenefitBulletList({ items = [], className = '' }) {
   )
 }
 
-function ProgramPreview({ label, icon: Icon, previewKey }) {
+function ProgramPreview({ image, imageClassName = '', alt = '' }) {
   return (
     <div className="relative overflow-hidden rounded-t-[1.75rem] border-b border-white/8 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.08),transparent_30%),linear-gradient(180deg,#171819_0%,#101113_54%,#0b0b0c_100%)] sm:rounded-t-[2rem]">
-      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0.03),transparent_26%,transparent_72%,rgba(0,0,0,0.32))]" />
+      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0.03),transparent_26%,transparent_72%,rgba(0,0,0,0.4))]" />
       <div className="absolute inset-0 opacity-60 [background-image:linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] [background-size:32px_32px]" />
       <div className="relative aspect-[16/10] w-full overflow-hidden">
-        <div className="absolute left-5 top-5 rounded-full border border-white/10 bg-white/[0.045] px-3 py-1.5 text-[0.58rem] uppercase tracking-[0.24em] text-white/44 sm:left-6 sm:top-6 sm:text-[0.62rem]">
-          {label}
-        </div>
-
-        <div className="absolute left-1/2 top-1/2 flex h-18 w-18 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-[2rem] border border-[#ff8a1c]/18 bg-[#ff8a1c]/[0.05] text-[#ff9a33] shadow-[0_0_0_1px_rgba(255,138,28,0.06),0_0_22px_rgba(255,138,28,0.1)] sm:h-20 sm:w-20">
-          <Icon className="h-7 w-7 sm:h-8 sm:w-8" />
-        </div>
+        <img
+          src={image}
+          alt={alt}
+          className={`absolute inset-0 h-full w-full object-cover ${imageClassName}`}
+        />
       </div>
     </div>
   )

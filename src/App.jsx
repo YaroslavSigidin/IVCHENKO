@@ -5,9 +5,9 @@ import audience03 from '../03.png'
 import audience04 from '../04.png'
 import audienceManImage from './assets/audience-man.png'
 import audienceWomanImage from './assets/audience-woman.png'
-import programInfluencersImage from './assets/program-influencers.jpg'
-import programLogisticsImage from './assets/program-logistics.jpg'
-import programAiImage from './assets/program-ai.jpg'
+import outcomePhoto01 from './assets/outcome-photo-1.jpg'
+import outcomePhoto02 from './assets/outcome-photo-2.jpg'
+import outcomePhoto03 from './assets/outcome-photo-3.jpg'
 import vladAboutVideo from './assets/vlad-about.mp4'
 import resultsSalesUpdateVideo from './assets/results-sales-update.mp4'
 import resultsCaseVideo from './assets/results-case.mov'
@@ -150,8 +150,8 @@ const outcomes = {
       'AI-инструменты для анализа товара, конкурентов, листинга и контента',
       'Примеры реальных запусков и ошибок, которые нельзя повторять',
     ],
-    preview: programAiImage,
-    previewLabel: 'AI сервисы и разборы',
+    preview: outcomePhoto01,
+    previewClassName: 'rotate-90 scale-[1.72] object-[center_52%]',
   },
   logistics: {
     title: 'Понимание поставщиков,\nлогистики и работы\nсо складами',
@@ -162,8 +162,8 @@ const outcomes = {
       'Логистика из Китая в США, доставка, хранение и FBT-процессы',
       'Контакты бухгалтеров в США и операционная база под запуск',
     ],
-    preview: programLogisticsImage,
-    previewLabel: 'Логистика и склады',
+    preview: outcomePhoto02,
+    previewClassName: 'rotate-90 scale-[1.68] object-[center_44%]',
   },
   marketing: {
     title: 'Подход к creators,\nконтенту\nи продвижению',
@@ -174,8 +174,8 @@ const outcomes = {
       'Поиск creators, sample request и сценарии переговоров',
       'AI-сервисы для упрощения контента и ускорения запусков',
     ],
-    preview: programInfluencersImage,
-    previewLabel: 'Модуль Influencers',
+    preview: outcomePhoto03,
+    previewClassName: 'rotate-90 scale-[1.7] object-[center_52%]',
   },
   structure: {
     title: 'Готовую структуру действий вместо хаоса',
