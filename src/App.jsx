@@ -81,6 +81,7 @@ import { MobileReveal } from '@/components/ui/mobile-reveal'
 import { ProgramBenefitsSection } from '@/components/ui/program-benefits-features-8'
 import * as PricingCard from '@/components/ui/pricing-card'
 import { TestimonialsColumn } from '@/components/ui/testimonials-columns-1'
+import { submitLead } from '@/lib/lead-api'
 import { cn } from '@/lib/utils'
 
 const audienceCards = [
@@ -1471,6 +1472,8 @@ function PricingLeadModal({
   plans,
   formData,
   submitted,
+  submitting,
+  error,
   onClose,
   onChange,
   onSubmit,
@@ -1555,11 +1558,20 @@ function PricingLeadModal({
 
           {submitted ? (
             <div className="mt-6 rounded-[1.2rem] border border-emerald-400/18 bg-emerald-400/[0.06] px-4 py-4 text-sm leading-7 text-white/74">
-              Заявка сохранена. Тариф <span className="text-white">{activePlan.name}</span> уже привязан.
-              При подключении CRM или внешнего обработчика эти данные можно будет сразу отправлять дальше.
+              Заявка отправлена. Тариф <span className="text-white">{activePlan.name}</span> уже привязан,
+              а данные уже ушли в Telegram.
             </div>
           ) : (
             <form className="mt-6 space-y-4" onSubmit={onSubmit}>
+              <input
+                name="website"
+                type="text"
+                value={formData.website}
+                onChange={onChange}
+                autoComplete="off"
+                tabIndex="-1"
+                className="hidden"
+              />
               <div>
                 <label className="mb-2 block text-sm font-medium text-white/58">
                   Имя
@@ -1630,10 +1642,17 @@ function PricingLeadModal({
 
               <button
                 type="submit"
+                disabled={submitting}
                 className="relative inline-flex h-12 w-full items-center justify-center overflow-hidden rounded-full border border-[#ffb15c]/55 bg-[linear-gradient(180deg,#ffb24d_0%,#ff951f_44%,#ff7800_100%)] px-6 text-sm font-semibold text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.32),inset_0_-1px_0_rgba(110,39,0,0.24),0_16px_36px_rgba(255,122,11,0.26),0_0_24px_rgba(255,140,32,0.12)] transition hover:border-[#ffc278] hover:bg-[linear-gradient(180deg,#ffbc5c_0%,#ff9b2d_44%,#ff7d08_100%)]"
               >
-                Отправить заявку
+                {submitting ? 'Отправляем...' : 'Отправить заявку'}
               </button>
+
+              {error ? (
+                <div className="rounded-[1.1rem] border border-red-400/18 bg-red-400/[0.06] px-4 py-3 text-sm leading-6 text-white/80">
+                  {error}
+                </div>
+              ) : null}
             </form>
           )}
         </div>
@@ -1645,16 +1664,30 @@ function PricingLeadModal({
 function App() {
   const [pricingModalPlan, setPricingModalPlan] = useState(null)
   const [pricingLeadSubmitted, setPricingLeadSubmitted] = useState(false)
+  const [pricingLeadSubmitting, setPricingLeadSubmitting] = useState(false)
+  const [pricingLeadError, setPricingLeadError] = useState('')
   const [pricingLeadForm, setPricingLeadForm] = useState({
     name: '',
     email: '',
     messenger: '',
     comment: '',
+    website: '',
+  })
+  const [finalLeadSubmitted, setFinalLeadSubmitted] = useState(false)
+  const [finalLeadSubmitting, setFinalLeadSubmitting] = useState(false)
+  const [finalLeadError, setFinalLeadError] = useState('')
+  const [finalLeadForm, setFinalLeadForm] = useState({
+    name: '',
+    email: '',
+    messenger: '',
+    plan: 'SYNDICATE',
+    website: '',
   })
 
   const openPricingModal = (planName) => {
     setPricingModalPlan(planName)
     setPricingLeadSubmitted(false)
+    setPricingLeadError('')
   }
 
   const closePricingModal = () => {
@@ -1663,24 +1696,81 @@ function App() {
 
   const handlePricingLeadChange = (event) => {
     const { name, value } = event.target
+    setPricingLeadError('')
     setPricingLeadForm((current) => ({
       ...current,
       [name]: value,
     }))
   }
 
-  const handlePricingLeadSubmit = (event) => {
+  const handleFinalLeadChange = (event) => {
+    const { name, value } = event.target
+    setFinalLeadError('')
+    setFinalLeadSubmitted(false)
+    setFinalLeadForm((current) => ({
+      ...current,
+      [name]: value,
+    }))
+  }
+
+  const handlePricingLeadSubmit = async (event) => {
     event.preventDefault()
 
     const payload = {
       ...pricingLeadForm,
       plan: pricingModalPlan,
+      formType: 'Модальное окно тарифа',
       submittedAt: new Date().toISOString(),
+      pageUrl: window.location.href,
     }
 
-    const existing = JSON.parse(localStorage.getItem('ivchenko_pricing_leads') ?? '[]')
-    localStorage.setItem('ivchenko_pricing_leads', JSON.stringify([...existing, payload]))
-    setPricingLeadSubmitted(true)
+    try {
+      setPricingLeadSubmitting(true)
+      setPricingLeadError('')
+      await submitLead(payload)
+      setPricingLeadSubmitted(true)
+      setPricingLeadForm({
+        name: '',
+        email: '',
+        messenger: '',
+        comment: '',
+        website: '',
+      })
+    } catch (error) {
+      setPricingLeadError(error.message)
+    } finally {
+      setPricingLeadSubmitting(false)
+    }
+  }
+
+  const handleFinalLeadSubmit = async (event) => {
+    event.preventDefault()
+
+    const payload = {
+      ...finalLeadForm,
+      comment: '',
+      formType: 'Финальная CTA форма',
+      submittedAt: new Date().toISOString(),
+      pageUrl: window.location.href,
+    }
+
+    try {
+      setFinalLeadSubmitting(true)
+      setFinalLeadError('')
+      await submitLead(payload)
+      setFinalLeadSubmitted(true)
+      setFinalLeadForm({
+        name: '',
+        email: '',
+        messenger: '',
+        plan: 'SYNDICATE',
+        website: '',
+      })
+    } catch (error) {
+      setFinalLeadError(error.message)
+    } finally {
+      setFinalLeadSubmitting(false)
+    }
   }
 
   return (
@@ -2033,7 +2123,12 @@ function App() {
       >
         <FinalCtaContact
           title="Выбери подходящий формат и начни двигаться системно"
-          description="Если вы хотите не просто посмотреть программу, а выбрать лучший следующий шаг под свой этап, оставьте контакты и укажите формат, который вам ближе."
+          formData={finalLeadForm}
+          submitted={finalLeadSubmitted}
+          submitting={finalLeadSubmitting}
+          error={finalLeadError}
+          onChange={handleFinalLeadChange}
+          onSubmit={handleFinalLeadSubmit}
         />
       </Motion.div>
 
@@ -2045,6 +2140,8 @@ function App() {
         plans={pricing}
         formData={pricingLeadForm}
         submitted={pricingLeadSubmitted}
+        submitting={pricingLeadSubmitting}
+        error={pricingLeadError}
         onClose={closePricingModal}
         onChange={handlePricingLeadChange}
         onSubmit={handlePricingLeadSubmit}

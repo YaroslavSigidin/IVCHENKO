@@ -1,4 +1,3 @@
-import React, { useState } from 'react'
 import { CheckCircle2, Send } from 'lucide-react'
 import { motion as Motion } from 'motion/react'
 import vladPhoto from '../../../VLAD.png'
@@ -18,9 +17,13 @@ function InputShell({ children }) {
 
 export function FinalCtaContact({
   title,
+  formData,
+  submitted,
+  submitting,
+  error,
+  onChange,
+  onSubmit,
 }) {
-  const [selectedFormat, setSelectedFormat] = useState('SYNDICATE')
-
   const formatOptions = [
     { name: 'START', price: 'от $299' },
     { name: 'SYNDICATE', price: 'от $799' },
@@ -64,10 +67,17 @@ export function FinalCtaContact({
 
               <form
                 className="mt-6 space-y-3.5 sm:mt-8 sm:space-y-4"
-                onSubmit={(event) => {
-                  event.preventDefault()
-                }}
+                onSubmit={onSubmit}
               >
+                <input
+                  type="text"
+                  name="website"
+                  value={formData.website}
+                  onChange={onChange}
+                  autoComplete="off"
+                  tabIndex="-1"
+                  className="hidden"
+                />
                 <div>
                   <label className="mb-2 block text-sm font-medium text-white/58">
                     Имя
@@ -76,7 +86,10 @@ export function FinalCtaContact({
                     <input
                       name="name"
                       type="text"
+                      value={formData.name}
+                      onChange={onChange}
                       placeholder="Как к вам обращаться"
+                      required
                       className="w-full bg-transparent px-4 py-3.5 text-sm text-white placeholder:text-white/30 focus:outline-none sm:py-4"
                     />
                   </InputShell>
@@ -91,7 +104,10 @@ export function FinalCtaContact({
                       <input
                         name="email"
                         type="email"
+                        value={formData.email}
+                        onChange={onChange}
                         placeholder="name@email.com"
+                        required
                         className="w-full bg-transparent px-4 py-3.5 text-sm text-white placeholder:text-white/30 focus:outline-none sm:py-4"
                       />
                     </InputShell>
@@ -104,7 +120,10 @@ export function FinalCtaContact({
                       <input
                         name="messenger"
                         type="text"
+                        value={formData.messenger}
+                        onChange={onChange}
                         placeholder="@username или номер"
+                        required
                         className="w-full bg-transparent px-4 py-3.5 text-sm text-white placeholder:text-white/30 focus:outline-none sm:py-4"
                       />
                     </InputShell>
@@ -120,10 +139,12 @@ export function FinalCtaContact({
                       <button
                         key={option.name}
                         type="button"
-                        onClick={() => setSelectedFormat(option.name)}
+                        onClick={() => onChange({
+                          target: { name: 'plan', value: option.name },
+                        })}
                         className={cn(
                           'rounded-[1.15rem] border px-4 py-3.5 text-left text-sm transition sm:rounded-[1.25rem] sm:py-4',
-                          selectedFormat === option.name
+                          formData.plan === option.name
                             ? 'border-[#ff8a1c]/70 bg-[#ff8a1c]/12 text-white'
                             : 'border-white/10 bg-white/[0.03] text-white/62 hover:border-white/18 hover:bg-white/[0.05]',
                         )}
@@ -137,7 +158,7 @@ export function FinalCtaContact({
                         <div
                           className={cn(
                             'mt-1 text-sm font-medium tracking-[-0.02em]',
-                            selectedFormat === option.name ? 'text-[#ffcfaa]' : 'text-white/50',
+                            formData.plan === option.name ? 'text-[#ffcfaa]' : 'text-white/50',
                           )}
                         >
                           {option.price}
@@ -150,12 +171,25 @@ export function FinalCtaContact({
                 <div className="pt-2">
                   <Button
                     type="submit"
+                    disabled={submitting}
                     className="h-12 w-full rounded-full bg-white px-7 text-black shadow-[0_12px_26px_rgba(255,255,255,0.08)] hover:bg-white/90"
                   >
-                    Отправить
+                    {submitting ? 'Отправляем...' : 'Отправить'}
                     <Send className="ml-2 h-4 w-4" />
                   </Button>
                 </div>
+
+                {error ? (
+                  <div className="rounded-[1.1rem] border border-red-400/18 bg-red-400/[0.06] px-4 py-3 text-sm leading-6 text-white/80">
+                    {error}
+                  </div>
+                ) : null}
+
+                {submitted ? (
+                  <div className="rounded-[1.1rem] border border-emerald-400/18 bg-emerald-400/[0.06] px-4 py-3 text-sm leading-6 text-white/80">
+                    Заявка отправлена. Мы получили ваши данные в Telegram.
+                  </div>
+                ) : null}
               </form>
             </div>
             </MobileReveal>
