@@ -1513,55 +1513,98 @@ function PricingLeadModal({
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.08),transparent_34%)]" />
 
         <div className="relative z-10 p-5 sm:p-7">
-          <div className="flex items-start justify-between gap-4">
-            <div>
-              <div className="text-[0.66rem] uppercase tracking-[0.28em] text-[#ff8a1c]">
-                Тариф участия
-              </div>
-              <h3 className="mt-3 text-[1.55rem] font-medium leading-[1] tracking-[-0.05em] text-white sm:text-[2rem]">
-                Оставьте заявку на {activePlan.name}
-              </h3>
-              <p className="mt-3 max-w-[42ch] text-sm leading-7 text-white/58 sm:text-[0.98rem]">
-                Введите данные, и выбранный формат уже будет привязан к заявке.
-              </p>
-            </div>
-            <button
-              type="button"
-              onClick={onClose}
-              className="flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/[0.04] text-white/72 transition hover:border-white/18 hover:bg-white/[0.08] hover:text-white"
-              aria-label="Закрыть"
-            >
-              <X className="h-5 w-5" />
-            </button>
-          </div>
-
-          <div className="mt-5 rounded-[1.2rem] border border-white/8 bg-white/[0.03] px-4 py-4">
-            <div className="flex items-center justify-between gap-4">
-              <div>
-                <div className="text-[0.62rem] uppercase tracking-[0.24em] text-white/42">
-                  Выбранный формат
-                </div>
-                <div className="mt-2 text-lg font-medium tracking-[-0.03em] text-white">
-                  {activePlan.name}
-                </div>
-              </div>
-              <div className="text-right">
-                <div className="text-[0.62rem] uppercase tracking-[0.24em] text-white/42">
-                  Стоимость
-                </div>
-                <div className="mt-2 text-lg font-medium tracking-[-0.03em] text-[#ffcfaa]">
-                  {activePlan.price}
-                </div>
-              </div>
-            </div>
-          </div>
-
           {submitted ? (
-            <div className="mt-6 rounded-[1.2rem] border border-emerald-400/18 bg-emerald-400/[0.06] px-4 py-4 text-sm leading-7 text-white/74">
-              Заявка отправлена. Тариф <span className="text-white">{activePlan.name}</span> уже привязан,
-              а данные уже ушли в Telegram.
+            <div className="flex min-h-[28rem] flex-col justify-between gap-8 sm:min-h-[31rem]">
+              <div className="flex items-start justify-between gap-4">
+                <div>
+                  <div className="text-[0.66rem] uppercase tracking-[0.28em] text-[#ff8a1c]">
+                    Заявка отправлена
+                  </div>
+                  <h3 className="mt-3 max-w-[12ch] text-[1.8rem] font-medium leading-[0.95] tracking-[-0.055em] text-white sm:max-w-[13ch] sm:text-[2.4rem]">
+                    Ваша заявка успешно отправлена!
+                  </h3>
+                  <p className="mt-4 max-w-[34ch] text-sm leading-7 text-white/60 sm:text-[1rem]">
+                    Мы уже получили ваши данные в Telegram. Следующий шаг за нами:
+                    свяжемся с вами и уточним детали по формату {activePlan.name}.
+                  </p>
+                </div>
+                <button
+                  type="button"
+                  onClick={onClose}
+                  className="flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/[0.04] text-white/72 transition hover:border-white/18 hover:bg-white/[0.08] hover:text-white"
+                  aria-label="Закрыть"
+                >
+                  <X className="h-5 w-5" />
+                </button>
+              </div>
+
+              <div className="rounded-[1.35rem] border border-emerald-400/20 bg-[linear-gradient(180deg,rgba(18,70,52,0.34),rgba(10,28,21,0.6))] px-5 py-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.04),0_20px_40px_rgba(0,0,0,0.22)] sm:px-6 sm:py-6">
+                <div className="text-[0.62rem] uppercase tracking-[0.24em] text-emerald-200/70">
+                  Подтверждение
+                </div>
+                <div className="mt-3 text-[1.05rem] leading-8 text-white/84 sm:text-[1.1rem]">
+                  Тариф <span className="font-medium text-white">{activePlan.name}</span> уже
+                  привязан к вашей заявке.
+                </div>
+                <div className="mt-2 text-sm leading-7 text-white/60 sm:text-[0.98rem]">
+                  Если потребуется, вы можете закрыть это окно. Вся информация уже
+                  отправлена.
+                </div>
+              </div>
+
+              <button
+                type="button"
+                onClick={onClose}
+                className="inline-flex h-12 w-full items-center justify-center rounded-full border border-white/12 bg-white text-sm font-semibold text-black shadow-[0_12px_26px_rgba(255,255,255,0.08)] transition hover:bg-white/92"
+              >
+                Закрыть окно
+              </button>
             </div>
           ) : (
+            <>
+              <div className="flex items-start justify-between gap-4">
+              <div>
+                <div className="text-[0.66rem] uppercase tracking-[0.28em] text-[#ff8a1c]">
+                  Тариф участия
+                </div>
+                <h3 className="mt-3 text-[1.55rem] font-medium leading-[1] tracking-[-0.05em] text-white sm:text-[2rem]">
+                  Оставьте заявку на {activePlan.name}
+                </h3>
+                <p className="mt-3 max-w-[42ch] text-sm leading-7 text-white/58 sm:text-[0.98rem]">
+                  Введите данные, и выбранный формат уже будет привязан к заявке.
+                </p>
+              </div>
+              <button
+                type="button"
+                onClick={onClose}
+                className="flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/[0.04] text-white/72 transition hover:border-white/18 hover:bg-white/[0.08] hover:text-white"
+                aria-label="Закрыть"
+              >
+                <X className="h-5 w-5" />
+              </button>
+            </div>
+
+            <div className="mt-5 rounded-[1.2rem] border border-white/8 bg-white/[0.03] px-4 py-4">
+              <div className="flex items-center justify-between gap-4">
+                <div>
+                  <div className="text-[0.62rem] uppercase tracking-[0.24em] text-white/42">
+                    Выбранный формат
+                  </div>
+                  <div className="mt-2 text-lg font-medium tracking-[-0.03em] text-white">
+                    {activePlan.name}
+                  </div>
+                </div>
+                <div className="text-right">
+                  <div className="text-[0.62rem] uppercase tracking-[0.24em] text-white/42">
+                    Стоимость
+                  </div>
+                  <div className="mt-2 text-lg font-medium tracking-[-0.03em] text-[#ffcfaa]">
+                    {activePlan.price}
+                  </div>
+                </div>
+              </div>
+            </div>
+
             <form className="mt-6 space-y-4" onSubmit={onSubmit}>
               <input
                 name="website"
@@ -1654,6 +1697,7 @@ function PricingLeadModal({
                 </div>
               ) : null}
             </form>
+            </>
           )}
         </div>
       </div>
