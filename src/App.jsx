@@ -152,7 +152,7 @@ const outcomes = {
       'Примеры реальных запусков и ошибок, которые нельзя повторять',
     ],
     preview: outcomePhoto01,
-    previewClassName: 'rotate-90 scale-[1.72] object-[center_52%]',
+    previewClassName: 'scale-[1.04] object-[center_38%]',
   },
   logistics: {
     title: 'Понимание поставщиков,\nлогистики и работы\nсо складами',
@@ -164,7 +164,7 @@ const outcomes = {
       'Контакты бухгалтеров в США и операционная база под запуск',
     ],
     preview: outcomePhoto02,
-    previewClassName: 'rotate-90 scale-[1.68] object-[center_44%]',
+    previewClassName: 'scale-[1.03] object-[center_26%]',
   },
   marketing: {
     title: 'Подход к creators,\nконтенту\nи продвижению',
@@ -176,7 +176,7 @@ const outcomes = {
       'AI-сервисы для упрощения контента и ускорения запусков',
     ],
     preview: outcomePhoto03,
-    previewClassName: 'rotate-90 scale-[1.7] object-[center_52%]',
+    previewClassName: 'scale-[1.05] object-[center_34%]',
   },
   structure: {
     title: 'Готовую структуру действий вместо хаоса',

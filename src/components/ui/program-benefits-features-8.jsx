@@ -147,11 +147,13 @@ function ProgramPreview({ image, imageClassName = '', alt = '' }) {
       <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0.03),transparent_26%,transparent_72%,rgba(0,0,0,0.4))]" />
       <div className="absolute inset-0 opacity-60 [background-image:linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] [background-size:32px_32px]" />
       <div className="relative aspect-[16/10] w-full overflow-hidden">
-        <img
-          src={image}
-          alt={alt}
-          className={`absolute inset-0 h-full w-full object-cover ${imageClassName}`}
-        />
+        <div className="absolute left-1/2 top-1/2 h-[84%] aspect-[3/4] -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-[1.65rem] border border-white/10 bg-black/20 shadow-[0_24px_54px_rgba(0,0,0,0.34)]">
+          <img
+            src={image}
+            alt={alt}
+            className={`absolute inset-0 h-full w-full object-cover ${imageClassName}`}
+          />
+        </div>
       </div>
     </div>
   )
