@@ -40,7 +40,7 @@ export function FeatureCard({ feature, className, ...props }) {
         </div>
       </div>
 
-      <h3 className="relative z-10 mt-10 whitespace-nowrap text-[clamp(1.35rem,1.1vw+1rem,1.9rem)] font-medium leading-[1.04] tracking-[-0.035em] text-white">
+      <h3 className="relative z-10 mt-10 max-w-[15ch] text-balance text-[clamp(1.2rem,0.85vw+1rem,1.72rem)] font-medium leading-[1.08] tracking-[-0.035em] text-white">
         {feature.title}
       </h3>
       <p className="relative z-10 mt-4 max-w-[32ch] text-sm leading-7 text-white/58 md:text-[15px]">
