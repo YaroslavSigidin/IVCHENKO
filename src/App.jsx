@@ -1830,7 +1830,11 @@ function App() {
       <HeroSection />
       <LogosSection />
 
-      <Motion.section {...sectionReveal} className="relative px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
+      <Motion.section
+        id="reviews"
+        {...sectionReveal}
+        className="relative px-4 py-12 sm:px-6 sm:py-16 lg:px-8"
+      >
         <div className="mx-auto w-[min(1320px,94vw)]">
           <SectionHeader
             eyebrow="Audience"
@@ -2172,6 +2176,7 @@ function App() {
       </Motion.section>
 
       <Motion.div
+        id="contact"
         {...sectionReveal}
       >
         <FinalCtaContact

@@ -1,6 +1,6 @@
 import React from 'react'
 import { motion as Motion, useReducedMotion } from 'motion/react'
-import { Globe, MessageCircleMore, Package, Play, Send } from 'lucide-react'
+import { MessageCircleMore, Music2, Package, Play, Send } from 'lucide-react'
 
 import { cn } from '@/lib/utils'
 
@@ -20,27 +20,51 @@ const footerLinks = [
       { title: 'START', href: '#pricing' },
       { title: 'SYNDICATE', href: '#pricing' },
       { title: 'PRIVATE 1:1', href: '#pricing' },
-      { title: 'Оставить заявку', href: '/apply-private' },
+      { title: 'Оставить заявку', href: '#contact' },
     ],
   },
   {
     label: 'Материалы',
     links: [
-      { title: 'Бесплатные мини-уроки', href: '/' },
+      {
+        title: 'Бесплатные мини-уроки',
+        href: 'https://www.youtube.com/@rodina_ecom',
+        external: true,
+      },
       { title: 'Подробнее о программе', href: '#program' },
-      { title: 'Отзывы', href: '#results' },
-      { title: 'Поддержка', href: '#faq' },
+      { title: 'Отзывы', href: '#reviews' },
+      { title: 'Поддержка', href: 'https://t.me/rodina_ecommerce', external: true },
     ],
   },
+  {
+    label: 'Соцсети',
+    links: [
       {
-        label: 'Соцсети',
-        links: [
-          { title: 'Telegram', href: '#', icon: Send },
-          { title: 'Instagram', href: '#', icon: MessageCircleMore },
-          { title: 'YouTube', href: '#', icon: Play },
-          { title: 'LinkedIn', href: '#', icon: Globe },
-        ],
+        title: 'Telegram',
+        href: 'https://t.me/rodina_ecommerce',
+        icon: Send,
+        external: true,
       },
+      {
+        title: 'Instagram',
+        href: 'https://www.instagram.com/ivchenko_ecom/',
+        icon: MessageCircleMore,
+        external: true,
+      },
+      {
+        title: 'YouTube',
+        href: 'https://www.youtube.com/@rodina_ecom',
+        icon: Play,
+        external: true,
+      },
+      {
+        title: 'TikTok',
+        href: 'https://www.tiktok.com/@ivchenko_ecom',
+        icon: Music2,
+        external: true,
+      },
+    ],
+  },
 ]
 
 export function Footer() {
@@ -82,6 +106,8 @@ export function Footer() {
                         <li key={link.title}>
                           <a
                             href={link.href}
+                            target={link.external ? '_blank' : undefined}
+                            rel={link.external ? 'noreferrer' : undefined}
                             className="inline-flex items-center gap-2 transition duration-300 hover:text-white"
                           >
                             {link.icon ? <link.icon className="size-4" /> : null}
