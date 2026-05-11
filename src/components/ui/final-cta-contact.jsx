@@ -25,8 +25,8 @@ export function FinalCtaContact({
   onSubmit,
 }) {
   const formatOptions = [
-    { name: 'START', price: 'от $299' },
-    { name: 'SYNDICATE', price: 'от $799' },
+    { name: 'START', price: '$299' },
+    { name: 'SYNDICATE', price: '$799' },
     { name: 'PRIVATE 1:1', price: 'По заявке' },
   ]
 
