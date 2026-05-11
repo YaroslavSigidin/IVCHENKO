@@ -597,6 +597,8 @@ const videoReviews = [
     title: 'Sofya',
     videoId: 'YfDhRcFdlNg',
     previewSrc: reviewSofyaPreview,
+    previewClassName:
+      'scale-[1.08] object-[center_26%] transition-transform duration-500 group-hover:scale-[1.14]',
   },
   {
     id: 'review-06',
@@ -1120,7 +1122,10 @@ function VideoStoryRow({ items }) {
                     src={item.previewSrc}
                     alt={item.title}
                     loading="lazy"
-                    className="absolute inset-0 h-full w-full scale-[1.18] object-cover object-center transition-transform duration-500 group-hover:scale-[1.24]"
+                    className={`absolute inset-0 h-full w-full object-cover ${
+                      item.previewClassName ??
+                      'scale-[1.18] object-center transition-transform duration-500 group-hover:scale-[1.24]'
+                    }`}
                   />
                   <span className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.04),rgba(0,0,0,0.2)_52%,rgba(0,0,0,0.48)_100%)]" />
                   <span className="absolute flex h-14 w-14 items-center justify-center rounded-full border border-white/18 bg-black/42 text-white shadow-[0_14px_30px_rgba(0,0,0,0.3)] backdrop-blur-md transition-transform duration-300 group-hover:scale-105 sm:h-[4rem] sm:w-[4rem]">
