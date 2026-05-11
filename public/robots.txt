@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://yaroslavsigidin.github.io/IVCHENKO/sitemap.xml
+Sitemap: https://iv-tiktok.online/sitemap.xml
