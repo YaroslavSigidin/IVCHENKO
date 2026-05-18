@@ -13,6 +13,10 @@ export function TestimonialCard({ text, image, preview, name, role, className = 
           <img
             src={preview}
             alt={name}
+            loading="lazy"
+            decoding="async"
+            fetchPriority="low"
+            sizes="(max-width: 768px) 84vw, 24rem"
             className="aspect-[4/5] w-full object-cover object-top"
           />
         </div>
@@ -27,6 +31,9 @@ export function TestimonialCard({ text, image, preview, name, role, className = 
             height={44}
             src={image}
             alt={name}
+            loading="lazy"
+            decoding="async"
+            fetchPriority="low"
             className="h-11 w-11 rounded-full object-cover ring-1 ring-black/10"
           />
         ) : (

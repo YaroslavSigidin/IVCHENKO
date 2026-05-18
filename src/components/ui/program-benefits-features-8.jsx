@@ -151,6 +151,10 @@ function ProgramPreview({ image, imageClassName = '', alt = '' }) {
           <img
             src={image}
             alt={alt}
+            loading="lazy"
+            decoding="async"
+            fetchPriority="low"
+            sizes="(max-width: 1024px) 94vw, 33vw"
             className={`absolute inset-0 h-full w-full object-cover ${imageClassName}`}
           />
         </div>

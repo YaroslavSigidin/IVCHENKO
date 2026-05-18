@@ -173,6 +173,9 @@ function VisualImage({ src, alt }) {
           alt={alt}
           className="aspect-[16/10] w-full object-cover grayscale-[0.15] opacity-72"
           loading="lazy"
+          decoding="async"
+          fetchPriority="low"
+          sizes="(max-width: 1024px) 94vw, 50vw"
         />
         <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(5,5,5,0.02),rgba(5,5,5,0.22)_48%,rgba(5,5,5,0.5)_100%)]" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.08),transparent_38%)]" />

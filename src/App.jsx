@@ -883,6 +883,8 @@ function SafeImage({
   alt,
   className,
   loading = 'lazy',
+  decoding = 'async',
+  fetchPriority = 'low',
   ...props
 }) {
   const [imageSrc, setImageSrc] = useState(src)
@@ -893,6 +895,8 @@ function SafeImage({
       src={imageSrc}
       alt={alt}
       loading={loading}
+      decoding={decoding}
+      fetchPriority={fetchPriority}
       onError={() => {
         if (fallbackSrc && imageSrc !== fallbackSrc) {
           setImageSrc(fallbackSrc)
@@ -1037,6 +1041,9 @@ function AboutMeSlider({ slides }) {
                       src={slide.image}
                       alt=""
                       loading="lazy"
+                      decoding="async"
+                      fetchPriority="low"
+                      sizes="(max-width: 640px) 80vw, (max-width: 1024px) 23rem, 23.25rem"
                       className="h-full w-full object-cover object-center transition-transform duration-700 group-hover:scale-[1.04]"
                     />
                   )}
@@ -1130,6 +1137,9 @@ function VideoStoryRow({ items }) {
                     src={item.previewSrc}
                     alt={item.title}
                     loading="lazy"
+                    decoding="async"
+                    fetchPriority="low"
+                    sizes="(max-width: 640px) 16rem, (max-width: 1024px) 18rem, 19.5rem"
                     className={`absolute inset-0 h-full w-full object-cover ${
                       item.previewClassName ??
                       'scale-[1.18] object-center transition-transform duration-500 group-hover:scale-[1.24]'
@@ -1225,6 +1235,9 @@ function VideoBreakdownsSlider({ items }) {
                     fallbackSrc={breakdownScreen06}
                     alt={item.title}
                     loading="lazy"
+                    decoding="async"
+                    fetchPriority="low"
+                    sizes="(max-width: 640px) 86vw, (max-width: 1024px) 42rem, 46rem"
                     className="aspect-[2.05/1] w-full object-cover object-center"
                   />
                   <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.02),transparent_54%,rgba(0,0,0,0.5))]" />
@@ -1442,6 +1455,9 @@ function AnalyticsScreensSlider({ items }) {
                     src={item.image}
                     alt={item.title}
                     loading="lazy"
+                    decoding="async"
+                    fetchPriority="low"
+                    sizes="(max-width: 1024px) 84vw, 350px"
                     className="aspect-[4/3] w-full object-cover object-top lg:aspect-[0.64]"
                   />
                   <div className="absolute left-3 top-3 flex h-9 w-9 items-center justify-center rounded-full bg-black/72 text-xs font-medium text-white shadow-[0_14px_28px_rgba(0,0,0,0.25)] backdrop-blur-md">
@@ -1885,6 +1901,9 @@ function App() {
                   <img
                     src={item.image}
                     alt=""
+                      loading="lazy"
+                      decoding="async"
+                      fetchPriority="low"
                       aria-hidden="true"
                       className={cn(
                         'pointer-events-none absolute bottom-0 z-[2] select-none object-contain',

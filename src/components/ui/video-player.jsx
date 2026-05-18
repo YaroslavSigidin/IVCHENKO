@@ -169,6 +169,9 @@ export default function VideoPlayer({ src, poster }) {
           src={poster}
           alt=""
           aria-hidden="true"
+          loading="lazy"
+          decoding="async"
+          fetchPriority="low"
           className={cn(
             'absolute inset-0 h-full w-full object-cover transition-opacity duration-700',
             hasStartedFrame ? 'opacity-0' : 'opacity-100',
