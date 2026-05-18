@@ -36,6 +36,7 @@ import reviewArtemPreview from '../IMAGES/1/2/Artem.jpg'
 import reviewDanyaPreview from '../IMAGES/1/2/Danya.jpg'
 import reviewSofyaPreview from '../IMAGES/1/2/Sofya.jpg'
 import reviewOksanaPreview from '../IMAGES/1/2/Oksana.jpg'
+import studentCaseEbay from './assets/student-case-ebay.jpg'
 import studentCaseOrders from './assets/student-case-orders.jpg'
 import studentCaseSupplement from './assets/student-case-supplement.jpg'
 import studentCaseSports from './assets/student-case-sports.jpg'
@@ -544,6 +545,12 @@ const studentResults = [
     name: 'Кейс в sports',
     role: '~$10 profit per unit',
   },
+  {
+    text: 'Ещё один кейс ученика: продажи уже идут, дальше фокус на том, чтобы дожать рекламу и масштабировать результат без хаоса.',
+    preview: studentCaseEbay,
+    name: 'Кейс на eBay',
+    role: '$1,992 in 90 days',
+  },
 ]
 
 const firstStudentColumn = [
@@ -551,6 +558,7 @@ const firstStudentColumn = [
   studentResults[3],
   studentResults[6],
   studentResults[9],
+  studentResults[12],
 ]
 
 const secondStudentColumn = [
