@@ -1904,40 +1904,6 @@ function App() {
         <RoadmapSection steps={roadmapSteps} />
       </Motion.section>
 
-      <Motion.section
-        id="program"
-        {...sectionReveal}
-        className="relative px-4 py-12 sm:px-6 sm:py-16 lg:px-8"
-      >
-        <div className="mx-auto w-[min(1320px,94vw)]">
-          <SectionHeader
-            eyebrow="Modules"
-            title="Что внутри программы"
-            text="6 ключевых модулей, собранных в одной системе: без лишнего шума, с понятной логикой и пошаговым разбором того, что реально работает."
-          />
-          <div className="mt-8 grid grid-cols-1 gap-4 md:mt-12 md:grid-cols-2 md:gap-6 xl:grid-cols-3">
-            {modules.map((module, index) => (
-              <MobileReveal
-                key={module.index}
-                delay={0.04 * index}
-                y={22}
-                blur={10}
-                variant={moduleRevealVariants[index % moduleRevealVariants.length]}
-              >
-                <FeatureCard
-                  feature={{
-                    index: module.index,
-                    title: module.title,
-                    icon: module.icon,
-                    description: module.description,
-                  }}
-                />
-              </MobileReveal>
-            ))}
-          </div>
-        </div>
-      </Motion.section>
-
       <Motion.section {...sectionReveal} className="relative px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
         <div className="mx-auto w-[min(1320px,94vw)]">
           <SectionHeader
