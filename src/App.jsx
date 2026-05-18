@@ -1921,6 +1921,10 @@ function App() {
         <AboutMeSlider slides={aboutSlides} />
       </Motion.section>
 
+      <Motion.section {...sectionReveal} className="relative px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
+        <ResultsSlider items={resultScreens} />
+      </Motion.section>
+
       <Motion.section
         id="results"
         {...sectionReveal}
@@ -1963,10 +1967,6 @@ function App() {
 
       <Motion.section {...sectionReveal} className="relative px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
         <VideoBreakdownsSlider items={videoBreakdowns} />
-      </Motion.section>
-
-      <Motion.section {...sectionReveal} className="relative px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
-        <ResultsSlider items={resultScreens} />
       </Motion.section>
 
       <Motion.section {...sectionReveal} className="relative px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
