@@ -1918,15 +1918,6 @@ function App() {
       </Motion.section>
 
       <Motion.section {...sectionReveal} className="relative px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
-        <Bucket
-          eyebrow="Momentum"
-          title="Как программа собирает импульс"
-          description="Этот блок показывает сам принцип движения внутри обучения: вы не просто смотрите материалы, а последовательно переходите от понимания к рабочему запуску."
-          chips={programFlowChips}
-        />
-      </Motion.section>
-
-      <Motion.section {...sectionReveal} className="relative px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
         <AboutMeSlider slides={aboutSlides} />
       </Motion.section>
 
