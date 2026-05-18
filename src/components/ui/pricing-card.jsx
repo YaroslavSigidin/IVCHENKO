@@ -88,11 +88,16 @@ function Price({ className, ...props }) {
 }
 
 function MainPrice({ className, ...props }) {
+  const normalizedChildren =
+    typeof props.children === 'string' ? props.children.replace(/^от\s*/i, '') : props.children
+
   return (
     <span
       className={cn('text-[2.35rem] font-extrabold tracking-tight text-white sm:text-3xl', className)}
       {...props}
-    />
+    >
+      {normalizedChildren}
+    </span>
   )
 }
 
