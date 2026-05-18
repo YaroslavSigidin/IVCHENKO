@@ -80,7 +80,7 @@ import { HeroSection, LogosSection } from '@/components/ui/hero-1'
 import { MobileReveal } from '@/components/ui/mobile-reveal'
 import { ProgramBenefitsSection } from '@/components/ui/program-benefits-features-8'
 import * as PricingCard from '@/components/ui/pricing-card'
-import { TestimonialsColumn } from '@/components/ui/testimonials-columns-1'
+import { TestimonialCard, TestimonialsColumn } from '@/components/ui/testimonials-columns-1'
 import { submitLead } from '@/lib/lead-api'
 import { cn } from '@/lib/utils'
 
@@ -1936,8 +1936,15 @@ function App() {
             title="Результаты учеников"
             text="Реальные кейсы участников: первые запуски, созвоны, понятные результаты и изменения, к которым они пришли после прохождения программы."
           />
+          <div className="-mx-4 mt-8 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-3 sm:-mx-6 sm:px-6 md:hidden">
+            {studentResults.map((item) => (
+              <div key={`${item.name}-${item.role}`} className="w-[84vw] min-w-[84vw] snap-center">
+                <TestimonialCard {...item} className="max-w-none" />
+              </div>
+            ))}
+          </div>
           <div className="relative mt-10 overflow-hidden [mask-image:linear-gradient(to_bottom,transparent,black_14%,black_86%,transparent)] sm:mt-12">
-            <div className="flex max-h-[620px] justify-center gap-4 overflow-hidden sm:max-h-[760px] sm:gap-5">
+            <div className="hidden max-h-[620px] justify-center gap-4 overflow-hidden md:flex sm:max-h-[760px] sm:gap-5">
               <TestimonialsColumn testimonials={firstStudentColumn} duration={15} />
               <TestimonialsColumn
                 testimonials={secondStudentColumn}
