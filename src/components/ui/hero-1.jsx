@@ -1,6 +1,7 @@
+import { useState } from 'react'
 import { cn } from '@/lib/utils'
 import { Button } from '@/components/ui/button'
-import { ArrowRight, Rocket } from 'lucide-react'
+import { ArrowRight, Play, Rocket } from 'lucide-react'
 import { LogoCloud } from '@/components/ui/logo-cloud-3'
 
 const logos = [
@@ -28,6 +29,8 @@ const logos = [
 ]
 
 export function HeroSection() {
+  const [isHeroVideoLoaded, setIsHeroVideoLoaded] = useState(false)
+
   return (
     <section className="relative mx-auto w-full max-w-[1320px] px-5 sm:px-6 lg:px-8">
       <div
@@ -118,14 +121,37 @@ export function HeroSection() {
               aria-hidden="true"
               className="pointer-events-none absolute inset-x-6 top-0 z-0 h-24 rounded-full bg-[radial-gradient(circle,rgba(255,255,255,0.08),transparent_72%)] blur-2xl"
             />
-            <iframe
-              className="relative z-10 aspect-video w-full"
-              src="https://www.youtube.com/embed/DA6vHxSvoQE?autoplay=1&mute=1&rel=0&modestbranding=1&playsinline=1"
-              title="Видео о программе запуска TikTok Shop в США"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              referrerPolicy="strict-origin-when-cross-origin"
-              allowFullScreen
-            />
+            {isHeroVideoLoaded ? (
+              <iframe
+                className="relative z-10 aspect-video w-full"
+                src="https://www.youtube.com/embed/DA6vHxSvoQE?autoplay=1&mute=1&rel=0&modestbranding=1&playsinline=1"
+                title="Видео о программе запуска TikTok Shop в США"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerPolicy="strict-origin-when-cross-origin"
+                allowFullScreen
+              />
+            ) : (
+              <button
+                type="button"
+                onClick={() => setIsHeroVideoLoaded(true)}
+                className="group relative z-10 block aspect-video w-full overflow-hidden bg-black text-left"
+                aria-label="Загрузить видео о программе запуска TikTok Shop в США"
+              >
+                <img
+                  src="https://i.ytimg.com/vi/DA6vHxSvoQE/hqdefault.jpg"
+                  alt="Превью видео о программе запуска TikTok Shop в США"
+                  fetchPriority="high"
+                  decoding="async"
+                  className="h-full w-full object-cover object-center transition-transform duration-500 group-hover:scale-[1.02]"
+                />
+                <span className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.08),rgba(0,0,0,0.18)_52%,rgba(0,0,0,0.42))]" />
+                <span className="absolute inset-0 flex items-center justify-center">
+                  <span className="flex h-16 w-16 items-center justify-center rounded-full border border-white/20 bg-black/45 text-white shadow-[0_18px_40px_rgba(0,0,0,0.32)] backdrop-blur-md transition-transform duration-300 group-hover:scale-105">
+                    <Play className="ml-1 h-7 w-7 fill-current" />
+                  </span>
+                </span>
+              </button>
+            )}
           </div>
         </div>
 

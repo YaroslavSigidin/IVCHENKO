@@ -15,7 +15,12 @@ export default defineConfig({
       output: {
         manualChunks(id) {
           if (!id.includes('node_modules')) return
-          if (id.includes('motion') || id.includes('framer-motion')) return 'motion'
+          if (
+            id.includes('/node_modules/motion/') ||
+            id.includes('/node_modules/framer-motion/')
+          ) {
+            return 'motion'
+          }
           if (id.includes('lucide-react')) return 'icons'
           if (id.includes('react') || id.includes('scheduler')) return 'react-vendor'
           return 'vendor'

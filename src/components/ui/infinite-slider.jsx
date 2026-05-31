@@ -1,10 +1,5 @@
 'use client'
 
-import React, { useEffect, useState } from 'react'
-import { animate, motion as Motion } from 'framer-motion'
-import { useMotionValue } from 'framer-motion'
-import useMeasure from 'react-use-measure'
-
 import { cn } from '@/lib/utils'
 
 export function InfiniteSlider({
@@ -16,85 +11,63 @@ export function InfiniteSlider({
   reverse = false,
   className,
 }) {
-  const [currentDuration, setCurrentDuration] = useState(duration)
-  const [ref, { width, height }] = useMeasure()
-  const translation = useMotionValue(0)
-  const [isTransitioning, setIsTransitioning] = useState(false)
-  const [key, setKey] = useState(0)
+  const isVertical = direction === 'vertical'
+  const animationName = isVertical
+    ? reverse
+      ? 'infinite-slider-vertical-reverse'
+      : 'infinite-slider-vertical'
+    : reverse
+      ? 'infinite-slider-horizontal-reverse'
+      : 'infinite-slider-horizontal'
 
-  useEffect(() => {
-    let controls
-    const size = direction === 'horizontal' ? width : height
-    const contentSize = size + gap
-    const from = reverse ? -contentSize / 2 : 0
-    const to = reverse ? 0 : -contentSize / 2
-
-    if (isTransitioning) {
-      controls = animate(translation, [translation.get(), to], {
-        ease: 'linear',
-        duration:
-          currentDuration * Math.abs((translation.get() - to) / contentSize),
-        onComplete: () => {
-          setIsTransitioning(false)
-          setKey((prevKey) => prevKey + 1)
-        },
-      })
-    } else {
-      controls = animate(translation, [from, to], {
-        ease: 'linear',
-        duration: currentDuration,
-        repeat: Infinity,
-        repeatType: 'loop',
-        repeatDelay: 0,
-        onRepeat: () => {
-          translation.set(from)
-        },
-      })
-    }
-
-    return controls?.stop
-  }, [
-    key,
-    translation,
-    currentDuration,
-    width,
-    height,
-    gap,
-    isTransitioning,
-    direction,
-    reverse,
-  ])
-
-  const hoverProps = durationOnHover
-    ? {
-        onHoverStart: () => {
-          setIsTransitioning(true)
-          setCurrentDuration(durationOnHover)
-        },
-        onHoverEnd: () => {
-          setIsTransitioning(true)
-          setCurrentDuration(duration)
-        },
-      }
-    : {}
+  const trackStyle = {
+    gap: `${gap}px`,
+    flexDirection: isVertical ? 'column' : 'row',
+    animationName,
+    animationDuration: `${duration}s`,
+    animationTimingFunction: 'linear',
+    animationIterationCount: 'infinite',
+    willChange: 'transform',
+  }
 
   return (
-    <div className={cn('overflow-hidden', className)}>
-      <Motion.div
-        className="flex w-max"
-        style={{
-          ...(direction === 'horizontal'
-            ? { x: translation }
-            : { y: translation }),
-          gap: `${gap}px`,
-          flexDirection: direction === 'horizontal' ? 'row' : 'column',
-        }}
-        ref={ref}
-        {...hoverProps}
+    <div
+      className={cn('group overflow-hidden', className)}
+      style={durationOnHover ? { '--slider-hover-duration': `${durationOnHover}s` } : undefined}
+    >
+      <style>{`
+        @keyframes infinite-slider-horizontal {
+          from { transform: translate3d(0, 0, 0); }
+          to { transform: translate3d(-50%, 0, 0); }
+        }
+
+        @keyframes infinite-slider-horizontal-reverse {
+          from { transform: translate3d(-50%, 0, 0); }
+          to { transform: translate3d(0, 0, 0); }
+        }
+
+        @keyframes infinite-slider-vertical {
+          from { transform: translate3d(0, 0, 0); }
+          to { transform: translate3d(0, -50%, 0); }
+        }
+
+        @keyframes infinite-slider-vertical-reverse {
+          from { transform: translate3d(0, -50%, 0); }
+          to { transform: translate3d(0, 0, 0); }
+        }
+      `}</style>
+      <div
+        className={cn(
+          'flex w-max',
+          durationOnHover
+            ? 'transition-[animation-duration] duration-300 ease-out group-hover:[animation-duration:var(--slider-hover-duration)]'
+            : '',
+        )}
+        style={trackStyle}
       >
         {children}
         {children}
-      </Motion.div>
+      </div>
     </div>
   )
 }

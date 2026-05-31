@@ -1,8 +1,8 @@
-import { useEffect, useRef, useState } from 'react'
-import audience01 from '../01.png'
-import audience02 from '../02.png'
-import audience03 from '../03.png'
-import audience04 from '../04.png'
+import { Suspense, lazy, useEffect, useRef, useState } from 'react'
+import audience01 from '../01.webp'
+import audience02 from '../02.webp'
+import audience03 from '../03.webp'
+import audience04 from '../04.webp'
 import audienceManImage from './assets/audience-man.webp'
 import audienceWomanImage from './assets/audience-woman.webp'
 import outcomePhoto01 from './assets/outcome-photo-1.jpg'
@@ -41,7 +41,6 @@ import studentCaseOrders from './assets/student-case-orders.jpg'
 import studentCaseSupplement from './assets/student-case-supplement.jpg'
 import studentCaseSports from './assets/student-case-sports.jpg'
 
-import { motion as Motion } from 'motion/react'
 import {
   BadgeDollarSign,
   BadgeCheck,
@@ -69,21 +68,46 @@ import {
   AudienceCardTitle,
 } from '@/components/ui/audience-card'
 import { BentoGrid } from '@/components/ui/bento-grid'
-import { Bucket } from '@/components/ui/bucket'
 import { Button } from '@/components/ui/button'
-import { FAQ } from '@/components/ui/faq-tabs'
-import { FinalCtaContact } from '@/components/ui/final-cta-contact'
-import { Footer } from '@/components/ui/footer-section'
 import { FeatureCard } from '@/components/ui/grid-feature-cards'
 import { HeadlineFrame } from '@/components/ui/headline-frame'
 import { Header } from '@/components/ui/header-1'
 import { HeroSection, LogosSection } from '@/components/ui/hero-1'
 import { MobileReveal } from '@/components/ui/mobile-reveal'
-import { ProgramBenefitsSection } from '@/components/ui/program-benefits-features-8'
 import * as PricingCard from '@/components/ui/pricing-card'
-import { TestimonialCard, TestimonialsColumn } from '@/components/ui/testimonials-columns-1'
 import { submitLead } from '@/lib/lead-api'
 import { cn } from '@/lib/utils'
+
+const ProgramBenefitsSection = lazy(() =>
+  import('@/components/ui/program-benefits-features-8').then((module) => ({
+    default: module.ProgramBenefitsSection,
+  })),
+)
+const TestimonialsColumn = lazy(() =>
+  import('@/components/ui/testimonials-columns-1').then((module) => ({
+    default: module.TestimonialsColumn,
+  })),
+)
+const TestimonialCard = lazy(() =>
+  import('@/components/ui/testimonials-columns-1').then((module) => ({
+    default: module.TestimonialCard,
+  })),
+)
+const FAQ = lazy(() =>
+  import('@/components/ui/faq-tabs').then((module) => ({
+    default: module.FAQ,
+  })),
+)
+const FinalCtaContact = lazy(() =>
+  import('@/components/ui/final-cta-contact').then((module) => ({
+    default: module.FinalCtaContact,
+  })),
+)
+const Footer = lazy(() =>
+  import('@/components/ui/footer-section').then((module) => ({
+    default: module.Footer,
+  })),
+)
 
 const audienceCards = [
   {
@@ -839,13 +863,6 @@ const faqData = [
   },
 ]
 
-const sectionReveal = {
-  initial: { opacity: 0, y: 30 },
-  whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true, amount: 0.2 },
-  transition: { duration: 0.75, ease: [0.22, 1, 0.36, 1] },
-}
-
 const audienceRevealVariants = ['drift-left', 'reveal', 'drift-right', 'pop']
 const moduleRevealVariants = ['tilt-left', 'pop', 'tilt-right', 'drift-left', 'drift-right', 'reveal']
 const storyRevealVariants = ['drift-left', 'pop', 'drift-right', 'tilt-right']
@@ -934,6 +951,10 @@ function DeferredSection({ children, minHeight = 480, rootMargin = '800px 0px' }
       {isVisible ? children : null}
     </div>
   )
+}
+
+function SectionFallback({ minHeight = 480 }) {
+  return <div style={{ minHeight }} aria-hidden="true" />
 }
 
 function SplitCardText({ text }) {
@@ -1883,9 +1904,8 @@ function App() {
       <HeroSection />
       <LogosSection />
 
-      <Motion.section
+      <section
         id="reviews"
-        {...sectionReveal}
         className="relative px-4 py-12 sm:px-6 sm:py-16 lg:px-8"
       >
         <div className="mx-auto w-[min(1320px,94vw)]">
@@ -1945,22 +1965,24 @@ function App() {
             ))}
           </div>
         </div>
-      </Motion.section>
+      </section>
 
-      <Motion.section {...sectionReveal} className="relative px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
-        <ProgramBenefitsSection
-          eyebrow="Value"
-          title="Что ты получишь внутри"
-          description="Здесь упакована ценность программы без перегруза: логика, инструменты, опора и практический маршрут."
-          benefits={outcomes}
-        />
-      </Motion.section>
+      <section className="relative px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
+        <Suspense fallback={<SectionFallback minHeight={780} />}>
+          <ProgramBenefitsSection
+            eyebrow="Value"
+            title="Что ты получишь внутри"
+            description="Здесь упакована ценность программы без перегруза: логика, инструменты, опора и практический маршрут."
+            benefits={outcomes}
+          />
+        </Suspense>
+      </section>
 
-      <Motion.section {...sectionReveal} className="relative px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
+      <section className="relative px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
         <RoadmapSection steps={roadmapSteps} />
-      </Motion.section>
+      </section>
 
-      <Motion.section {...sectionReveal} className="relative px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
+      <section className="relative px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
         <div className="mx-auto w-[min(1320px,94vw)]">
           <SectionHeader
             eyebrow="Toolkit"
@@ -1971,24 +1993,23 @@ function App() {
             <BentoGrid items={launchToolkitItems} />
           </div>
         </div>
-      </Motion.section>
+      </section>
 
       <DeferredSection minHeight={840}>
-        <Motion.section {...sectionReveal} className="relative px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
+        <section className="relative px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
           <AboutMeSlider slides={aboutSlides} />
-        </Motion.section>
+        </section>
       </DeferredSection>
 
       <DeferredSection minHeight={920}>
-        <Motion.section {...sectionReveal} className="relative px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
+        <section className="relative px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
           <ResultsSlider items={resultScreens} />
-        </Motion.section>
+        </section>
       </DeferredSection>
 
       <DeferredSection minHeight={1280}>
-        <Motion.section
+        <section
           id="results"
-          {...sectionReveal}
           className="relative px-4 py-12 sm:px-6 sm:py-16 lg:px-8"
         >
           <div className="mx-auto w-[min(1320px,94vw)]">
@@ -1998,33 +2019,37 @@ function App() {
               text="Реальные кейсы участников: первые запуски, созвоны, понятные результаты и изменения, к которым они пришли после прохождения программы."
             />
             <div className="-mx-4 mt-8 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-3 sm:-mx-6 sm:px-6 md:hidden">
-              {studentResults.map((item) => (
-                <div key={`${item.name}-${item.role}`} className="w-[84vw] min-w-[84vw] snap-center">
-                  <TestimonialCard {...item} className="max-w-none" />
-                </div>
-              ))}
+              <Suspense fallback={<SectionFallback minHeight={760} />}>
+                {studentResults.map((item) => (
+                  <div key={`${item.name}-${item.role}`} className="w-[84vw] min-w-[84vw] snap-center">
+                    <TestimonialCard {...item} className="max-w-none" />
+                  </div>
+                ))}
+              </Suspense>
             </div>
             <div className="relative mt-10 overflow-hidden [mask-image:linear-gradient(to_bottom,transparent,black_14%,black_86%,transparent)] sm:mt-12">
-              <div className="hidden max-h-[620px] justify-center gap-4 overflow-hidden md:flex sm:max-h-[760px] sm:gap-5">
-                <TestimonialsColumn testimonials={firstStudentColumn} duration={15} />
-                <TestimonialsColumn
-                  testimonials={secondStudentColumn}
-                  className="hidden md:block"
-                  duration={18}
-                />
-                <TestimonialsColumn
-                  testimonials={thirdStudentColumn}
-                  className="hidden xl:block"
-                  duration={22}
-                />
-              </div>
+              <Suspense fallback={<SectionFallback minHeight={760} />}>
+                <div className="hidden max-h-[620px] justify-center gap-4 overflow-hidden md:flex sm:max-h-[760px] sm:gap-5">
+                  <TestimonialsColumn testimonials={firstStudentColumn} duration={15} />
+                  <TestimonialsColumn
+                    testimonials={secondStudentColumn}
+                    className="hidden md:block"
+                    duration={18}
+                  />
+                  <TestimonialsColumn
+                    testimonials={thirdStudentColumn}
+                    className="hidden xl:block"
+                    duration={22}
+                  />
+                </div>
+              </Suspense>
             </div>
           </div>
-        </Motion.section>
+        </section>
       </DeferredSection>
 
       <DeferredSection minHeight={720}>
-        <Motion.section {...sectionReveal} className="relative px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
+        <section className="relative px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
           <div className="mx-auto w-[min(1320px,94vw)]">
             <SectionHeader
               eyebrow="Testimonials"
@@ -2033,24 +2058,23 @@ function App() {
             />
             <VideoStoryRow items={videoReviews} />
           </div>
-        </Motion.section>
+        </section>
       </DeferredSection>
 
       <DeferredSection minHeight={760}>
-        <Motion.section {...sectionReveal} className="relative px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
+        <section className="relative px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
           <VideoBreakdownsSlider items={videoBreakdowns} />
-        </Motion.section>
+        </section>
       </DeferredSection>
 
       <DeferredSection minHeight={820}>
-        <Motion.section {...sectionReveal} className="relative px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
+        <section className="relative px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
           <AnalyticsScreensSlider items={resultScreens} />
-        </Motion.section>
+        </section>
       </DeferredSection>
 
-      <Motion.section
+      <section
         id="pricing"
-        {...sectionReveal}
         className="relative px-4 py-12 sm:px-6 sm:py-16 lg:px-8"
       >
         <div className="mx-auto w-[min(1320px,94vw)]">
@@ -2192,37 +2216,39 @@ function App() {
             ))}
           </div>
         </div>
-      </Motion.section>
+      </section>
 
-      <Motion.section
+      <section
         id="faq"
-        {...sectionReveal}
         className="relative px-4 py-12 sm:px-6 sm:py-16 lg:px-8"
       >
-        <FAQ
-          title="Частые вопросы"
-          subtitle="FAQ"
-          faqData={faqData}
-          className="mx-auto w-[min(1320px,94vw)] rounded-[2.25rem] border border-white/8 bg-[linear-gradient(180deg,rgba(255,255,255,0.04),rgba(255,255,255,0.015))] shadow-[0_24px_70px_rgba(0,0,0,0.28)]"
-        />
-      </Motion.section>
+        <Suspense fallback={<SectionFallback minHeight={620} />}>
+          <FAQ
+            title="Частые вопросы"
+            subtitle="FAQ"
+            faqData={faqData}
+            className="mx-auto w-[min(1320px,94vw)] rounded-[2.25rem] border border-white/8 bg-[linear-gradient(180deg,rgba(255,255,255,0.04),rgba(255,255,255,0.015))] shadow-[0_24px_70px_rgba(0,0,0,0.28)]"
+          />
+        </Suspense>
+      </section>
 
-      <Motion.div
-        id="contact"
-        {...sectionReveal}
-      >
-        <FinalCtaContact
-          title="Выбери подходящий формат и начни двигаться системно"
-          formData={finalLeadForm}
-          submitted={finalLeadSubmitted}
-          submitting={finalLeadSubmitting}
-          error={finalLeadError}
-          onChange={handleFinalLeadChange}
-          onSubmit={handleFinalLeadSubmit}
-        />
-      </Motion.div>
+      <div id="contact">
+        <Suspense fallback={<SectionFallback minHeight={960} />}>
+          <FinalCtaContact
+            title="Выбери подходящий формат и начни двигаться системно"
+            formData={finalLeadForm}
+            submitted={finalLeadSubmitted}
+            submitting={finalLeadSubmitting}
+            error={finalLeadError}
+            onChange={handleFinalLeadChange}
+            onSubmit={handleFinalLeadSubmit}
+          />
+        </Suspense>
+      </div>
 
-      <Footer />
+      <Suspense fallback={<SectionFallback minHeight={220} />}>
+        <Footer />
+      </Suspense>
 
       <PricingLeadModal
         open={Boolean(pricingModalPlan)}

@@ -2,7 +2,6 @@
 
 import React from 'react'
 import { createPortal } from 'react-dom'
-import { AnimatePresence, motion as Motion, useReducedMotion } from 'motion/react'
 import { Package } from 'lucide-react'
 
 import { Button } from '@/components/ui/button'
@@ -14,7 +13,6 @@ import { cn } from '@/lib/utils'
 export function Header() {
   const [open, setOpen] = React.useState(false)
   const scrolled = useScroll(10)
-  const shouldReduceMotion = useReducedMotion()
 
   const links = [
     { label: 'Программа', href: '#program' },
@@ -103,25 +101,21 @@ export function Header() {
       <MobileMenu
         open={open}
         onClose={() => setOpen(false)}
-        reduceMotion={shouldReduceMotion}
         className="flex h-full flex-col justify-between gap-3"
       >
-        <Motion.div variants={mobileMenuStackVariants} className="space-y-3">
-          <Motion.div
-            variants={mobileMenuItemVariants}
-            className="rounded-[1.25rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.06),rgba(255,255,255,0.02))] px-4 py-3 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)]"
-          >
+        <div className="space-y-3">
+          <div className="rounded-[1.25rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.06),rgba(255,255,255,0.02))] px-4 py-3 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)]">
             <div className="text-[0.62rem] uppercase tracking-[0.3em] text-white/34">
               Navigation
             </div>
             <div className="mt-2 text-sm leading-6 text-white/56">
               Быстрый переход по ключевым разделам программы.
             </div>
-          </Motion.div>
+          </div>
 
           <div className="grid gap-y-2">
           {links.map((link) => (
-            <Motion.div key={link.label} variants={mobileMenuItemVariants}>
+            <div key={link.label}>
               <a
                 className={cn(
                   buttonVariants({
@@ -134,13 +128,13 @@ export function Header() {
               >
                 {link.label}
               </a>
-            </Motion.div>
+            </div>
           ))}
           </div>
-        </Motion.div>
+        </div>
 
-        <Motion.div variants={mobileMenuStackVariants} className="flex flex-col gap-2">
-          <Motion.div variants={mobileMenuItemVariants}>
+        <div className="flex flex-col gap-2">
+          <div>
           <Button
             asChild
             variant="outline"
@@ -150,128 +144,52 @@ export function Header() {
               Посмотреть программу
             </a>
           </Button>
-          </Motion.div>
-          <Motion.div variants={mobileMenuItemVariants}>
+          </div>
+          <div>
           <Button className="h-12 w-full rounded-full bg-white !text-black hover:bg-white/90 hover:!text-black [&_*]:!text-black" asChild>
             <a href="#pricing" onClick={() => setOpen(false)} className="!text-black">
               Выбрать формат
             </a>
           </Button>
-          </Motion.div>
-        </Motion.div>
+          </div>
+        </div>
       </MobileMenu>
     </header>
   )
 }
 
-function MobileMenu({ open, onClose, reduceMotion, children, className, ...props }) {
+function MobileMenu({ open, onClose, children, className, ...props }) {
   if (typeof window === 'undefined') return null
 
+  if (!open) return null
+
   return createPortal(
-    <AnimatePresence>
-      {open ? (
-        <div id="mobile-menu" className="md:hidden">
-          <Motion.button
-            type="button"
-            aria-label="Close menu"
-            onClick={onClose}
-            initial={reduceMotion ? { opacity: 1 } : { opacity: 0 }}
-            animate={reduceMotion ? { opacity: 1 } : { opacity: 1 }}
-            exit={reduceMotion ? { opacity: 0 } : { opacity: 0 }}
-            transition={{ duration: reduceMotion ? 0.12 : 0.28, ease: [0.22, 1, 0.36, 1] }}
-            className="fixed inset-0 z-40 bg-[linear-gradient(180deg,rgba(0,0,0,0.52),rgba(0,0,0,0.82))] backdrop-blur-[10px]"
-          />
+    <div id="mobile-menu" className="md:hidden">
+      <button
+        type="button"
+        aria-label="Close menu"
+        onClick={onClose}
+        className="fixed inset-0 z-40 bg-[linear-gradient(180deg,rgba(0,0,0,0.52),rgba(0,0,0,0.82))] backdrop-blur-[10px]"
+      />
 
-          <div className="pointer-events-none fixed inset-x-0 bottom-0 top-[4.75rem] z-40 p-4 sm:top-16">
-            <Motion.div
-              initial={
-                reduceMotion
-                  ? { opacity: 1 }
-                  : { opacity: 0, y: -18, scale: 0.985, filter: 'blur(12px)' }
-              }
-              animate={
-                reduceMotion
-                  ? { opacity: 1 }
-                  : { opacity: 1, y: 0, scale: 1, filter: 'blur(0px)' }
-              }
-              exit={
-                reduceMotion
-                  ? { opacity: 0 }
-                  : { opacity: 0, y: -12, scale: 0.985, filter: 'blur(10px)' }
-              }
-              transition={{ duration: reduceMotion ? 0.16 : 0.38, ease: [0.22, 1, 0.36, 1] }}
-              className={cn(
-                'pointer-events-auto relative size-full overflow-hidden rounded-[1.65rem] border border-white/10 bg-[linear-gradient(180deg,rgba(16,16,18,0.92),rgba(8,8,9,0.98))] p-4 shadow-[0_24px_80px_rgba(0,0,0,0.42)]',
-                className,
-              )}
-              {...props}
-            >
-              <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.08),transparent_34%),radial-gradient(circle_at_bottom,rgba(255,138,28,0.08),transparent_28%)]" />
-              <div className="pointer-events-none absolute inset-x-8 top-0 h-px bg-[linear-gradient(90deg,transparent,rgba(255,255,255,0.12),transparent)]" />
-              <div className="pointer-events-none absolute right-[-4rem] top-[-3rem] h-28 w-28 rounded-full bg-[#ff8a1c]/10 blur-3xl" />
+      <div className="pointer-events-none fixed inset-x-0 bottom-0 top-[4.75rem] z-40 p-4 sm:top-16">
+        <div
+          className={cn(
+            'pointer-events-auto relative size-full overflow-hidden rounded-[1.65rem] border border-white/10 bg-[linear-gradient(180deg,rgba(16,16,18,0.92),rgba(8,8,9,0.98))] p-4 shadow-[0_24px_80px_rgba(0,0,0,0.42)]',
+            className,
+          )}
+          {...props}
+        >
+          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.08),transparent_34%),radial-gradient(circle_at_bottom,rgba(255,138,28,0.08),transparent_28%)]" />
+          <div className="pointer-events-none absolute inset-x-8 top-0 h-px bg-[linear-gradient(90deg,transparent,rgba(255,255,255,0.12),transparent)]" />
+          <div className="pointer-events-none absolute right-[-4rem] top-[-3rem] h-28 w-28 rounded-full bg-[#ff8a1c]/10 blur-3xl" />
 
-              <Motion.div
-                initial="closed"
-                animate="open"
-                exit="closed"
-                variants={reduceMotion ? undefined : mobileMenuContainerVariants}
-                className="relative z-10 size-full"
-              >
-                {children}
-              </Motion.div>
-            </Motion.div>
+          <div className="relative z-10 size-full">
+            {children}
           </div>
         </div>
-      ) : null}
-    </AnimatePresence>,
+      </div>
+    </div>,
     document.body,
   )
-}
-
-const mobileMenuContainerVariants = {
-  closed: {
-    transition: {
-      staggerChildren: 0.04,
-      staggerDirection: -1,
-    },
-  },
-  open: {
-    transition: {
-      delayChildren: 0.08,
-      staggerChildren: 0.065,
-    },
-  },
-}
-
-const mobileMenuStackVariants = {
-  closed: {
-    transition: {
-      staggerChildren: 0.035,
-      staggerDirection: -1,
-    },
-  },
-  open: {
-    transition: {
-      staggerChildren: 0.055,
-    },
-  },
-}
-
-const mobileMenuItemVariants = {
-  closed: {
-    opacity: 0,
-    y: 14,
-    scale: 0.985,
-    filter: 'blur(8px)',
-  },
-  open: {
-    opacity: 1,
-    y: 0,
-    scale: 1,
-    filter: 'blur(0px)',
-    transition: {
-      duration: 0.32,
-      ease: [0.22, 1, 0.36, 1],
-    },
-  },
 }

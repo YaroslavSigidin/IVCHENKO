@@ -1,6 +1,6 @@
 import { CheckCircle2, Send } from 'lucide-react'
 import { motion as Motion } from 'motion/react'
-import vladPhoto from '../../../VLAD.png'
+import vladPhoto from '../../../VLAD.webp'
 
 import { Button } from '@/components/ui/button'
 import { HeadlineFrame } from '@/components/ui/headline-frame'
