@@ -907,6 +907,35 @@ function SafeImage({
   )
 }
 
+function DeferredSection({ children, minHeight = 480, rootMargin = '800px 0px' }) {
+  const [isVisible, setIsVisible] = useState(false)
+  const containerRef = useRef(null)
+
+  useEffect(() => {
+    if (isVisible || !containerRef.current) return
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true)
+          observer.disconnect()
+        }
+      },
+      { rootMargin },
+    )
+
+    observer.observe(containerRef.current)
+
+    return () => observer.disconnect()
+  }, [isVisible, rootMargin])
+
+  return (
+    <div ref={containerRef} style={isVisible ? undefined : { minHeight }}>
+      {isVisible ? children : null}
+    </div>
+  )
+}
+
 function SplitCardText({ text }) {
   const words = text.split(' ')
   const lead = words.slice(0, 4).join(' ')
@@ -1944,68 +1973,80 @@ function App() {
         </div>
       </Motion.section>
 
-      <Motion.section {...sectionReveal} className="relative px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
-        <AboutMeSlider slides={aboutSlides} />
-      </Motion.section>
+      <DeferredSection minHeight={840}>
+        <Motion.section {...sectionReveal} className="relative px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
+          <AboutMeSlider slides={aboutSlides} />
+        </Motion.section>
+      </DeferredSection>
 
-      <Motion.section {...sectionReveal} className="relative px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
-        <ResultsSlider items={resultScreens} />
-      </Motion.section>
+      <DeferredSection minHeight={920}>
+        <Motion.section {...sectionReveal} className="relative px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
+          <ResultsSlider items={resultScreens} />
+        </Motion.section>
+      </DeferredSection>
 
-      <Motion.section
-        id="results"
-        {...sectionReveal}
-        className="relative px-4 py-12 sm:px-6 sm:py-16 lg:px-8"
-      >
-        <div className="mx-auto w-[min(1320px,94vw)]">
-          <SectionHeader
-            eyebrow="Student Results"
-            title="Результаты учеников"
-            text="Реальные кейсы участников: первые запуски, созвоны, понятные результаты и изменения, к которым они пришли после прохождения программы."
-          />
-          <div className="-mx-4 mt-8 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-3 sm:-mx-6 sm:px-6 md:hidden">
-            {studentResults.map((item) => (
-              <div key={`${item.name}-${item.role}`} className="w-[84vw] min-w-[84vw] snap-center">
-                <TestimonialCard {...item} className="max-w-none" />
+      <DeferredSection minHeight={1280}>
+        <Motion.section
+          id="results"
+          {...sectionReveal}
+          className="relative px-4 py-12 sm:px-6 sm:py-16 lg:px-8"
+        >
+          <div className="mx-auto w-[min(1320px,94vw)]">
+            <SectionHeader
+              eyebrow="Student Results"
+              title="Результаты учеников"
+              text="Реальные кейсы участников: первые запуски, созвоны, понятные результаты и изменения, к которым они пришли после прохождения программы."
+            />
+            <div className="-mx-4 mt-8 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-3 sm:-mx-6 sm:px-6 md:hidden">
+              {studentResults.map((item) => (
+                <div key={`${item.name}-${item.role}`} className="w-[84vw] min-w-[84vw] snap-center">
+                  <TestimonialCard {...item} className="max-w-none" />
+                </div>
+              ))}
+            </div>
+            <div className="relative mt-10 overflow-hidden [mask-image:linear-gradient(to_bottom,transparent,black_14%,black_86%,transparent)] sm:mt-12">
+              <div className="hidden max-h-[620px] justify-center gap-4 overflow-hidden md:flex sm:max-h-[760px] sm:gap-5">
+                <TestimonialsColumn testimonials={firstStudentColumn} duration={15} />
+                <TestimonialsColumn
+                  testimonials={secondStudentColumn}
+                  className="hidden md:block"
+                  duration={18}
+                />
+                <TestimonialsColumn
+                  testimonials={thirdStudentColumn}
+                  className="hidden xl:block"
+                  duration={22}
+                />
               </div>
-            ))}
-          </div>
-          <div className="relative mt-10 overflow-hidden [mask-image:linear-gradient(to_bottom,transparent,black_14%,black_86%,transparent)] sm:mt-12">
-            <div className="hidden max-h-[620px] justify-center gap-4 overflow-hidden md:flex sm:max-h-[760px] sm:gap-5">
-              <TestimonialsColumn testimonials={firstStudentColumn} duration={15} />
-              <TestimonialsColumn
-                testimonials={secondStudentColumn}
-                className="hidden md:block"
-                duration={18}
-              />
-              <TestimonialsColumn
-                testimonials={thirdStudentColumn}
-                className="hidden xl:block"
-                duration={22}
-              />
             </div>
           </div>
-        </div>
-      </Motion.section>
+        </Motion.section>
+      </DeferredSection>
 
-      <Motion.section {...sectionReveal} className="relative px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
-        <div className="mx-auto w-[min(1320px,94vw)]">
-          <SectionHeader
-            eyebrow="Testimonials"
-            title="Видео-отзывы"
-            text="Короткие отзывы участников о программе: как изменилось понимание запуска, что дало больше ясности и какие результаты они увидели на практике."
-          />
-          <VideoStoryRow items={videoReviews} />
-        </div>
-      </Motion.section>
+      <DeferredSection minHeight={720}>
+        <Motion.section {...sectionReveal} className="relative px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
+          <div className="mx-auto w-[min(1320px,94vw)]">
+            <SectionHeader
+              eyebrow="Testimonials"
+              title="Видео-отзывы"
+              text="Короткие отзывы участников о программе: как изменилось понимание запуска, что дало больше ясности и какие результаты они увидели на практике."
+            />
+            <VideoStoryRow items={videoReviews} />
+          </div>
+        </Motion.section>
+      </DeferredSection>
 
-      <Motion.section {...sectionReveal} className="relative px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
-        <VideoBreakdownsSlider items={videoBreakdowns} />
-      </Motion.section>
+      <DeferredSection minHeight={760}>
+        <Motion.section {...sectionReveal} className="relative px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
+          <VideoBreakdownsSlider items={videoBreakdowns} />
+        </Motion.section>
+      </DeferredSection>
 
-      <Motion.section {...sectionReveal} className="relative px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
-        <AnalyticsScreensSlider items={resultScreens} />
-      </Motion.section>
+      <DeferredSection minHeight={820}>
+        <Motion.section {...sectionReveal} className="relative px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
+          <AnalyticsScreensSlider items={resultScreens} />
+        </Motion.section>
+      </DeferredSection>
 
       <Motion.section
         id="pricing"
