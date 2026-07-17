@@ -15,34 +15,38 @@ const escapeHtml = (value) =>
     .replaceAll('"', '&quot;')
     .replaceAll("'", '&#39;')
 
-export async function onRequestOptions() {
-  return new Response(null, { status: 204 })
-}
+async function handleSubmitLead(request, env) {
+  if (request.method === 'OPTIONS') {
+    return new Response(null, { status: 204 })
+  }
 
-export async function onRequestGet(context) {
-  const url = new URL(context.request.url)
-  if (!url.searchParams.has('health')) {
+  if (request.method === 'GET') {
+    const url = new URL(request.url)
+    if (!url.searchParams.has('health')) {
+      return json({ ok: false, error: 'Method not allowed.' }, 405)
+    }
+
+    return json({
+      ok: true,
+      runtime: 'cloudflare-worker',
+      hasTelegramToken: Boolean(env.TELEGRAM_BOT_TOKEN),
+      hasTelegramChatId: Boolean(env.TELEGRAM_CHAT_ID),
+    })
+  }
+
+  if (request.method !== 'POST') {
     return json({ ok: false, error: 'Method not allowed.' }, 405)
   }
 
-  return json({
-    ok: true,
-    runtime: 'cloudflare-pages',
-    hasTelegramToken: Boolean(context.env.TELEGRAM_BOT_TOKEN),
-    hasTelegramChatId: Boolean(context.env.TELEGRAM_CHAT_ID),
-  })
-}
-
-export async function onRequestPost(context) {
-  const token = context.env.TELEGRAM_BOT_TOKEN
-  const chatId = context.env.TELEGRAM_CHAT_ID
+  const token = env.TELEGRAM_BOT_TOKEN
+  const chatId = env.TELEGRAM_CHAT_ID
 
   if (!token || !chatId) {
     return json(
       {
         ok: false,
         error:
-          'Telegram credentials are not configured. Set TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID in Cloudflare Pages.',
+          'Telegram credentials are not configured. Set TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID in Cloudflare.',
       },
       500,
     )
@@ -50,7 +54,7 @@ export async function onRequestPost(context) {
 
   let payload
   try {
-    payload = await context.request.json()
+    payload = await request.json()
   } catch {
     return json({ ok: false, error: 'Invalid payload.' }, 400)
   }
@@ -124,4 +128,16 @@ export async function onRequestPost(context) {
   }
 
   return json({ ok: true })
+}
+
+export default {
+  async fetch(request, env) {
+    const url = new URL(request.url)
+
+    if (url.pathname === '/api/submit-lead' || url.pathname === '/api/submit-lead/') {
+      return handleSubmitLead(request, env)
+    }
+
+    return env.ASSETS.fetch(request)
+  },
 }
