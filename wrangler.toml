@@ -1,6 +1,13 @@
 name = "ivchenko"
 main = "worker.js"
 compatibility_date = "2026-07-01"
+workers_dev = true
+preview_urls = true
+
+routes = [
+  { pattern = "ivchenkoschool.com", custom_domain = true },
+  { pattern = "www.ivchenkoschool.com", custom_domain = true }
+]
 
 [assets]
 directory = "./dist"
